@@ -1,0 +1,23 @@
+﻿@model DataLayer.Studying
+
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Редактирование страницы Визы</h1>
+@using (Html.BeginForm("EditStudying", "Home",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel()
+
+    <script>
+        CKEDITOR.replace('Description');
+    </script>
+
+
+
+
+    <input type="submit" value="Save" />
+  @Html.ActionLink("Cancel and return to List", "Index", "Admin")
+}

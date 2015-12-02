@@ -1,0 +1,35 @@
+﻿@model List<DataLayer.Resort>
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Все курорты</h1>
+<table class="Grid">
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+
+            <td>@Html.ActionLink(item.Name, "EditResort", new { item.Id })</td>
+
+            <td>
+                @using (Html.BeginForm("DeleteResorts", "Admin"))
+                {
+                    @Html.Hidden("Id", item.Id)
+                    <input type="submit" value="Delete" />
+                }
+            </td>
+
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Добавить курорт", "CreateResort")</p>
+<p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+

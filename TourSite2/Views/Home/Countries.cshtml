@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DataLayer.Country>
+@{
+
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+}
+@{
+    ViewBag.Title = "Страны и курорты";
+}
+
+
+
+
+    @foreach (var country in Model)
+    {
+
+        <div class="country">
+            <table>
+                <tr>
+                    <td>
+                        <a href="@Url.Action("CountryDetails", "Tour",
+                                 new { id = country.Id })" target="_blank">
+                            <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 125px; border-radius: 10px; height: 80px;" />
+                        </a>
+                    </td>
+                    <td>
+                        <div class="bg-info">
+                            <a href="@Url.Action("CountryDetails", "Tour",
+                                 new { id = country.Id })" target="_blank">@country.Name</a>
+                            </div>
+                            <div class="bg-info">
+                                <a href="@Url.Action("CountryDetails", "Tour",
+                                 new { id = country.Id })" target="_blank">Описание</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+    }
+

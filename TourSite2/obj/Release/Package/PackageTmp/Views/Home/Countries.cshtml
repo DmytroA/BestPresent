@@ -1,0 +1,51 @@
+﻿@*@model IEnumerable<DataLayer.Country>
+
+<div class="list-group">
+   @foreach (var country in Model)
+       {  <a href="@Url.Action("CountryDetails", "Tour",
+                                     new {id = country.Id })" class ="list-group-item" target="_blank">
+            @Html.DisplayFor(modelItem => country.Name)
+                                </a>
+       }
+</div>*@
+
+@model IEnumerable<DataLayer.Country>
+@{
+    ViewBag.Title = "Страны и курорты";
+}
+
+
+<style type="text/css">
+
+</style>
+<div class="content_bg">
+
+    @foreach (var country in Model)
+    {
+
+        <div class="country">
+            <table>
+                <tr>
+                    <td>
+                        <a href="@Url.Action("CountryDetails", "Tour",
+                                 new { id = country.Id })" target="_blank">
+                            <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 125px; border-radius: 10px; height: 80px;" />
+                        </a>
+                    </td>
+                    <td>
+                        <div class="bg-info">
+                            <a href="@Url.Action("CountryDetails", "Tour",
+                                 new { id = country.Id })" target="_blank">@country.Name</a>
+                            </div>
+                            <div class="bg-info">
+                                <a href="@Url.Action("CountryDetails", "Tour",
+                                 new { id = country.Id })" target="_blank">Описание</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+    }
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model TourSite2.Models.EditHotelModel
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit @Model.Hotel.Name</h1>
+@using (Html.BeginForm("EditHotel", "Admin",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(s => s.Hotel.Id)
+    <div>Название отеля: @Html.EditorFor(x => x.Hotel.Name)</div>
+    <div>Описание отеля: @Html.EditorFor(x => x.Hotel.Description)</div>
+    <div>Категория: @Html.EditorFor(x => x.Hotel.Category)</div>
+    <div>Расположение отеля: @Html.EditorFor(x => x.Hotel.HotelLocation)</div>
+
+    <div>Комментарий: @Html.TextAreaFor(x => x.Hotel.Comment)</div>
+
+    <div>Картинка: @Html.EditorFor(x => x.Hotel.ImageMimeType)</div>
+    @*<div>Страна:   @Html.DropDownListFor(m => m.Hotel.CountryId, Model.Country)</div>*@
+
+    <div>Курорт:   @Html.DropDownListFor(m => m.Hotel.ResortId, Model.Resort)</div>
+    <div class="editor-label">Image</div>
+    <div class="editor-field">
+        @if (Model.Hotel.ImageData == null)
+        {
+            @:None
+         }
+        else
+        {
+            <img width="150" height="150" src="@Url.Action("GetImageHotel", "Tour", new { Model.Hotel.Id })" />
+        }
+        <div>
+            Upload new image:
+            <input type="file" name="Image" />
+        </div>
+
+        <script>
+            CKEDITOR.replace('Hotel.Description');
+        </script>
+
+    </div>
+
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index")
+}
+
+<p>@Html.ActionLink("Главная страница", "Index", "Home")</p>

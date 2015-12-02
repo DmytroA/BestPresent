@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TourSite2ModelStoreContainer" CdmEntityContainer="TourSite2Entities2">
+    <EntitySetMapping Name="Sertificate">
+      <EntityTypeMapping TypeName="TourSite2Model.Sertificate">
+        <MappingFragment StoreEntitySet="Sertificate">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="About">
+      <EntityTypeMapping TypeName="TourSite2Model.About">
+        <MappingFragment StoreEntitySet="About">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Airticket">
+      <EntityTypeMapping TypeName="TourSite2Model.Airticket">
+        <MappingFragment StoreEntitySet="Airticket">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="TourSite2Model.Countries">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+          <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fishing">
+      <EntityTypeMapping TypeName="TourSite2Model.Fishing">
+        <MappingFragment StoreEntitySet="Fishing">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HotTours">
+      <EntityTypeMapping TypeName="TourSite2Model.HotTours">
+        <MappingFragment StoreEntitySet="HotTours">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="TourType" ColumnName="TourType" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="Food" ColumnName="Food" />
+          <ScalarProperty Name="DepartureDay" ColumnName="DepartureDay" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="CategoryHotel" ColumnName="CategoryHotel" />
+          <ScalarProperty Name="AmountPeople" ColumnName="AmountPeople" />
+          <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+          <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Placement">
+      <EntityTypeMapping TypeName="TourSite2Model.Placement">
+        <MappingFragment StoreEntitySet="Placement">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Studying">
+      <EntityTypeMapping TypeName="TourSite2Model.Studying">
+        <MappingFragment StoreEntitySet="Studying">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visa">
+      <EntityTypeMapping TypeName="TourSite2Model.Visa">
+        <MappingFragment StoreEntitySet="Visa">
+          <ScalarProperty Name="Decription" ColumnName="Decription" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,36 @@
+﻿@model List<DataLayer.Country>
+@{
+    
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Все страны</h1>
+<table class="Grid">
+    <tr>
+        <th>ID</th>
+        <th>Country</th>
+        
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+
+            <td>@Html.ActionLink(item.Name, "EditCountry", new { item.Id })</td>
+            
+            <td>
+                @using (Html.BeginForm("DeleteCountries", "Admin"))
+                {
+                    @Html.Hidden("CountryId", item.Id)
+                    <input type="submit" value="Delete" />
+                }
+            </td>
+
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Добавить страну", "CreateCountry")</p>
+<p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+
+<p>@Html.ActionLink("Админка", "Index")</p>

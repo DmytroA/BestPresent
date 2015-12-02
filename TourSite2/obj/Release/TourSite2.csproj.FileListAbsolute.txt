@@ -1,0 +1,123 @@
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\TourSite2.dll.config
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\TourSite2.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\TourSite2.pdb
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Antlr3.Runtime.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\DataLayer.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\EntityFramework.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\EntityFramework.SqlServer.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Moq.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Newtonsoft.Json.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Ninject.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Net.Http.Formatting.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Http.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Http.WebHost.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Mvc.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Optimization.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Providers.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Razor.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.Razor.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\WebGrease.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\DataLayer.pdb
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\EntityFramework.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\EntityFramework.SqlServer.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Moq.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Ninject.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\Newtonsoft.Json.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Net.Http.Formatting.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Http.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Http.WebHost.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Mvc.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Razor.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.Razor.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\obj\Release\TourSite2.csprojResolveAssemblyReference.cache
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\obj\Release\TourSite2.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\obj\Release\TourSite2.pdb
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\TourSite2\bin\System.Web.Routing.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\TourSite2.dll.config
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\TourSite2.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\TourSite2.pdb
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Antlr3.Runtime.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\DataLayer.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\EntityFramework.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\EntityFramework.SqlServer.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Moq.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Newtonsoft.Json.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Ninject.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Net.Http.Formatting.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Http.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Http.WebHost.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Mvc.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Optimization.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Providers.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Razor.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Routing.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.Deployment.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.Razor.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\WebGrease.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\DataLayer.pdb
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\EntityFramework.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\EntityFramework.SqlServer.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Moq.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Ninject.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\Newtonsoft.Json.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Net.Http.Formatting.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Http.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Http.WebHost.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Mvc.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.Razor.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.Deployment.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\bin\System.Web.WebPages.Razor.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\obj\Release\TourSite2.csprojResolveAssemblyReference.cache
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\obj\Release\TourSite2.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\TourSite2\obj\Release\TourSite2.pdb
+D:\bestpresent\BestPresent\TourSite2\bin\TourSite2.dll.config
+D:\bestpresent\BestPresent\TourSite2\bin\TourSite2.dll
+D:\bestpresent\BestPresent\TourSite2\bin\TourSite2.pdb
+D:\bestpresent\BestPresent\TourSite2\bin\Antlr3.Runtime.dll
+D:\bestpresent\BestPresent\TourSite2\bin\DataLayer.dll
+D:\bestpresent\BestPresent\TourSite2\bin\EntityFramework.dll
+D:\bestpresent\BestPresent\TourSite2\bin\EntityFramework.SqlServer.dll
+D:\bestpresent\BestPresent\TourSite2\bin\Microsoft.Web.Infrastructure.dll
+D:\bestpresent\BestPresent\TourSite2\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\bestpresent\BestPresent\TourSite2\bin\Moq.dll
+D:\bestpresent\BestPresent\TourSite2\bin\Newtonsoft.Json.dll
+D:\bestpresent\BestPresent\TourSite2\bin\Ninject.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Net.Http.Formatting.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.WebHost.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Mvc.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Optimization.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Providers.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Razor.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Routing.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.Deployment.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.Razor.dll
+D:\bestpresent\BestPresent\TourSite2\bin\WebGrease.dll
+D:\bestpresent\BestPresent\TourSite2\bin\DataLayer.pdb
+D:\bestpresent\BestPresent\TourSite2\bin\EntityFramework.xml
+D:\bestpresent\BestPresent\TourSite2\bin\EntityFramework.SqlServer.xml
+D:\bestpresent\BestPresent\TourSite2\bin\Moq.xml
+D:\bestpresent\BestPresent\TourSite2\bin\Ninject.xml
+D:\bestpresent\BestPresent\TourSite2\bin\Newtonsoft.Json.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Net.Http.Formatting.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.WebHost.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Mvc.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Razor.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.Deployment.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.Razor.xml
+D:\bestpresent\BestPresent\TourSite2\obj\Release\TourSite2.csprojResolveAssemblyReference.cache
+D:\bestpresent\BestPresent\TourSite2\obj\Release\TourSite2.dll
+D:\bestpresent\BestPresent\TourSite2\obj\Release\TourSite2.pdb

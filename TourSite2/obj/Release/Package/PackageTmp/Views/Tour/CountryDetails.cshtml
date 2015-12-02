@@ -1,0 +1,46 @@
+﻿@model DataLayer.Country
+   
+<div class="content_background">
+
+    @*<h2 style="margin-left: 20px; margin-top: 10px;">@Model.Name</h2>*@
+
+    <div class="pull-right" style="margin-left: 20px;">
+        <p>
+            <img class="img-rounded" width="150px" height="100px" alt="@Model.Name" src="@Url.Action("GetImageCountry", "Tour", new { Model.Id })" />
+        </p>
+    </div>
+
+
+
+    <div id="album-details" style="margin-left: 20px;">
+
+        <p>
+            <em>Страна:</em>
+            <div><strong>@Model.Name</strong></div>
+
+        </p>
+        <p>
+            <em>Описание:</em>
+            <div class="description_width">
+                @Html.Raw(Model.Description)
+            </div>
+        </p>
+        <p>
+        <em>Курорты</em>
+           <div>
+          @foreach (var resort in Model.Resort)
+            {
+                <a href="@Url.Action("ResortDetails", "Tour",
+                                     new {id = resort.Id })" target="_blank">
+                    @Html.DisplayFor(modelItem => resort.Name)
+                </a>
+            }
+          </div>
+        </p>
+        <p>
+           
+    
+    </div>
+
+</div>
+

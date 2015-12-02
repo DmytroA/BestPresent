@@ -1,0 +1,11 @@
+﻿@model List<DataLayer.About>
+@{
+    ViewBag.Title = "Лучший Подарок";
+}
+
+@foreach (var b in Model)
+{ 
+@Html.Raw(b.Description)
+}
+
+

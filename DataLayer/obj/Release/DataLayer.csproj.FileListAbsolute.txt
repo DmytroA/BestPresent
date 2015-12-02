@@ -1,0 +1,36 @@
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\DataLayer.dll.config
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\DataLayer.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\DataLayer.pdb
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\EntityFramework.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\System.Web.Mvc.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\EntityFramework.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\bin\Release\System.Web.Mvc.xml
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\obj\Release\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\obj\Release\DataLayer.dll
+C:\Users\Дмитрий\documents\visual studio 2013\Projects\TourSite2\DataLayer\obj\Release\DataLayer.pdb
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\DataLayer.dll.config
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\DataLayer.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\DataLayer.pdb
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\EntityFramework.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\System.Web.Mvc.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\EntityFramework.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\bin\Release\System.Web.Mvc.xml
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\obj\Release\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\obj\Release\DataLayer.dll
+C:\Users\DmytroA\Documents\Visual Studio 2012\Projects\TourSite2\DataLayer\obj\Release\DataLayer.pdb
+D:\bestpresent\BestPresent\DataLayer\bin\Release\DataLayer.dll.config
+D:\bestpresent\BestPresent\DataLayer\bin\Release\DataLayer.dll
+D:\bestpresent\BestPresent\DataLayer\bin\Release\DataLayer.pdb
+D:\bestpresent\BestPresent\DataLayer\bin\Release\EntityFramework.dll
+D:\bestpresent\BestPresent\DataLayer\bin\Release\EntityFramework.SqlServer.dll
+D:\bestpresent\BestPresent\DataLayer\bin\Release\System.Web.Mvc.dll
+D:\bestpresent\BestPresent\DataLayer\bin\Release\EntityFramework.xml
+D:\bestpresent\BestPresent\DataLayer\bin\Release\EntityFramework.SqlServer.xml
+D:\bestpresent\BestPresent\DataLayer\bin\Release\System.Web.Mvc.xml
+D:\bestpresent\BestPresent\DataLayer\obj\Release\DataLayer.csprojResolveAssemblyReference.cache
+D:\bestpresent\BestPresent\DataLayer\obj\Release\DataLayer.dll
+D:\bestpresent\BestPresent\DataLayer\obj\Release\DataLayer.pdb

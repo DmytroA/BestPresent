@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DataLayer.Hotel>
+@{
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+}
+
+<input type="text" id="search" placeholder="Быстрый поиск" />
+
+<div style="float:left;padding-left:50px;padding-bottom:20px">
+    <h3>Выберите страну</h3>
+    @Html.DropDownList("Country", ViewBag.Countries as SelectList, new { id = "country" })
+</div>
+<div id="drop" style="float:right;padding-right:300px;display:none;">
+    <h3>Выберите город</h3>
+    @Html.DropDownList("Resort", ViewBag.Resorts as SelectList, new { id = "resort" })
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#country').change(function () {                
+                var id = $(this).val();
+                var countrId = $('#country').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetItems")/' + id,
+                    success: function (data) {
+                        //$.post('Hotel', { countrId: countrId }, function (result) {
+                        //    $('#tableHotels').html(result);
+                        //});
+                        $('#resort').replaceWith(data);
+                        $('#drop').css("display","block");
+                    }
+                });
+            });
+        })
+    </script>
+}
+
+<div id="tableHotels">
+    @Html.Partial("PartialHotels");
+</div>

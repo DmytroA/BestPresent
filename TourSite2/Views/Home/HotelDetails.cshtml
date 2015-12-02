@@ -1,0 +1,40 @@
+﻿@model DataLayer.Hotel
+@{
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+}
+<div class="content_background">
+    <strong>@Model.Name</strong>
+    <table id="table" class="table table-bordered">
+        <thead>
+
+            <tr>
+                <th>Фото</th>
+                <th>Отель</th>
+                <th>Расположение</th>
+                <th>Комментарий</th>
+                <th>Курорт</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><img class="img-thumbnail" width="250px" height="250px" alt="@Model.Name" src="@Url.Action("GetImageHotel", "Tour", new { Model.Id })" /></td>
+                <td>
+                   @Model.Name
+            </td>
+            <td>
+                @Model.HotelLocation
+            </td>
+            <td>@Model.Comment</td>
+                <td><a href="@Url.Action("ResortDetails", "Tour",
+                  new {id = Model.Resort.Id })" target="_blank">@Model.Resort.Name</a></td>
+        </tr>
+
+    </tbody>
+</table>
+    <p>
+        <div>
+            @Html.Raw(Model.Description)
+        </div>
+    </p>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DataLayer.Hotel>
+           <script>
+               $("#search").keyup(function () {
+                   _this = this;
+                   // Show only matching TR, hide rest of them
+                   $.each($("#table tbody").find("tr"), function () {
+                       if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) == -1)
+                           $(this).hide();
+                       else
+                           $(this).show();
+                   });
+               });
+               </script>
+<table id="table" class="table table-bordered">
+    <thead>
+    
+        <tr>
+        <th>Название отеля</th>
+        <th>Страна</th>
+        <th>Курорт</th>
+        <th>Катег</th>
+        <th>Расположение отеля</th>
+        <th>Комментарий</th>
+    </tr>
+        </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+        <tr>
+            <td>
+                <a href="@Url.Action("HotelDetails", "Home",
+                                     new {id = item.Id})" class="list-group-item list-group-item-info" target="_blank">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </a>
+            </td>
+
+            <td>@item.Resort.Country.Name</td>
+            <td>@item.Resort.Name</td>
+            <td>@item.Category</td>
+            <td>@item.HotelLocation</td>
+            <td>
+                @item.Comment
+            </td>
+        </tr>
+        
+        </tbody>
+    }
+</table>

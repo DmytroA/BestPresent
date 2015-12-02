@@ -1,0 +1,38 @@
+﻿@model DataLayer.Resort
+
+<div class="content_background">
+
+
+    <div class="pull-right" style="margin-left: 20px;">
+        <p>
+            <img class="img-circle" width="350px" height="350px" alt="@Model.Name" src="@Url.Action("GetImageResort", "Tour", new { Model.Id })" />
+        </p>
+    </div>
+
+
+
+    <div id="album-details" style="margin-left: 20px;">
+
+        <p>
+            <em>Курорт:</em>
+            <strong>@Model.Name</strong>
+</p>
+
+        <p>
+            <em>Описание:</em>
+            <div class="description_width">
+                @Html.Raw(Model.Description)
+            </div>
+        </p>
+        <p>
+            <em>Страна:</em>
+            <div> 
+                  <a href="@Url.Action("CountryDetails", "Tour",
+                                     new {id = Model.Country.Id })" target="_blank">
+                        @Html.DisplayFor(modelItem => Model.Country.Name)
+                    </a>                
+            </div>
+        </p>
+    </div>
+
+</div>

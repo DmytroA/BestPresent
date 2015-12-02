@@ -1,0 +1,23 @@
+﻿@model DataLayer.Airticket
+
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Редактирование страницы О нас</h1>
+@using (Html.BeginForm("EditAirticket", "Home",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel()
+
+    <script>
+        CKEDITOR.replace('Description');
+    </script>
+
+
+
+
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index", "Admin")
+}

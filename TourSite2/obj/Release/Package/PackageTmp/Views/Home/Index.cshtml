@@ -1,0 +1,106 @@
+﻿@model List<DataLayer.HotTours>
+@{
+    ViewBag.Title = "Лучший Подарок";
+}
+
+<style type="text/css">
+    .content_bg {
+        /*border: 1px solid #000;
+        background: #fff;
+        background-color: rgba(255, 255, 255, 0.5);*/
+        height: 1400px;
+        /*margin-top: 20px;*/
+    }
+
+    .hot_pic {
+        width: 96px;
+        border-radius: 10px;
+        height: 68px;
+        border: 1px solid #d6d8e4;
+        padding: 2px;
+    }
+
+    #hotel {
+        font-size: 17px;
+        font-weight: bold;
+        color: #284b7e !important;
+        text-decoration: underline;
+    }
+
+    #city {
+        font-size: 13px !important;
+        font-weight: bold !important;
+        color: #0f4da8 !important;
+        text-align: left;
+    }
+
+    .block_one {
+        float: left;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+    .block_two {
+        position: absolute;
+        margin-left: 150px;
+        margin-top: 60px;
+    }
+
+    .lab {
+        color: #6F727B;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .item {
+        color: #000;
+        font-size: 12px;
+        text-align: left;
+        margin-left: 15px;
+    }
+</style>
+<div class="content_bg">
+
+    @foreach (var tour in Model)
+    {
+
+        <div class="hot_tour">
+
+            <div class="block_one">
+                <div id="hotel">
+                    <a href="@Url.Action("Details", "Tour",
+                        new { id = tour.Id })" target="_blank">@((tour.Hotel != null) ? tour.Hotel.Name : string.Empty) @((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)</a>
+                    </div>
+                    <div id="city">
+                        <a href="@Url.Action("Details", "Tour",
+                        new { id = tour.Id })" target="_blank">
+                            @tour.Hotel.Resort.Country.Name,@tour.Hotel.Resort.Name
+                        </a>
+                    </div>
+
+                    <a href="@Url.Action("Details", "Tour",
+                                 new { id = tour.Id })" target="_blank">
+                        <img class="hot_pic" src="@Url.Action("GetImage", "Tour", new { tour.Id })" />
+                    </a>
+                </div>
+                <div class="block_two">
+                    @*<div class="item" style="margin-top:20px">@tour.TourType</div>*@
+
+                    <div><label class="lab">Выезд:</label> <span class="item"><strong>@tour.DepartureDay</strong></span></div>
+                    <div><label class="lab">Номер:</label><span class="item"><strong>@tour.Location</strong></span></div>
+
+                    <div><label class="lab">Продолжительность:</label><span class="item"><strong> @tour.Period ночей</strong></span></div>
+                    <div><label class="lab">Питание:</label><span class="item"><strong>@tour.Food</strong></span></div>
+
+                    @*<div>
+                            <a href="@Url.Action("Details", "Tour",
+                                     new { id = tour.Id })" target="_blank">Описание тура</a>
+                        </div>*@
+                </div>
+                <div class="price">@tour.Price</div>
+
+            </div>
+
+
+    }
+</div>

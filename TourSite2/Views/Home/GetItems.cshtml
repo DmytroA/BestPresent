@@ -1,0 +1,21 @@
+﻿@model IEnumerable<DataLayer.Resort>
+<script>
+    $(function Sort() {
+        $('#country,#resort,#hotel').change(function () {
+            var countrId = $('#country').val();
+            var resortId = $('#resort').val();
+            var hotelId = $('#hotel').val();
+            $.post('Hotel', { hotelId: hotelId, resortId: resortId, countrId: countrId }, function (result) {
+                $('#tableHotels').html(result);
+            });
+        });
+    });
+
+
+</script>
+<select id="resort" name="Resort" onclick="Sort();">
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>

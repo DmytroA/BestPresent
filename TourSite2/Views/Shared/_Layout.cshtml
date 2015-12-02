@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        .width {
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 960px;
+        }
+
+        .group:before, .group:after {
+            content: " ";
+            display: table;
+        }
+
+        .group:after {
+            clear: both;
+        }
+
+        .group:before, .group:after {
+            content: " ";
+            display: table;
+        }
+
+        .site-footer {
+            color: #e0e0e0;
+        }
+
+        .clear {
+            clear: both;
+            min-height: 1px;
+        }
+
+        .group {
+        }
+
+        article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+            display: block;
+        }
+
+        *::-moz-selection {
+            background: none repeat scroll 0 0 #b3d4fc;
+            text-shadow: none;
+        }
+
+        .prefooter {
+            background: none repeat scroll 0 0 #594f49;
+            font: 14px "PT Sans",sans-serif;
+            padding: 25px 0;
+            margin-top: 30px;
+        }
+
+        .prefooter-widget-area:first-child {
+            margin-left: 0;
+        }
+
+        .prefooter-widget-area {
+            float: left;
+            margin-left: 2%;
+            overflow: hidden;
+            width: 23.5%;
+        }
+
+        .site-footer .widget:first-child {
+            margin-top: 0;
+        }
+
+        .site-footer .widget {
+            margin-top: 20px;
+        }
+
+        .widget {
+            margin-bottom: 20px;
+        }
+
+        .site-footer .widget-title {
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "PT Sans",sans-serif;
+            margin: 0 0 1em;
+        }
+
+        .site-footer a {
+            color: #69b7ff;
+            text-decoration: none;
+        }
+
+        .route-link {
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+            border-color: -moz-use-text-color;
+            border-image: none;
+            border-style: none none dotted;
+            border-width: 0 0 1px;
+            color: #69b7ff;
+            font-size: 12px;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "PT Sans",sans-serif;
+            margin: 0 0 1em;
+        }
+
+        .prefooter-widget-area {
+            float: left;
+            margin-left: 2%;
+            overflow: hidden;
+            width: 23.5%;
+        }
+
+        a.sitemap-link {
+            float: right;
+            margin-top: 30px;
+        }
+
+        .copyrights-n-makers {
+            background: none repeat scroll 0 0 #4b433f;
+            padding: 12px 0;
+        }
+
+        .copyrights {
+            float: left;
+            width: 50%;
+        }
+
+        .makers {
+            float: right;
+            text-align: right;
+            width: 49%;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="bg">
+    </div>
+
+    <div class="wrapper">
+        <div class="header">
+
+
+            <div class="logo">
+                <a href="/Home/Index/">  <img src="/Content/Images/logo_test.png"></a>
+            </div>
+            
+            <div class="social">
+                <a href="https://vk.com/id8827767">
+                    <div class="icon vk"></div>
+                </a>
+                <div class="icon fb"></div>
+                <div class="icon tw"></div>
+            </div>
+
+            <div class="order">
+                <a href="/Home/Order">
+                    <div class="order_button">
+                        Заказ Тура
+                    </div>
+                </a>
+                <div class="contacts"><span>тел. 066-626-00-76, 068-992-70-76 - Наталья</span></div>
+
+            </div>
+            <div class="subscribe_button" title="Подписка"><a href="/Subscribe/Sub/"><img src="/Content/Images/new_sub.png"></a> </div>
+            <div class="label">
+                Туристическое агентство<br><span>Лучший Подарок</span>
+            </div>
+
+            <div class="nav">
+                <div class="item"><a href="/Home/Index">Главная</a></div>
+                <div class="item"><a href="/Home/EuropeTour">Туры в Европу</a></div>
+                <div class="item"><a href="/Home/Countries">Страны и курорты</a></div>
+                <div class="item"><a href="/Home/Hotels ">Отели</a></div>
+                <div class="item"><a href="/Home/Placements ">Туристам</a></div>
+                <div class="item"><a href="/Home/Airtickets ">Авиабилеты</a></div>
+                <div class="item"><a href="/Home/Gift ">Бонусы</a></div>
+                <div class="item"><a href="/Feedback/Index/">Отзывы</a></div>
+                <div class="item"><a href="/Home/AboutUs/">Контакты</a></div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+
+        <div class="block">
+            <div class="block_bg"></div>
+            <div class="features">
+                <div class="mod">
+                    <div id="tour_search_module"></div>
+                    <script src="http://module.ittour.com.ua/tour_search.jsx?id=5D7360596727G40917946N0&ver=1&type=2972"></script>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            <div class="countries_wrapper">
+                <div class="vk_widget">
+                    <script type="text/javascript" src="//vk.com/js/api/openapi.js?120"></script>
+
+                    <!-- VK Widget -->
+                    <div id="vk_groups"></div>
+                    <script type="text/javascript">
+                        VK.Widgets.Group("vk_groups", { mode: 2, width: "480", height: "200" }, 103796021);
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content_background">
+                <div class="main_content">
+                    @RenderBody()
+
+                    <!-- RedHelper -->
+                    <script id="rhlpscrtg" type="text/javascript" charset="utf-8" async="async"
+                            src="https://web.redhelper.ru/service/main.js?c=natabar">
+                    </script>
+                    <!--/Redhelper -->
+                    <script type="text/javascript" src="//vk.com/js/api/openapi.js?117"></script>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <footer class="site-footer clear group">
+        <div class="prefooter">
+            <div class="footer-navigation-block width group">
+                <div class="widget-area prefooter-widget-area" role="complementary">
+                    <div id="text-3" class="widget widget_text">
+                        <h2 class="widget-title">Адрес:</h2>
+                        <div class="textwidget">
+                            <p>г. Харьков, Полтавский шлях 123, 2 этаж, офис №6</p>
+                            <div style="clear: both"></div>
+
+                            <p>
+                                <a class="route-link" href="/Home/AboutUs">Карта проезда</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="text-4" class="widget widget_text">
+                        <h2 class="widget-title">E-mail:</h2>
+                        <div class="textwidget">
+                            <p>
+                                <a href="mailto:nata_bar@list.ru">nata_bar@list.ru</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-area prefooter-widget-area" role="complementary">
+                    <div id="text-5" class="widget widget_text">
+                        <h2 class="widget-title">Skype:</h2>
+                        <div class="textwidget">
+                            <p>
+
+                                <strong>nataljaandreychuk</strong>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-area prefooter-widget-area" role="complementary">
+                    <div id="text-6" class="widget widget_text">
+                        <h2 class="widget-title">Мобильные телефоны:</h2>
+                        <div class="textwidget">
+                            <span>
+
+                                066
+                                <strong>626-00-76</strong>
+                            </span>
+                            <br>
+                            <span>
+
+                                068
+                                <strong>992-70-76</strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-area prefooter-widget-area" role="complementary">
+                    <div id="text-7" class="widget widget_text">
+                        <h2 class="widget-title">Время работы:</h2>
+                        <div class="textwidget">
+                            <p>
+                                Пн–Пт:
+                                <strong>9.00–18.00</strong>
+                            </p>
+                            <p>
+                                <a class="sitemap-link" href="Home/Index/">Карта сайта</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyrights-n-makers">
+            <div class="width group">
+                <div class="copyrights">
+                    <span>© Турагентство «Лучший подарок», 2014—2015. Все права защищены.</span>
+                </div>
+                <div class="makers">
+                    Разработка сайта D.Andriichuk
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/Scripts/jquery-2.1.4.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/Site.js")
+
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@*@model DataLayer.Hotel
+
+<div class="content_background">
+
+    <div class="pull-right" style="margin-left: 20px;">
+        <p>
+            <img class="img-circle" width="350px" height="350px"  alt="@Model.Name" src="@Url.Action("GetImageHotel", "Tour", new { Model.Id })" />
+        </p>
+    </div>
+
+
+
+    <div id="album-details" style="margin-left: 20px;">
+
+        <p>
+            <em>Отель:</em>
+            <strong>@Model.Name</strong>
+        </p>
+
+        <p>
+            <em>Описание:</em>
+            <div class="description_width">
+                @Html.Raw(Model.Description)
+            </div>
+        </p>
+        <p>
+        <em>Страна:</em>
+        <a href="@Url.Action("CountryDetails", "Tour",
+                  new {id = Model.Country.Id })" target="_blank">@Model.Country.Name</a>
+        </p>    
+    </div>
+
+</div>*@
+@model DataLayer.Hotel
+
+<div class="content_background">
+
+    <div class="pull-right" style="margin-left: 20px;">
+        <p>
+            <img class="img-circle" width="350px" height="350px" alt="@Model.Name" src="@Url.Action("GetImageHotel", "Tour", new { Model.Id })" />
+        </p>
+    </div>
+
+
+
+    <div id="album-details" style="margin-left: 20px;">
+
+        <p>
+            <em>Отель:</em>
+            <strong>@Model.Name</strong>
+        </p>
+        <p>
+            <em>Расположение:</em>
+            <strong>@Model.HotelLocation</strong>
+        </p>
+        <p>
+            <em>Комментарий:</em>
+            <strong>@Model.Comment</strong>
+        </p>
+        <p>
+            <em>Описание:</em>
+            <div class="description_width">
+                @Html.Raw(Model.Description)
+            </div>
+        </p>
+        <em>Курорт:</em>
+        <a href="@Url.Action("ResortDetails", "Tour",
+                  new {id = Model.Resort.Id })" target="_blank">@Model.Resort.Name</a>
+                </p>
+            </div>
+
+        </div>

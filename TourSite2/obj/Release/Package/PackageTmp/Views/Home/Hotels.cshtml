@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DataLayer.Hotel>
+
+<script>
+    $(function Sort() {
+        $('#country,#resort,#hotel').change(function () {
+            debugger;
+            var countrId = $('#country').val();
+            var resortId = $('#resort').val();
+            var hotelId = $('#hotel').val();
+            $.post('Hotel', { hotelId: hotelId, resortId: resortId, countrId: countrId }, function (result) {
+                $('#tableHotels').html(result);
+            });
+        });
+    });
+
+
+</script>
+
+
+<input type="text" id="search" placeholder="Быстрый поиск" />
+
+@*<div style="float:left;padding-left:50px;padding-bottom:20px">
+    <h3>Выберите страну</h3>
+    @Html.DropDownList("Country", ViewBag.Countries as SelectList, new { id = "country" })
+</div>
+<div style="float:right;padding-right:300px;">
+    <h3>Выберите город</h3>
+    @Html.DropDownList("Resort", ViewBag.Resorts as SelectList, new { id = "resort" })
+</div>*@
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+
+            $('#country').change(function () {
+                debugger;
+
+                var id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetItems")/' + id,
+                    success: function (data) {
+
+                        $('#resort').replaceWith(data);
+                    }
+                });
+            });
+        })
+    </script>
+}
+
+<div id="tableHotels">
+    @Html.Partial("PartialHotels");
+</div>

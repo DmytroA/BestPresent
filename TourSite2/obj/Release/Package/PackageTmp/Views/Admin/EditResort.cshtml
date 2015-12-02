@@ -1,0 +1,44 @@
+﻿@model TourSite2.Models.EditResortModel
+
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit @Model.Resort.Name</h1>
+@using (Html.BeginForm("EditResort", "Admin",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(s=>s.Resort.Id)
+    <div>Название курорта: @Html.EditorFor(x => x.Resort.Name)</div>
+    <div>Описание курорта: @Html.EditorFor(x => x.Resort.Description)</div>
+    <div>Страна:   @Html.DropDownListFor(m => m.Resort.CountryId, Model.Country)</div>
+    
+    <div class="editor-label">Image</div>
+    <div class="editor-field">
+        @if (Model.Resort.ImageData == null)
+        {
+
+            @:None
+         }
+        else
+        {
+            <img width="150" height="150" src="@Url.Action("GetImageResort", "Tour", new { Model.Resort.Id })" />
+        }
+        <div>
+            Upload new image:
+            <input type="file" name="Image" />
+        </div>
+        <script>
+            CKEDITOR.replace('Resort.Description');
+        </script>
+
+    </div>
+
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index")
+}
+
+<p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+
+<p>@Html.ActionLink("Админка", "Index")</p>

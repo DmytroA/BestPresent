@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TourSite2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TourSite2Entities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Sertificate" EntityType="TourSite2Model.Sertificate" />
+    <EntitySet Name="About" EntityType="TourSite2Model.About" />
+    <EntitySet Name="Airticket" EntityType="TourSite2Model.Airticket" />
+    <EntitySet Name="Fishing" EntityType="TourSite2Model.Fishing" />
+    <EntitySet Name="Placement" EntityType="TourSite2Model.Placement" />
+    <EntitySet Name="Studying" EntityType="TourSite2Model.Studying" />
+    <EntitySet Name="Visa" EntityType="TourSite2Model.Visa" />
+    <EntitySet Name="Country" EntityType="TourSite2Model.Country" />
+    <EntitySet Name="Resort" EntityType="TourSite2Model.Resort" />
+    <AssociationSet Name="FK_Resort_Country" Association="TourSite2Model.FK_Resort_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Resort" EntitySet="Resort" />
+    </AssociationSet>
+    <EntitySet Name="Hotel" EntityType="TourSite2Model.Hotel" />
+    <EntitySet Name="HotTours" EntityType="TourSite2Model.HotTours" />
+    <AssociationSet Name="FK_Hotels_Countries" Association="TourSite2Model.FK_Hotels_Countries">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Hotel" EntitySet="Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotTours_Hotel" Association="TourSite2Model.FK_HotTours_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotTours" EntitySet="HotTours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Country_Country" Association="TourSite2Model.FK_Country_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Country1" EntitySet="Country" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Sertificate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="About">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Airticket">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Fishing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Placement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Studying">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Visa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Resort" Relationship="TourSite2Model.FK_Resort_Country" FromRole="Country" ToRole="Resort" />
+    <NavigationProperty Name="Hotel" Relationship="TourSite2Model.FK_Hotels_Countries" FromRole="Country" ToRole="Hotel" />
+    <NavigationProperty Name="Country1" Relationship="TourSite2Model.FK_Country_Country" FromRole="Country" ToRole="Country1" />
+    <NavigationProperty Name="Country2" Relationship="TourSite2Model.FK_Country_Country" FromRole="Country1" ToRole="Country" />
+  </EntityType>
+  <EntityType Name="Resort">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Int32" />
+    <NavigationProperty Name="Country" Relationship="TourSite2Model.FK_Resort_Country" FromRole="Resort" ToRole="Country" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImageMimeType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Resort_Country">
+    <End Type="TourSite2Model.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="TourSite2Model.Resort" Role="Resort" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resort">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Country" Relationship="TourSite2Model.FK_Hotels_Countries" FromRole="Hotel" ToRole="Country" />
+    <NavigationProperty Name="HotTours" Relationship="TourSite2Model.FK_HotTours_Hotel" FromRole="Hotel" ToRole="HotTours" />
+  </EntityType>
+  <EntityType Name="HotTours">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AmountPeople" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartureDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Food" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Period" Type="Int32" />
+    <Property Name="TourType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HotelId" Type="Int32" />
+    <NavigationProperty Name="Hotel" Relationship="TourSite2Model.FK_HotTours_Hotel" FromRole="HotTours" ToRole="Hotel" />
+  </EntityType>
+  <Association Name="FK_Hotels_Countries">
+    <End Type="TourSite2Model.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="TourSite2Model.Hotel" Role="Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotTours_Hotel">
+    <End Type="TourSite2Model.Hotel" Role="Hotel" Multiplicity="0..1" />
+    <End Type="TourSite2Model.HotTours" Role="HotTours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotTours">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Country_Country">
+    <End Type="TourSite2Model.Country" Role="Country" Multiplicity="1" />
+    <End Type="TourSite2Model.Country" Role="Country1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Country1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

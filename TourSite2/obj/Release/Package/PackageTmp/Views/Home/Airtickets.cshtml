@@ -1,0 +1,12 @@
+﻿@model List<DataLayer.Airticket>
+@{
+    ViewBag.Title = "Лучший Подарок";
+}
+
+@foreach (var b in Model)
+{
+    @Html.Raw(b.Description)
+}
+
+<div id="tour_search_module"></div>
+<script src="http://module.ittour.com.ua/tour_search.jsx?id=731D310500526G01149497N5&ver=1&type=2970"></script>

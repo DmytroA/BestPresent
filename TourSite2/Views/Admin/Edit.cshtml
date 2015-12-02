@@ -1,0 +1,33 @@
+﻿@model TourSite2.Models.EditHotTourModel
+
+@{
+    ViewBag.Title = "Admin: Edit ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit </h1>
+@using (Html.BeginForm("Edit", "Admin",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(s => s.HotTour.Id)
+    <div>Количество людей: @Html.EditorFor(x => x.HotTour.AmountPeople)</div>
+    <div>День прибытия: @Html.EditorFor(x => x.HotTour.DepartureDay)</div>
+    <div>Описание: @Html.EditorFor(x => x.HotTour.Description)</div>
+    <div>Еда: @Html.EditorFor(x => x.HotTour.Food)</div>
+    
+    <div>Location: @Html.EditorFor(x => x.HotTour.Location)</div>
+    <div>Период: @Html.EditorFor(x => x.HotTour.Period)</div>
+    <div>Цена: @Html.EditorFor(x => x.HotTour.Price)</div>
+    <div>Тип тура: @Html.EditorFor(x => x.HotTour.TourType)</div>
+    <div>Отель:   @Html.DropDownListFor(m => m.HotTour.HotelId, Model.Hotel)</div>
+    <script>
+        CKEDITOR.replace('HotTour.Description');
+    </script>
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index")
+}
+
+<p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+
+<p>@Html.ActionLink("Админка", "Index")</p>
