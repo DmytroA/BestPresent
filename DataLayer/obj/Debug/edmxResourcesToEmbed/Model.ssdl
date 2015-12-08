@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TourModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="gb_tourModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="About">
     <Key>
       <PropertyRef Name="Id" />
@@ -26,15 +26,15 @@
     <Property Name="ImageData" Type="varbinary(max)" />
     <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="Feedback">
+  <EntityType Name="Feed">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ShortDesc" Type="nvarchar(max)" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="Author" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Author" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Date" Type="datetime" />
   </EntityType>
   <EntityType Name="Fishing">
@@ -170,11 +170,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TourModelStoreContainer">
+  <EntityContainer Name="gb_tourModelStoreContainer">
     <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Airticket" EntityType="Self.Airticket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feed" EntityType="Self.Feed" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Fishing" EntityType="Self.Fishing" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HotTours" EntityType="Self.HotTours" Schema="dbo" store:Type="Tables" />

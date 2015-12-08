@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="90e0ec8420194c8780deebc9a7c6e4e8" Name="Diagram1">
-        <EntityTypeShape EntityType="TourModel.About" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Airticket" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Country" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Fishing" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Hotel" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.HotTours" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Placement" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Resort" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Sertificate" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Studying" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourModel.Visa" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="TourModel.FK_Country_Country" ManuallyRouted="false" />
-        <AssociationConnector Association="TourModel.FK_Resort_Country1" ManuallyRouted="false" />
-        <AssociationConnector Association="TourModel.FK_Hotel_Resort" ManuallyRouted="false" />
-        <AssociationConnector Association="TourModel.FK_HotTours_Hotel" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TourModel.Feedback" Width="1.5" PointX="7.375" PointY="8.75" />
+      <Diagram DiagramId="b1e29b6f10b54cd38146114256544e99" Name="Diagram1">
+        <EntityTypeShape EntityType="gb_tourModel.About" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Airticket" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Country" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Feed" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Fishing" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Hotel" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.HotTours" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Placement" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Resort" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Sertificate" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_tourModel.Studying" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="gb_tourModel.FK_Country_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="gb_tourModel.FK_Resort_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="gb_tourModel.FK_Hotel_Resort" ManuallyRouted="false" />
+        <AssociationConnector Association="gb_tourModel.FK_HotTours_Hotel" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="gb_tourModel.Visa" Width="1.5" PointX="7.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

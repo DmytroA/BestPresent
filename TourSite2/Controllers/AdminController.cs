@@ -58,18 +58,18 @@ namespace TourSite2.Models
             }
             return dbEntry;
         }
-        public Feedback DeleteFeedback(int Id)
+        public Feed DeleteFeedback(int Id)
         {
             var context = new TourEntities();
-            Feedback dbEntry = context.Feedback.Find(Id);
+            Feed dbEntry = context.Feed.Find(Id);
             if (dbEntry != null)
             {
-                context.Feedback.Remove(dbEntry);
+                context.Feed.Remove(dbEntry);
                 context.SaveChanges();
             }
             return dbEntry;
         }
-   public ViewResult Index()
+        public ViewResult Index()
         {
            
             return View();
@@ -83,7 +83,7 @@ namespace TourSite2.Models
         public ActionResult FeedbackList()
         {
             TourEntities db = new TourEntities();
-            var data = db.Feedback.ToList();
+            var data = db.Feed.ToList();
             return View(data);
         }
         public ActionResult HotelList()

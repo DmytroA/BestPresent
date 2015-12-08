@@ -1,25 +1,27 @@
-﻿@model DataLayer.HotTours
+﻿@model TourSite2.Models.OrderModel
+
 @{
     ViewBag.Title = "DetailOrder";
 }
-@using (Html.BeginForm("AddToCart", "Tour", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("DetailOrder", "Tour", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
     <legend>Оформление тура</legend>
     <form class="form-horizontal" role="form">
-        <input type="hidden" name="id" value="@Model.Id">
+        <input type="hidden" name="id" value="@Model.HotTours.Id">
         <div class="form-group">
             <label for="formGroupInputLarge1" class="col-sm-2 control-label">Имя</label>
             <div class="col-sm-3">
-                 <input type="text" placeholder="Имя" name="Name">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Ваше имя", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Name)
+                 
             </div>
         </div>
         <div class="form-group">
             <label for="formGroupInputLarge1" class="col-sm-2 control-label">Email</label>
 
             <div class="col-sm-3">
-                <input type="text" placeholder="Email" name="mail_adress">
+                @Html.TextBoxFor(m => m.MailAdress, new { @class = "form-control", placeholder = "Email", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.MailAdress)
             </div>
         </div>
 
@@ -27,18 +29,21 @@
             <label for="formGroupInputLarge1" class="col-sm-2 control-label">Телефон</label>
 
             <div class="col-sm-3">
-                <input type="text" placeholder="Телефон" name="Phone">
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Телефон", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Phone)
             </div>
         </div>
         <div class="form-group">
             <label for="formGroupInputLarge1" class="col-sm-2 control-label">Комментарий</label>
             <div class="col-sm-3">
-                <textarea rows="10" cols="45" placeholder="Ваши пожелания" name="Comment"></textarea>
+                @Html.TextAreaFor(m => m.Comment, 10,45,new { @class = "form-control", placeholder = "Комментарий", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Comment)
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success btn-lg">Отправить</button>
+                <input type="submit" value="Save" />
+                @*<button type="submit" class="btn btn-success btn-lg">Отправить</button>*@
             </div>
         </div>
     </form>

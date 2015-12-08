@@ -416,7 +416,15 @@ namespace TourSite2.Controllers
 
 
 
+        [HttpPost]
+        public ActionResult Details(int Id)
+        {
+            var context = new TourEntities();
+            var data = context.HotTours.Find(Id);
 
+            return View("PartialDetails", data);
+
+        }
         [HttpGet]
         public ViewResult CountriesDetails(int Id)
         {
@@ -521,7 +529,66 @@ namespace TourSite2.Controllers
             model = model ?? new FormsAuthProvider();
 
             var context = new TourEntities();
-            model.Country = new SelectList(context.Country, "Name", "Name");
+            //model.Country = new SelectList(context.Country, "Name", "Name");
+        }
+        [HttpPost]
+        public ActionResult Order(FormsAuthProvider model)
+        {
+            if (ModelState.IsValid)
+            {
+                int order_number = 0;
+                using (var iter = GetNonRepeatingDigits().GetEnumerator())
+                    while (iter.MoveNext() && order_number < 10000)
+                        order_number = order_number * 10 + iter.Current;
+
+                DateTime thisday = DateTime.Now;
+
+                MailAddress from = new MailAddress("bestpresentkh@mail.ru");
+                MailAddress to = new MailAddress(model.MailAdress);
+                MailAddress To = new MailAddress("nata_bar@list.ru"); //nata_bar@list.ru
+                MailMessage message1 = new MailMessage(from, to);
+                MailMessage message2 = new MailMessage(from, To);
+                message1.Subject = "Информация о туре!";
+                message1.Body = "Здравствуйте," + "\r\n" + "Благодарим Вас за оставленную заявку на подбор тура на сайте Туристического агентства Лучший подарок" + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" + "\r\n" + "Вы заказали: " + "\r\n" +
+                 "Примерные даты вылета:  " + Request.Params["departure"] + "\r\n" +
+                    "Продолжительность тура:  " + model.Duration + "\r\n" + "Категория отеля:  " + Request.Params["check_cat"] + "\r\n" + "Ваше имя:  " + model.Name + "\r\n" + "Детей:  " + Request.Params["Children"] + "\r\n" + "Питание:  " + Request.Params["nutrition"]
+                    + "\r\n" + "Ваш номер телефона:  " + model.Phone + "\r\n" + "Страна:" + model.Country + "\r\n" + "Где вы раньше бывали:  " + model.RestPlace + "\r\n" + "Предполагаемый бюджет:  " + model.EstimatedBudget + "\r\n" + "E-mail:  " + model.MailAdress + "\r\n" + "\r\n" + "В ближайшее время наши менеджеры обработают Вашу заявку  и свяжутся с Вами по указанным в заказе контактам. " + "\r\n" + "\r\n" + "\r\n" + "С уважением  и благодарностью сотрудники ТА Лучший подарок" + "\r\n" + "г. Харьков, Полтавский шлях 123, 2 этаж, офис №6" + "\r\n" + "тел. (057) 297-60-97" + "\r\n" + "моб. 066-626-00-76" + "\r\n" + "068-922-70-76";
+
+
+                message2.Subject = "Новый тур";
+                message2.Body = "Новый заказ тура: " + "\r\n" +
+                 "Примерные даты вылета:  " + Request.Params["departure"] + "\r\n" +
+                    "Продолжительность тура:  " + model.Duration + "\r\n" 
+                    + "Категория отеля:  " + Request.Params["check_cat"] + "\r\n" + "Имя:  " + model.Name + "\r\n" + "Количевство детей:  " + Request.Params["Children"] + "\r\n" + "Питание:  " + Request.Params["nutrition"]
+                    + "\r\n" + "Ваш номер телефона:  " + model.Phone + "\r\n" + "Страна:" + model.Country + "\r\n" + "e-mail:  " + model.MailAdress + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" + "Пожелания:" + model.Comment;
+
+
+                SmtpClient client = new SmtpClient();
+                client.Host = "smtp.mail.ru";
+                client.Credentials = new System.Net.NetworkCredential("bestpresentkh@mail.ru", "nata2507");
+                client.EnableSsl = true;
+
+                try
+                {
+                    Task.Factory.StartNew((Action)(() =>
+                    {
+                        client.Send(message1);
+                        client.Send(message2);
+                    }), TaskCreationOptions.AttachedToParent | TaskCreationOptions.LongRunning);
+                }
+
+
+                catch (Exception ex)
+                {
+
+                }
+                return RedirectToAction("OrderTour");
+            }
+            else 
+            {
+                return View(model);
+            }
+            
         }
         public ActionResult Hotels()
         {
@@ -542,15 +609,28 @@ namespace TourSite2.Controllers
         public ActionResult GetItems(int id)
         {
             var context = new TourEntities();
+            var data = context.Hotel.ToList();
+      
             return PartialView(context.Resort.Where(c => c.CountryId == id).ToList());
+            
+            
         }
-
+      
         public ActionResult Hotel(int? hotelId, int? resortId, int? countrId)
         {
             var context = new TourEntities();
-            var data = context.Hotel.Where(s => (resortId.HasValue && s.ResortId == resortId.Value) ||
-                (countrId.HasValue && s.CountryId == countrId.Value)).ToList();
+            var data = context.Hotel.ToList();
+            if (countrId == -1)
+            {
+                data = context.Hotel.ToList();
+            }
+            else
+            {
+               data = context.Hotel.Where(s => (resortId.HasValue && s.ResortId == resortId.Value) ||
+               (countrId.HasValue && s.CountryId == countrId.Value)).ToList();
          
+            }
+            
             return PartialView("PartialHotels", data);
         }
         [HttpGet]
@@ -561,6 +641,15 @@ namespace TourSite2.Controllers
 
             return View(data);
         }
+        [HttpPost]
+        public ActionResult CountDetails(int Id)
+        {
+            var context = new TourEntities();
+            var data = context.Country.Find(Id);
+
+            return View("PartialCountries", data);
+        }
+
         public ActionResult Countries()
         {
             var context = new TourEntities();
@@ -569,55 +658,9 @@ namespace TourSite2.Controllers
             return View(data);
         }
        
-        [HttpPost]
-
         public ActionResult OrderTour()
         {
-            int order_number = 0;
-            using (var iter = GetNonRepeatingDigits().GetEnumerator())
-                while (iter.MoveNext() && order_number < 10000)
-                    order_number = order_number * 10 + iter.Current;
-
-            DateTime thisday = DateTime.Now;
-
-            MailAddress from = new MailAddress("bestpresentkh@mail.ru");
-            MailAddress to = new MailAddress(Request.Params["MailAdress"]);
-            MailAddress To = new MailAddress("nata_bar@list.ru"); //nata_bar@list.ru
-            MailMessage message1 = new MailMessage(from, to);
-            MailMessage message2 = new MailMessage(from, To);
-            message1.Subject = "Информация о туре!";
-            message1.Body = "Здравствуйте," + "\r\n" + "Благодарим Вас за оставленную заявку на подбор тура на сайте Туристического агентства Лучший подарок" + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" + "\r\n" + "Вы заказали: " + "\r\n" +
-             "Примерные даты вылета:  " + Request.Params["DepartureDay"] + "\r\n" +
-                "Продолжительность тура:  " + Request.Params["Duration"] + "\r\n" + "Категория отеля:  " + Request.Params["check_cat"] + "\r\n" + "Ваше имя:  " + Request.Params["Name"] + "\r\n" + "Детей:  " + Request.Params["Children"] + "\r\n" + "Питание:  " + Request.Params["nutrition"]
-                + "\r\n" + "Ваш номер телефона:  " + Request.Params["Phone"] + "\r\n" + "Страна:" + Request.Params["selectedCountry"] + "\r\n" + "Где вы раньше бывали:  " + Request.Params["RestPlace"] + "\r\n" + "Предполагаемый бюджет:  " + Request.Params["EstimatedBudget"] + "\r\n" + "E-mail:  " + Request.Params["MailAdress"] + "\r\n" + "\r\n" + "В ближайшее время наши менеджеры обработают Вашу заявку  и свяжутся с Вами по указанным в заказе контактам. " + "\r\n" + "\r\n" + "\r\n" + "С уважением  и благодарностью сотрудники ТА Лучший подарок" + "\r\n" + "г. Харьков, Полтавский шлях 123, 2 этаж, офис №6" + "\r\n" + "тел. (057) 297-60-97" + "\r\n" + "моб. 066-626-00-76" + "\r\n" + "068-922-70-76";
-
-
-            message2.Subject = "Новый тур";
-            message2.Body = "Новый заказ тура: " + "\r\n" + 
-             "Примерные даты вылета:  " + Request.Params["DepartureDay"] + "\r\n" +
-                "Продолжительность тура:  " + Request.Params["Duration"] + "\r\n" + "Категория отеля:  " + Request.Params["check_cat"] + "\r\n" + "Имя:  " + Request.Params["Name"] + "\r\n" + "Количевство детей:  " + Request.Params["Children"] + "\r\n" + "Питание:  " + Request.Params["nutrition"]
-                + "\r\n" + "Ваш номер телефона:  " + Request.Params["Phone"] + "\r\n" + "e-mail:  " + Request.Params["MailAdress"] + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" + "Пожелания:" + Request.Params["Comment"];
-
-
-            SmtpClient client = new SmtpClient();
-            client.Host = "smtp.mail.ru";
-            client.Credentials = new System.Net.NetworkCredential("bestpresentkh@mail.ru", "nata2507");
-            client.EnableSsl = true;
-
-            try
-            {
-                Task.Factory.StartNew((Action)(() =>
-                {
-                    client.Send(message1);
-                    client.Send(message2);
-                }),TaskCreationOptions.AttachedToParent|TaskCreationOptions.LongRunning);     
-            }
-
-
-            catch (Exception ex)
-            {
-
-            }
+            
             return View();
         }
 

@@ -18,7 +18,7 @@ namespace TourSite2.Controllers
         public ActionResult Index()
         {
             var context = new TourEntities();
-            var data = context.Feedback.ToList();
+            var data = context.Feed.ToList();
             
             return View(data);
         }
@@ -26,31 +26,31 @@ namespace TourSite2.Controllers
         public ActionResult FeedbackDetails(int Id)
         {
             var context = new TourEntities();
-            var data = context.Feedback.SingleOrDefault(m => m.Id == Id);
+            var data = context.Feed.SingleOrDefault(m => m.Id == Id);
 
             return View(data);
         }
         public ActionResult SendFeed(int Id)
         {
             var context = new TourEntities();
-            var data = context.Feedback.FirstOrDefault(p => p.Id == Id);
+            var data = context.Feed.FirstOrDefault(p => p.Id == Id);
             return View(data);
         }
         [HttpPost]
         [ValidateInput(false)]
-        public void SaveFeed(Feedback b)
+        public void SaveFeed(Feed b)
         {
             var context = new TourEntities();
 
             if (b.Id == 0)
             {
                 b.Date = DateTime.Now;
-                context.Feedback.Add(b);
+                context.Feed.Add(b);
             }
             else
             {
 
-                Feedback dbEntry = context.Feedback.Find(b.Id);
+                Feed dbEntry = context.Feed.Find(b.Id);
                 if (dbEntry != null)
                 {
 
@@ -64,7 +64,7 @@ namespace TourSite2.Controllers
 
             context.SaveChanges();
         }
-        public void Mail(Feedback feedback)
+        public void Mail(Feed feedback)
         {
             DateTime thisday = DateTime.Now;
 
@@ -97,7 +97,7 @@ namespace TourSite2.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult SendFeed(Feedback feedback)
+        public ActionResult SendFeed(Feed feedback)
         {
 
             var context = new TourEntities();
@@ -118,7 +118,7 @@ namespace TourSite2.Controllers
         }
         public ViewResult Create()
         {
-            return View("SendFeed", new Feedback());
+            return View("SendFeed", new Feed());
         }
    
     }

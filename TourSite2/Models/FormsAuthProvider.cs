@@ -8,25 +8,40 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 namespace TourSite2.Models
 {
-        public class FormsAuthProvider
-        {
-            [Required(ErrorMessage = "Please enter a product name")]
-            [Display(Name = "Название")]
-            public string Name { get; set; }
-            [Required(ErrorMessage = "Please enter a phone")]
-            public string Phone { get; set; }
-            public string EstimatedBudget { get; set; }
-            [Required(ErrorMessage = "Введите преположительный день отлета")]
-            public string DepartureDay { get; set; }
-            [Required(ErrorMessage = "Введите продолжительномть")]
-            public string Duration { get; set; }
+    public class FormsAuthProvider: IAuthProvider
+    {
+        [Required(ErrorMessage = "Ваше имя")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = "Введите номер")]
+        public string Phone { get; set; }
+        public string EstimatedBudget { get; set; }
+        //[Required(ErrorMessage = "Введите преположительный день отлета")]
+        //public string DepartureDay { get; set; }
+        [Required(ErrorMessage = "Введите продолжительномть")]
+        public string Duration { get; set; }
+        [Required(ErrorMessage = "Введите страну")]
+        public string Country { get; set; }
+        public string RestPlace { get; set; }
+        [Display(Name = "Email address")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string MailAdress { get; set; }
+        [Required(ErrorMessage = "Введите количевство людей")]
+        public int Children { get; set; }
 
-            public SelectList Country { get; set; }
-            public string RestPlace { get; set; }
-            [EmailAddress(ErrorMessage = "Invalid Email Address")]
-            public string MailAdress { get; set; }
-            [Required(ErrorMessage = "Введите количевство людей")]
-            public int Children { get; set; }
-            public string selectedCountry { get; set; }
+        public string Comment { get; set; }
+
+
+        public bool Authenticate(string username, string password)
+        {
+            bool result = FormsAuthentication.Authenticate(username, password);
+            if (result)
+            {
+                FormsAuthentication.SetAuthCookie(username, false);
+            }
+            return result;
         }
- }
+
+    }
+  
+}

@@ -1,4 +1,5 @@
 ﻿@model List<DataLayer.HotTours>
+
 @{
     ViewBag.Title = "Лучший Подарок";
 }
@@ -56,28 +57,34 @@
         color: #000;
         font-size: 12px;
         text-align: left;
-        margin-left: 15px;
+        margin-left: 5px;
+    }
+
+    .center {
+        margin-top: 20px;
     }
 </style>
 <script type="text/javascript" src="//vk.com/js/api/openapi.js?117"></script>
 
-<div class="content_bg">
-  
-    @foreach (var tour in Model)
-    {
+<div class="tours">
+    <div class="content_bg">
 
-        <div class="hot_tour">
+        @foreach (var tour in Model)
+        {
 
-            <div class="block_one">
-                <div id="hotel">
-                    <a href="@Url.Action("Details", "Tour",
-                        new { id = tour.Id })" target="_blank">@((tour.Hotel != null) ? tour.Hotel.Name : string.Empty) @((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)</a>
+            <div class="hot_tour" data-id= "@tour.Id">
+
+                <div class="block_one">
+                    <div id="hotel">
+                        <a href="@Url.Action("Details", "Tour",
+                        new { id = tour.Id })" target="_blank">
+                            @tour.Hotel.Resort.Country.Name, @tour.Hotel.Resort.Name
+                        </a>
                     </div>
                     <div id="city">
                         <a href="@Url.Action("Details", "Tour",
-                        new { id = tour.Id })" target="_blank">
-                            @tour.Hotel.Resort.Country.Name,@tour.Hotel.Resort.Name
-                        </a>
+                        new { id = tour.Id })" target="_blank">@((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)</a>
+
                     </div>
 
                     <a href="@Url.Action("Details", "Tour",
@@ -86,24 +93,58 @@
                     </a>
                 </div>
                 <div class="block_two">
-                  
+
 
                     <div><label class="lab">Выезд:</label> <span class="item"><strong>@tour.DepartureDay</strong></span></div>
                     <div><label class="lab">Питание:</label><span class="item"><strong>@tour.Food</strong></span></div>
 
                     <div><label class="lab">Продолжительность:</label><span class="item"><strong> @tour.Period ночей</strong></span></div>
-                    
+
                     <div><label class="lab">Кол-во людей:</label><span class="item"><strong>@tour.AmountPeople</strong></span></div>
 
                     <div><label class="lab">Тип тура:</label><span class="item"><strong>@tour.TourType</strong></span></div>
 
 
-                 
+
                 </div>
                 <div class="price">@tour.Price</div>
 
             </div>
 
 
-    }
+        }
+        @*<div class="col-sm-10">
+            <div class="center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
+                Показано @Model.FirstItemOnPage до @Model.LastItemOnPage из @Model.TotalItemCount Туров
+            </div>
+        </div>*@
+    </div>
 </div>
+
+<div id="hidden_dialog" style="display:none">
+   
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".hot_tour").click(function () {
+            var id = $(this).attr("data-id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Details")",
+                data: {Id : id},
+                datatype: "html",
+                success: function (data) {
+                    $('#hidden_dialog').html(data);
+                }
+            });
+            showDialog();
+        });
+    });
+    function showDialog() {
+        $("#hidden_dialog").dialog({
+            width: 600,
+            height: 400,
+        });
+    }
+</script>

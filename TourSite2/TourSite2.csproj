@@ -143,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -155,6 +156,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IAuthProvider.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\NinjectFactory.cs" />
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\SubModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,16 +170,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\bg2.jpg" />
-    <Content Include="Content\Images\bg3.jpg" />
     <Content Include="Content\Images\bg4 — копия.jpg" />
     <Content Include="Content\Images\bg4.jpg" />
     <Content Include="Content\Images\bg5.jpg" />
     <Content Include="Content\Images\bg6.jpg" />
     <Content Include="Content\Images\bonus.png" />
     <Content Include="Content\Images\country.jpg" />
-    <Content Include="Content\Images\flower.jpg" />
-    <Content Include="Content\Images\header.png" />
-    <Content Include="Content\Images\header1.jpg" />
     <Content Include="Content\Images\icons.png" />
     <Content Include="Content\Images\imgo.jpg" />
     <Content Include="Content\Images\kupon1.png" />
@@ -189,13 +191,14 @@
     <Content Include="Content\Images\sub.jpg" />
     <Content Include="Content\Images\sub1.jpg" />
     <Content Include="Content\Images\sub2.jpg" />
-    <Content Include="Content\Images\sub2.png" />
     <Content Include="Content\Images\thumb1.jpg" />
     <Content Include="Content\Images\thumb1.png" />
     <Content Include="Content\Images\thumb2.jpg" />
     <Content Include="Content\Images\thumb2.png" />
     <Content Include="Content\Images\thumb3.jpg" />
     <Content Include="Content\Images\thumb4.jpg" />
+    <Content Include="Content\Images\up-button.jpg" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -273,7 +276,9 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.cycle.lite.js" />
+    <Content Include="Scripts\jquery.searcher.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -307,7 +312,6 @@
     <Content Include="Views\Home\Placements.cshtml" />
     <Content Include="Views\Tour\Hotels.cshtml" />
     <Content Include="Views\Home\Countries.cshtml" />
-    <Content Include="Views\Tour\CountryDetails.cshtml" />
     <Content Include="Views\Tour\ResortDetails.cshtml" />
     <Content Include="Views\Admin\EditCountry.cshtml" />
     <Content Include="Views\Admin\CountryList.cshtml" />
@@ -326,6 +330,8 @@
     <Content Include="Views\Feedback\FeedbackDetails.cshtml" />
     <Content Include="Views\Feedback\SendFeed.cshtml" />
     <Content Include="Views\Admin\FeedbackList.cshtml" />
+    <Content Include="Views\Home\PartialDetails.cshtml" />
+    <Content Include="Views\Home\PartialCountries.cshtml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
@@ -359,9 +365,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\js\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

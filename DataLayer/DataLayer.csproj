@@ -60,7 +60,7 @@
     <Compile Include="Country.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Feedback.cs">
+    <Compile Include="Feed.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Fishing.cs">

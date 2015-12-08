@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TourModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="gb_tourModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="Id" />
@@ -31,15 +31,15 @@
           <Property Name="ImageData" Type="varbinary(max)" />
           <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Feedback">
+        <EntityType Name="Feed">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ShortDesc" Type="nvarchar(max)" />
-          <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="Author" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Author" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="Fishing">
@@ -175,11 +175,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TourModelStoreContainer">
+        <EntityContainer Name="gb_tourModelStoreContainer">
           <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Airticket" EntityType="Self.Airticket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feed" EntityType="Self.Feed" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fishing" EntityType="Self.Fishing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HotTours" EntityType="Self.HotTours" Schema="dbo" store:Type="Tables" />
@@ -208,7 +208,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="gb_tourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="Id" />
@@ -237,6 +237,17 @@
           <NavigationProperty Name="Country1" Relationship="Self.FK_Country_Country" FromRole="Country" ToRole="Country1" />
           <NavigationProperty Name="Country2" Relationship="Self.FK_Country_Country" FromRole="Country1" ToRole="Country" />
           <NavigationProperty Name="Resort" Relationship="Self.FK_Resort_Country1" FromRole="Country" ToRole="Resort" />
+        </EntityType>
+        <EntityType Name="Feed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Fishing">
           <Key>
@@ -320,14 +331,6 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Visa">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_Country_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="Country1" Type="Self.Country" Multiplicity="0..1" />
@@ -380,6 +383,7 @@
           <EntitySet Name="About" EntityType="Self.About" />
           <EntitySet Name="Airticket" EntityType="Self.Airticket" />
           <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Feed" EntityType="Self.Feed" />
           <EntitySet Name="Fishing" EntityType="Self.Fishing" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" />
           <EntitySet Name="HotTours" EntityType="Self.HotTours" />
@@ -387,7 +391,6 @@
           <EntitySet Name="Resort" EntityType="Self.Resort" />
           <EntitySet Name="Sertificate" EntityType="Self.Sertificate" />
           <EntitySet Name="Studying" EntityType="Self.Studying" />
-          <EntitySet Name="Visa" EntityType="Self.Visa" />
           <AssociationSet Name="FK_Country_Country" Association="Self.FK_Country_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="Country1" EntitySet="Country" />
@@ -404,27 +407,24 @@
             <End Role="Hotel" EntitySet="Hotel" />
             <End Role="HotTours" EntitySet="HotTours" />
           </AssociationSet>
-          <EntitySet Name="Feedback" EntityType="TourModel.Feedback" />
+          <EntitySet Name="Visa" EntityType="gb_tourModel.Visa" />
         </EntityContainer>
-        <EntityType Name="Feedback">
+        <EntityType Name="Visa">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ShortDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TourModelStoreContainer" CdmEntityContainer="TourEntities">
+        <EntityContainerMapping StorageEntityContainer="gb_tourModelStoreContainer" CdmEntityContainer="TourEntities">
           <EntitySetMapping Name="About">
-            <EntityTypeMapping TypeName="TourModel.About">
+            <EntityTypeMapping TypeName="gb_tourModel.About">
               <MappingFragment StoreEntitySet="About">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -433,7 +433,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Airticket">
-            <EntityTypeMapping TypeName="TourModel.Airticket">
+            <EntityTypeMapping TypeName="gb_tourModel.Airticket">
               <MappingFragment StoreEntitySet="Airticket">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -442,7 +442,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Country">
-            <EntityTypeMapping TypeName="TourModel.Country">
+            <EntityTypeMapping TypeName="gb_tourModel.Country">
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -452,8 +452,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Feed">
+            <EntityTypeMapping TypeName="gb_tourModel.Feed">
+              <MappingFragment StoreEntitySet="Feed">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Fishing">
-            <EntityTypeMapping TypeName="TourModel.Fishing">
+            <EntityTypeMapping TypeName="gb_tourModel.Fishing">
               <MappingFragment StoreEntitySet="Fishing">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -462,7 +474,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hotel">
-            <EntityTypeMapping TypeName="TourModel.Hotel">
+            <EntityTypeMapping TypeName="gb_tourModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -478,7 +490,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotTours">
-            <EntityTypeMapping TypeName="TourModel.HotTours">
+            <EntityTypeMapping TypeName="gb_tourModel.HotTours">
               <MappingFragment StoreEntitySet="HotTours">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -498,7 +510,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Placement">
-            <EntityTypeMapping TypeName="TourModel.Placement">
+            <EntityTypeMapping TypeName="gb_tourModel.Placement">
               <MappingFragment StoreEntitySet="Placement">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -507,7 +519,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Resort">
-            <EntityTypeMapping TypeName="TourModel.Resort">
+            <EntityTypeMapping TypeName="gb_tourModel.Resort">
               <MappingFragment StoreEntitySet="Resort">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -519,7 +531,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sertificate">
-            <EntityTypeMapping TypeName="TourModel.Sertificate">
+            <EntityTypeMapping TypeName="gb_tourModel.Sertificate">
               <MappingFragment StoreEntitySet="Sertificate">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -528,7 +540,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Studying">
-            <EntityTypeMapping TypeName="TourModel.Studying">
+            <EntityTypeMapping TypeName="gb_tourModel.Studying">
               <MappingFragment StoreEntitySet="Studying">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -537,21 +549,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Visa">
-            <EntityTypeMapping TypeName="TourModel.Visa">
+            <EntityTypeMapping TypeName="gb_tourModel.Visa">
               <MappingFragment StoreEntitySet="Visa">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Decription" ColumnName="Decription" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Feedback">
-            <EntityTypeMapping TypeName="TourModel.Feedback">
-              <MappingFragment StoreEntitySet="Feedback">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

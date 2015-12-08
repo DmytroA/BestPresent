@@ -8,7 +8,7 @@
     }
 </style>
 
-@using (Html.BeginForm("OrderTour", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Order", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -17,8 +17,7 @@
         <div class="form-group">
             <label for="formGroupInputLarge1" class="col-sm-2 control-label">Примерные даты вылета</label>
             <div class="col-sm-3">
-                @Html.TextBoxFor(m => m.DepartureDay, new { @class = "form-control", placeholder = "Примерные даты вылета", tabindex = 1 })
-                @Html.ValidationMessageFor(m => m.DepartureDay)
+                <input type="text" id="datepicker" name="departure" placeholder="Дата вылета">
             </div>
         </div>
         <div class="form-group">
@@ -67,7 +66,8 @@
         <div class="form-group">
             <label for="formGroupInputLarge1" class="col-sm-2 control-label">Страна</label>
             <div class="col-sm-3">
-                @Html.DropDownListFor(m => m.selectedCountry, Model.Country)
+                @Html.TextBoxFor(m => m.Country, new { @class = "form-control", placeholder = "Страна", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Country)
               
             </div>
         </div>
@@ -95,14 +95,14 @@
         <div class="form-group">
             <label for="formGroupInputLarge3" class="col-sm-2 control-label">Где вы раньше отдыхали</label>
             <div class="col-sm-3">
-                @Html.TextAreaFor(m => m.RestPlace, new { @class = "form-control", placeholder = "Где вы раньше отдыхали", tabindex = 3 })
+                @Html.TextAreaFor(m => m.RestPlace,10,45, new { @class = "form-control", placeholder = "Где вы раньше отдыхали", tabindex = 3 })
                 @Html.ValidationMessageFor(m => m.RestPlace)
             </div>
         </div>
         <div class="form-group">
             <label for="formGroupInputLarge3" class="col-sm-2 control-label">Бюджет</label>
             <div class="col-sm-3">
-                @Html.TextAreaFor(m => m.EstimatedBudget, new { @class = "form-control", placeholder = "Бюджет", tabindex = 3 })
+                @Html.TextAreaFor(m => m.EstimatedBudget,10,45, new { @class = "form-control", placeholder = "Бюджет", tabindex = 3 })
                 @Html.ValidationMessageFor(m => m.EstimatedBudget)
             </div>
         </div>
@@ -119,3 +119,8 @@
         </div>
     </form>
 }
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>

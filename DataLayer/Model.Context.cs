@@ -28,6 +28,7 @@ namespace DataLayer
         public virtual DbSet<About> About { get; set; }
         public virtual DbSet<Airticket> Airticket { get; set; }
         public virtual DbSet<Country> Country { get; set; }
+        public virtual DbSet<Feed> Feed { get; set; }
         public virtual DbSet<Fishing> Fishing { get; set; }
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<HotTours> HotTours { get; set; }
@@ -36,6 +37,5 @@ namespace DataLayer
         public virtual DbSet<Sertificate> Sertificate { get; set; }
         public virtual DbSet<Studying> Studying { get; set; }
         public virtual DbSet<Visa> Visa { get; set; }
-        public virtual DbSet<Feedback> Feedback { get; set; }
     }
 }
