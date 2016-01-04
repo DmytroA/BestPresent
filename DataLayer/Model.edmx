@@ -84,6 +84,16 @@
           <Property Name="HotelId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ThumbPath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Placement">
           <Key>
             <PropertyRef Name="Id" />
@@ -183,6 +193,7 @@
           <EntitySet Name="Fishing" EntityType="Self.Fishing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HotTours" EntityType="Self.HotTours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Placement" EntityType="Self.Placement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resort" EntityType="Self.Resort" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sertificate" EntityType="Self.Sertificate" Schema="dbo" store:Type="Tables" />
@@ -331,6 +342,14 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Visa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <Association Name="FK_Country_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="Country1" Type="Self.Country" Multiplicity="0..1" />
@@ -379,7 +398,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TourEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TourEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="About" EntityType="Self.About" />
           <EntitySet Name="Airticket" EntityType="Self.Airticket" />
           <EntitySet Name="Country" EntityType="Self.Country" />
@@ -391,6 +410,7 @@
           <EntitySet Name="Resort" EntityType="Self.Resort" />
           <EntitySet Name="Sertificate" EntityType="Self.Sertificate" />
           <EntitySet Name="Studying" EntityType="Self.Studying" />
+          <EntitySet Name="Visa" EntityType="Self.Visa" />
           <AssociationSet Name="FK_Country_Country" Association="Self.FK_Country_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="Country1" EntitySet="Country" />
@@ -407,22 +427,24 @@
             <End Role="Hotel" EntitySet="Hotel" />
             <End Role="HotTours" EntitySet="HotTours" />
           </AssociationSet>
-          <EntitySet Name="Visa" EntityType="gb_tourModel.Visa" />
+          <EntitySet Name="Photo" EntityType="gb_tourModel.Photo" />
         </EntityContainer>
-        <EntityType Name="Visa">
+        <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Decription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="gb_tourModelStoreContainer" CdmEntityContainer="TourEntities">
+        <EntityContainerMapping StorageEntityContainer="gb_tourModelStoreContainer" CdmEntityContainer="TourEntities1">
           <EntitySetMapping Name="About">
             <EntityTypeMapping TypeName="gb_tourModel.About">
               <MappingFragment StoreEntitySet="About">
@@ -551,8 +573,19 @@
           <EntitySetMapping Name="Visa">
             <EntityTypeMapping TypeName="gb_tourModel.Visa">
               <MappingFragment StoreEntitySet="Visa">
-                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photo">
+            <EntityTypeMapping TypeName="gb_tourModel.Photo">
+              <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ThumbPath" ColumnName="ThumbPath" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

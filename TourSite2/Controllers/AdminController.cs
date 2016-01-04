@@ -1,4 +1,4 @@
-﻿
+﻿using DataLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using DataLayer;
 using System.Data.Entity;
+using System.Drawing;
+using System.IO;
 //using System.Web.Http;
 
 namespace TourSite2.Models
@@ -15,7 +17,7 @@ namespace TourSite2.Models
     {    
         public HotTours DeleteTour(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             HotTours dbEntry = context.HotTours.Find(Id);
             if (dbEntry != null)
             {
@@ -26,7 +28,7 @@ namespace TourSite2.Models
         }
         public Country DeleteCountry(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             Country dbEntry = context.Country.Find(Id);
             if (dbEntry != null)
             {
@@ -37,7 +39,7 @@ namespace TourSite2.Models
         }
         public Resort DeleteResort(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             Resort dbEntry = context.Resort.Find(Id);
             if (dbEntry != null)
             {
@@ -49,7 +51,7 @@ namespace TourSite2.Models
 
         public Hotel DeleteHotel(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             Hotel dbEntry = context.Hotel.Find(Id);
             if (dbEntry != null)
             {
@@ -60,7 +62,7 @@ namespace TourSite2.Models
         }
         public Feed DeleteFeedback(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             Feed dbEntry = context.Feed.Find(Id);
             if (dbEntry != null)
             {
@@ -76,31 +78,31 @@ namespace TourSite2.Models
         }
         public ActionResult CountryList()
         {
-            TourEntities db = new TourEntities();
+            TourEntities1 db = new TourEntities1();
             var data = db.Country.ToList();
             return View(data);
         }
         public ActionResult FeedbackList()
         {
-            TourEntities db = new TourEntities();
+            TourEntities1 db = new TourEntities1();
             var data = db.Feed.ToList();
             return View(data);
         }
         public ActionResult HotelList()
         {
-            TourEntities db = new TourEntities();
+            TourEntities1 db = new TourEntities1();
             var data = db.Hotel.ToList();
             return View(data);
         }
         public ActionResult ResortList()
         {
-            TourEntities db = new TourEntities();
+            TourEntities1 db = new TourEntities1();
             var data = db.Resort.ToList();
             return View(data);
         }
         public ActionResult HotTourList()
         {
-            TourEntities db = new TourEntities();
+            TourEntities1 db = new TourEntities1();
             var data = db.HotTours.ToList(); ;
             return View(data);
         }
@@ -117,14 +119,14 @@ namespace TourSite2.Models
         {
             model = model ?? new EditHotTourModel();
 
-            var context = new TourEntities();
+            var context = new TourEntities1();
             model.HotTour = context.HotTours.FirstOrDefault(p => p.Id == Id);
             model.Hotel = new SelectList(context.Hotel, "Id", "Name");
         }
         public ViewResult EditCountry(int Id)
         {
 
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Country.FirstOrDefault(p => p.Id == Id);
             return View(data);
         }
@@ -140,7 +142,7 @@ namespace TourSite2.Models
         {
             model = model ?? new EditHotelModel();
 
-            var context = new TourEntities();
+            var context = new TourEntities1();
             model.Hotel = context.Hotel.FirstOrDefault(p => p.Id == Id);
             model.Resort = new SelectList(context.Resort, "Id", "Name");
         }
@@ -158,7 +160,7 @@ namespace TourSite2.Models
         {
             model = model?? new EditResortModel();
 
-            var context = new TourEntities();
+            var context = new TourEntities1();
             model.Resort = context.Resort.FirstOrDefault(p => p.Id == Id);
             model.Country = new SelectList(context.Country, "Id", "Name");
         }
@@ -168,7 +170,7 @@ namespace TourSite2.Models
         public ActionResult EditResort(EditResortModel model, HttpPostedFileBase image)
         {
             
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (ModelState.IsValid)
             {
@@ -191,7 +193,7 @@ namespace TourSite2.Models
 
         public ViewResult CreateHotel()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             EditHotelModel model = new EditHotelModel()
             {
                 Hotel = new Hotel(),
@@ -205,7 +207,7 @@ namespace TourSite2.Models
         }
         public ViewResult CreateResort()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             EditResortModel model = new EditResortModel() { 
                Resort = new Resort(),
                Country = new SelectList(context.Country, "Id", "Name")
@@ -217,7 +219,7 @@ namespace TourSite2.Models
         [ValidateInput(false)]
         public void SaveCountry(Country b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -245,7 +247,7 @@ namespace TourSite2.Models
         [ValidateInput(false)]
         public void SaveHotel(Hotel b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -275,7 +277,7 @@ namespace TourSite2.Models
         [ValidateInput(false)]
         public void SaveResort(Resort b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -304,7 +306,7 @@ namespace TourSite2.Models
        
         public ViewResult Create()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             EditHotTourModel model = new EditHotTourModel()
             {
                 HotTour = new HotTours(),
@@ -360,7 +362,7 @@ namespace TourSite2.Models
         [ValidateInput(false)]
         public void SaveHotTour(HotTours b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
           
             if (b.Id == 0)
             {
@@ -395,7 +397,7 @@ namespace TourSite2.Models
         public ActionResult Edit(EditHotTourModel model, HttpPostedFileBase image)
         {
 
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (ModelState.IsValid)
             {
@@ -420,7 +422,7 @@ namespace TourSite2.Models
         [ValidateInput(false)]
         public ActionResult EditCountry(Country country, HttpPostedFileBase image)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (ModelState.IsValid)
             {
@@ -445,7 +447,7 @@ namespace TourSite2.Models
         public ActionResult EditHotel(EditHotelModel model, HttpPostedFileBase image)
         {
 
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (ModelState.IsValid)
             {
@@ -465,7 +467,89 @@ namespace TourSite2.Models
                 return View(model);
             }
         }
-       
-       
+        //public ActionResult AddImage()
+        //{
+        //    return View();
+        //}
+
+        [HttpGet]
+        public ActionResult CreateImage()
+        {
+            var photo = new Photo();
+            return View(photo);
+        }
+        public Size NewImageSize(Size imageSize, Size newSize)
+        {
+            Size finalSize;
+            double tempval;
+            if (imageSize.Height > newSize.Height || imageSize.Width > newSize.Width)
+            {
+                if (imageSize.Height > imageSize.Width)
+                    tempval = newSize.Height / (imageSize.Height * 1.0);
+                else
+                    tempval = newSize.Width / (imageSize.Width * 1.0);
+
+                finalSize = new Size((int)(tempval * imageSize.Width), (int)(tempval * imageSize.Height));
+            }
+            else
+                finalSize = imageSize; // image is already small size
+
+            return finalSize;
+        }
+        private void SaveToFolder(Image img, string fileName, string extension, Size newSize, string pathToSave)
+        {
+            Size imgSize = NewImageSize(img.Size, newSize);
+            System.Drawing.Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height);
+
+            newImg.Save(Server.MapPath(pathToSave), img.RawFormat);
+
+        }
+        [HttpPost]
+        public ActionResult CreateImage(Photo photo, IEnumerable<HttpPostedFileBase> files)
+        {
+            var context = new TourEntities1();
+            if (!ModelState.IsValid)
+                return View(photo);
+            if (files.Count() == 0 || files.FirstOrDefault() == null)
+            {
+                ViewBag.error = "Please choose a file";
+                return View(photo);
+            }
+
+
+            foreach (var file in files)
+            {
+                if (file.ContentLength == 0) continue;
+                var model = new Photo();
+                model.Decription = photo.Decription;
+                var fileName = Guid.NewGuid().ToString();
+                var extension = System.IO.Path.GetExtension(file.FileName).ToLower();
+
+                MemoryStream ms = new MemoryStream();
+                file.InputStream.CopyTo(ms);
+                file.InputStream.Dispose();
+                ms.Seek(0, SeekOrigin.Begin);
+                //var img = System.Drawing.Image.FromStream(ms);
+                //img.Save("./asd123.png");
+
+                using (var img1 = System.Drawing.Image.FromStream(ms))
+                {
+                    model.ThumbPath = String.Format("/ImageGallery/thumbs/{0}{1}", fileName, extension);
+                    model.ImagePath = String.Format("/ImageGallery/{0}{1}", fileName, extension);
+                    // Save thumbnail size image, 100 x 100
+                    SaveToFolder(img1, fileName, extension, new Size(100, 100), model.ThumbPath);
+
+                    // Save large size image, 800 x 800
+                    SaveToFolder(img1, fileName, extension, new Size(600, 600), model.ImagePath);
+                }
+
+                // Save record to database
+                model.CreatedOn = DateTime.Now;
+                context.Photo.Add(model);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Admin");
+        }
     }
 }

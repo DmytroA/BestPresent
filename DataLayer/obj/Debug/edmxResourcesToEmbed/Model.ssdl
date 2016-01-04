@@ -79,6 +79,16 @@
     <Property Name="HotelId" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ThumbPath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Placement">
     <Key>
       <PropertyRef Name="Id" />
@@ -178,6 +188,7 @@
     <EntitySet Name="Fishing" EntityType="Self.Fishing" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HotTours" EntityType="Self.HotTours" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Placement" EntityType="Self.Placement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Resort" EntityType="Self.Resort" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sertificate" EntityType="Self.Sertificate" Schema="dbo" store:Type="Tables" />

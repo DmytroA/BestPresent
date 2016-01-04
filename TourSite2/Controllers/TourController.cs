@@ -19,7 +19,7 @@ namespace TourSite2.Controllers
         // GET: /Tour/
         public FileContentResult GetImage(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             HotTours tours = context.HotTours.FirstOrDefault(p => p.Id == Id);
             if (tours != null)
             {
@@ -32,7 +32,7 @@ namespace TourSite2.Controllers
         }
         public FileContentResult GetImageCountry(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             Country count = context.Country.FirstOrDefault(p => p.Id == Id);
             if (count != null)
             {
@@ -45,7 +45,7 @@ namespace TourSite2.Controllers
         }
         public FileContentResult GetImageHotel(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             Hotel hotel = context.Hotel.FirstOrDefault(p => p.Id == Id);
             if (hotel != null)
             {
@@ -58,7 +58,7 @@ namespace TourSite2.Controllers
         }
         public FileContentResult GetImageResort(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             Resort resort = context.Resort.FirstOrDefault(p => p.Id == Id);
             if (resort != null)
             {
@@ -76,7 +76,7 @@ namespace TourSite2.Controllers
         [HttpGet]
         public ViewResult Details(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.HotTours.Find(Id);
 
             return View(data);
@@ -90,7 +90,7 @@ namespace TourSite2.Controllers
         [HttpGet]
         public ViewResult CountryDetails(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Country.Find(Id);
 
             context.Entry(data).Collection(d => d.Resort).Load();
@@ -103,7 +103,7 @@ namespace TourSite2.Controllers
         [HttpGet]
         public ViewResult ResortDetails(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Resort.Find(Id);
             return View(data);
         }
@@ -138,7 +138,7 @@ namespace TourSite2.Controllers
         [HttpPost]
         public ActionResult DetailOrder(OrderModel model)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             int id = Int32.Parse(Request.Params["id"]);
             model.HotTours = context.HotTours.Single(tour => tour.Id == id);
             
@@ -195,7 +195,7 @@ namespace TourSite2.Controllers
         }
         public ActionResult DetailOrder(int id,OrderModel model)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             model.HotTours = context.HotTours.Single(tour => tour.Id == id);
             //var context = new TourEntities();
             //var orderedTour = context.HotTours.
@@ -203,7 +203,7 @@ namespace TourSite2.Controllers
         }
         public ActionResult Hotels(int? Id)
         {
-            TourEntities db = new TourEntities();
+            TourEntities1 db = new TourEntities1();
             var data = db.Hotel.ToList();
             return View(data);
         }

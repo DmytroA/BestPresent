@@ -11,6 +11,8 @@ namespace DataLayer
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class Hotel
     {
@@ -18,9 +20,10 @@ namespace DataLayer
         {
             this.HotTours = new HashSet<HotTours>();
         }
-    
+        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
         public string Name { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public Nullable<int> CountryId { get; set; }
         public string Category { get; set; }

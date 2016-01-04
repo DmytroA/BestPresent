@@ -121,3 +121,10 @@ D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.Razor.xml
 D:\bestpresent\BestPresent\TourSite2\obj\Release\TourSite2.csprojResolveAssemblyReference.cache
 D:\bestpresent\BestPresent\TourSite2\obj\Release\TourSite2.dll
 D:\bestpresent\BestPresent\TourSite2\obj\Release\TourSite2.pdb
+D:\bestpresent\BestPresent\TourSite2\bin\PagedList.dll
+D:\bestpresent\BestPresent\TourSite2\bin\PagedList.Mvc.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Helpers.dll
+D:\bestpresent\BestPresent\TourSite2\bin\WebGridMvc.dll
+D:\bestpresent\BestPresent\TourSite2\bin\PagedList.xml
+D:\bestpresent\BestPresent\TourSite2\bin\PagedList.Mvc.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Helpers.xml

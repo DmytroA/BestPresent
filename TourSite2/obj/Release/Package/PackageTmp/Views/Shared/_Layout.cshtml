@@ -4,6 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-image-gallery.min.css">
     <title>@ViewBag.Title</title>
     <style type="text/css">
         .width {
@@ -159,7 +163,6 @@
     </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
-
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -168,16 +171,13 @@
     </div>
 
     <div class="wrapper">
-
-
         <div class="header">
 
+
             <div class="logo">
-                <a href="/Home/Index/">  <img src="/Content/Images/logo.png"></a>
+                <a href="/Home/Index/">  <img src="/Content/Images/logo_test.png"></a>
             </div>
-            <div class="label">
-                Туристическое агентство<br><span>Лучший Подарок</span>
-            </div>
+            
             <div class="social">
                 <a href="https://vk.com/id8827767">
                     <div class="icon vk"></div>
@@ -195,8 +195,10 @@
                 <div class="contacts"><span>тел. 066-626-00-76, 068-992-70-76 - Наталья</span></div>
 
             </div>
-            <div class="subscribe_button"><a href="/Subscribe/Sub/"><img src="/Content/Images/sub2.png"></a> </div>
-
+            <div class="subscribe_button" title="Подписка"><a href="/Subscribe/Sub/"><img src="/Content/Images/new_sub.png"></a> </div>
+            <div class="label">
+                Туристическое агентство<br><span>Лучший Подарок</span>
+            </div>
 
             <div class="nav">
                 <div class="item"><a href="/Home/Index">Главная</a></div>
@@ -204,84 +206,53 @@
                 <div class="item"><a href="/Home/Countries">Страны и курорты</a></div>
                 <div class="item"><a href="/Home/Hotels ">Отели</a></div>
                 <div class="item"><a href="/Home/Placements ">Туристам</a></div>
-                <div class="item"><a href="/Home/ONas/">О нас</a></div>
+                <div class="item"><a href="/Photo/Index ">Галерея</a></div>
+                <div class="item"><a href="/Home/Gift ">Бонусы</a></div>
+                <div class="item"><a href="/Feedback/Index/">Отзывы</a></div>
                 <div class="item"><a href="/Home/AboutUs/">Контакты</a></div>
             </div>
             <div style="clear: both"></div>
         </div>
+
         <div class="block">
             <div class="block_bg"></div>
             <div class="features">
-                <div class="feature">
-                    <div class="feature_bg"></div>
-                    <a href="/Home/Airtickets">Авиабилеты, Travel SIM</a>
-                </div>
-                <div class="feature">
-                    <div class="feature_bg"></div>
-                    <a href="/Home/Gift">Подарочные сертификаты, Скидки, Бонусы </a>
-                </div>
-
-
-                @*<div class="feature">
-                        <div class="feature_bg"></div>
-                        <a href="/Home/EuropeTour">Туры за недвижимостью</a>
-                    </div>*@
-                <div class="feature">
-                    <div class="feature_bg"></div>
-                    <a href="/Home/Order">Персональные туры</a>
-                </div>
-
-                @*<div class="feature">
-                        <div class="feature_bg"></div>
-                        <a href="/Home/Fishings">Рыбалка</a>
-                    </div>*@
-                @*<div class="feature">
-                        <div class="feature_bg"></div>
-                        <a href="/Home/Placements">Трудоустройство за рубежом</a>
-                    </div>*@
-                <div class="feature">
-                    <div class="feature_bg"></div>
-                    <a href="/Home/Studyings">Обучение за рубжеом</a>
-                </div>
-                <div class="feature">
-                    <div class="feature_bg"></div>
-                    <a href="/Home/Visas">Консультации, паспорта, визы</a>
-                </div>
-                <div class="feature">
-                    <div class="feature_bg"></div>
-                    <a href="/Home/EuropeTour">Туры по Украине</a>
-                </div>
-            </div>
-            <div class="countries_wrapper">
-                <div class="countries">
+                <div class="mod">
                     <div id="tour_search_module"></div>
                     <script src="http://module.ittour.com.ua/tour_search.jsx?id=5D7360596727G40917946N0&ver=1&type=2972"></script>
                 </div>
-                <div style="clear: both"></div>
             </div>
+            <div style="clear: both"></div>
+            <div class="countries_wrapper">
+                <div class="vk_widget">
+                    <script type="text/javascript" src="//vk.com/js/api/openapi.js?120"></script>
 
-            @*<div class="string">
-                    <marquee behavior="alternate" direction="left" color="white">
-                        Lorem ipsum dolor sit amet...
-                    </marquee>
-                </div>*@
+                    <!-- VK Widget -->
+                    <div id="vk_groups"></div>
+                    <script type="text/javascript">
+                        VK.Widgets.Group("vk_groups", { mode: 2, width: "480", height: "200" }, 103796021);
+                    </script>
+                </div>
+            </div>
         </div>
+
         <div class="content">
             <div class="content_background">
-<div class="main_content">
-                @RenderBody()
+                <div class="main_content">
+                    @RenderBody()
 
-                <!-- RedHelper -->
-                <script id="rhlpscrtg" type="text/javascript" charset="utf-8" async="async"
-                        src="https://web.redhelper.ru/service/main.js?c=natabar">
-                </script>
-                <!--/Redhelper -->
-</div>
+                    <!-- RedHelper -->
+                    <script id="rhlpscrtg" type="text/javascript" charset="utf-8" async="async"
+                            src="https://web.redhelper.ru/service/main.js?c=natabar">
+                    </script>
+                    <!--/Redhelper -->
+                    <script type="text/javascript" src="//vk.com/js/api/openapi.js?117"></script>
+
+                </div>
+
             </div>
         </div>
-
-
-
+        <img src="/Content/Images/up-button.jpg" id="top" width="50px" height="50px" title="Вверх" style="opacity:0.7;"></img>
     </div>
     <footer class="site-footer clear group">
         <div class="prefooter">
@@ -292,10 +263,6 @@
                         <div class="textwidget">
                             <p>г. Харьков, Полтавский шлях 123, 2 этаж, офис №6</p>
                             <div style="clear: both"></div>
-                            <p>
-                                г. Лозовая, ул. Розы Люксембург, 74
-
-                            </p>
 
                             <p>
                                 <a class="route-link" href="/Home/AboutUs">Карта проезда</a>
@@ -369,12 +336,26 @@
         </div>
     </footer>
 
-    @Scripts.Render("~/Scripts/jquery-2.1.4.js")
-    @Scripts.Render("~/Scripts/bootstrap.js")
-    @Scripts.Render("~/Scripts/Site.js")
-
     @RenderSection("scripts", required: false)
-
+    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
 
 </body>
 </html>
+<script>
+    var top_show = 150; // В каком положении полосы прокрутки начинать показ кнопки "Наверх"
+    var delay = 1000; // Задержка прокрутки
+    $(document).ready(function () {
+        $(window).scroll(function () { // При прокрутке попадаем в эту функцию
+            /* В зависимости от положения полосы прокрукти и значения top_show, скрываем или открываем кнопку "Наверх" */
+            if ($(this).scrollTop() > top_show) $('#top').fadeIn();
+            else $('#top').fadeOut();
+        });
+        $('#top').click(function () { // При клике по кнопке "Наверх" попадаем в эту функцию
+            /* Плавная прокрутка наверх */
+            $('body, html').animate({
+                scrollTop: 0
+            }, delay);
+        });
+    });
+    </script>

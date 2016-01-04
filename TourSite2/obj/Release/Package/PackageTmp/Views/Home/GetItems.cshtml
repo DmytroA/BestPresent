@@ -2,7 +2,6 @@
 <script>
     $(function Sort() {
         $('#country,#resort,#hotel').change(function () {
-            debugger;
             var countrId = $('#country').val();
             var resortId = $('#resort').val();
             var hotelId = $('#hotel').val();
@@ -15,6 +14,7 @@
 
 </script>
 <select id="resort" name="Resort" onclick="Sort();">
+    <option selected="">Выберите курорт</option>
     @foreach (var item in Model)
     {
         <option value="@item.Id">@item.Name</option>

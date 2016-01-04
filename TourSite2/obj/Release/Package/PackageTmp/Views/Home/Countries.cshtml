@@ -1,51 +1,99 @@
-﻿@*@model IEnumerable<DataLayer.Country>
-
-<div class="list-group">
-   @foreach (var country in Model)
-       {  <a href="@Url.Action("CountryDetails", "Tour",
-                                     new {id = country.Id })" class ="list-group-item" target="_blank">
-            @Html.DisplayFor(modelItem => country.Name)
-                                </a>
-       }
-</div>*@
-
-@model IEnumerable<DataLayer.Country>
+﻿@model List<DataLayer.Country>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+@{
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+}
 @{
     ViewBag.Title = "Страны и курорты";
 }
+<style>
+    .hot {
+        font-size: 18px;
+    }
 
+        .hot a {
+            color: #F86126 !important;
+            font-size: 18px;
+            text-decoration: none;
+        }
 
-<style type="text/css">
+    .podr a {
+        color: red !important;
+        font-size: 10px;
+    }
+
+    .size {
+        white-space: nowrap;
+        overflow: hidden;
+        /*background: #fc0;
+        padding: 5px;*/
+        text-overflow: ellipsis;
+        height: 65px;
+        line-height: 19px;
+    }
 
 </style>
-<div class="content_bg">
+<input type="text" id="text-to-find" placeholder="Поиска по странам" value="">
 
-    @foreach (var country in Model)
-    {
-
-        <div class="country">
-            <table>
-                <tr>
-                    <td>
-                        <a href="@Url.Action("CountryDetails", "Tour",
-                                 new { id = country.Id })" target="_blank">
-                            <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 125px; border-radius: 10px; height: 80px;" />
-                        </a>
-                    </td>
-                    <td>
-                        <div class="bg-info">
-                            <a href="@Url.Action("CountryDetails", "Tour",
-                                 new { id = country.Id })" target="_blank">@country.Name</a>
-                            </div>
-                            <div class="bg-info">
-                                <a href="@Url.Action("CountryDetails", "Tour",
-                                 new { id = country.Id })" target="_blank">Описание</a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+@foreach (var country in Model)
+{
+    <div class="block_one" style="margin-top:20px;" data-id="@country.Id">
+        <div class="feed">
+            <div class="hot pull-left">
+                <strong>@country.Name</strong>
             </div>
+            <div class="author pull-right">
+               
+                    <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 45px;height: 25px;" />
+            </div>
+            <div style="clear:both"></div>
+            <div class="size" id="desc" style="margin-top:10px;">
+                @Html.Raw(country.Description)
+            </div>
+            <div class="podr">
+                    подробнее
+            </div>
+        </div>
 
-    }
+    </div>
+}
+<div id="hidden_dialog" style="display:none">
+
 </div>
+<script type="text/javascript">
+    $(".block_one").searcher({
+        itemSelector: ".feed",
+        textSelector: "div",
+        inputSelector: "#text-to-find",
+        toggle: function (item, containsText) {
+            debugger;
+            if (containsText)
+                $(item).fadeIn();
+            else
+                $(item).fadeOut();
+        }
+    });
+    $(function () {
+        $(".block_one").click(function () {
+            var id = $(this).attr("data-id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CountDetails")",
+                data: { Id: id },
+                datatype: "html",
+                success: function (data) {
+                    $('#hidden_dialog').html(data);
+                }
+            });
+            showDialog();
+        });
+    });
+    function showDialog() {
+        $("#hidden_dialog").dialog({
+            width: 800,
+            height: 800,
+        });
+    }
+</script>
 

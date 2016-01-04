@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Лучший Подарок";
 }
-
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <style type="text/css">
     .content_bg {
         /*border: 1px solid #000;
@@ -63,6 +64,11 @@
     .center {
         margin-top: 20px;
     }
+
+    .hot_tour:hover {
+        background-color: #ff6a00;
+        opacity:0.7;
+    }
 </style>
 <script type="text/javascript" src="//vk.com/js/api/openapi.js?117"></script>
 
@@ -72,19 +78,20 @@
         @foreach (var tour in Model)
         {
 
-            <div class="hot_tour" data-id= "@tour.Id">
+            <div class="hot_tour" data-id="@tour.Id">
 
                 <div class="block_one">
                     <div id="hotel">
-                        <a href="@Url.Action("Details", "Tour",
-                        new { id = tour.Id })" target="_blank">
-                            @tour.Hotel.Resort.Country.Name, @tour.Hotel.Resort.Name
-                        </a>
+                        @*<a href="@Url.Action("Details", "Tour",
+                            new { id = tour.Id })" target="_blank">
+                                @tour.Hotel.Resort.Country.Name, @tour.Hotel.Resort.Name
+                            </a>*@
+                        @tour.Hotel.Resort.Country.Name, @tour.Hotel.Resort.Name
                     </div>
                     <div id="city">
-                        <a href="@Url.Action("Details", "Tour",
-                        new { id = tour.Id })" target="_blank">@((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)</a>
-
+                        @*<a href="@Url.Action("Details", "Tour",
+                            new { id = tour.Id })" target="_blank">@((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)</a>*@
+                        @((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)
                     </div>
 
                     <a href="@Url.Action("Details", "Tour",
@@ -113,38 +120,38 @@
 
 
         }
-        @*<div class="col-sm-10">
-            <div class="center">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
-                Показано @Model.FirstItemOnPage до @Model.LastItemOnPage из @Model.TotalItemCount Туров
-            </div>
-        </div>*@
     </div>
 </div>
 
 <div id="hidden_dialog" style="display:none">
-   
+    <div id="loader" style="margin-left:200px; margin-top:200px">
+        <img src="~/Content/Images/load.gif" alt="загрузка" width="400px" height="400px">
+        </div>
+
 </div>
 <script type="text/javascript">
     $(function () {
         $(".hot_tour").click(function () {
             var id = $(this).attr("data-id");
+            var country = $(this).find('#hotel').text();
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("Details")",
-                data: {Id : id},
+                data: { Id: id },
                 datatype: "html",
                 success: function (data) {
+                    $('#loader').hide();
                     $('#hidden_dialog').html(data);
                 }
             });
-            showDialog();
+            showDialog(country);
         });
     });
-    function showDialog() {
+    function showDialog(country) {
         $("#hidden_dialog").dialog({
-            width: 600,
-            height: 400,
+            title: country,
+            width: 800,
+            height: 800,
         });
     }
 </script>

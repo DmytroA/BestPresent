@@ -11,22 +11,31 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Drawing.Imaging;
+using System.Net;
+using CaptchaMvc.HtmlHelpers;
+using Newtonsoft.Json;
+using System.Drawing;
+using System.Drawing.Text;
+using System.Drawing.Drawing2D;
+
 
 
 namespace TourSite2.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Controller, IDisposable
     {
+        TourEntities1 context = new TourEntities1();
         public ActionResult Airticket()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Airticket.ToList();
             return View(data);
         }
 
         public ViewResult EditAirticket(int Id = 1)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var dat = context.Airticket.FirstOrDefault(p => p.Id == Id);
 
             return View(dat);
@@ -37,7 +46,7 @@ namespace TourSite2.Controllers
         [ValidateInput(false)]
         public ActionResult EditAirticket(Airticket tour)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             if (ModelState.IsValid)
             {
 
@@ -54,7 +63,7 @@ namespace TourSite2.Controllers
 
         public ActionResult Airtickets()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Airticket.ToList();
 
             return View(data);
@@ -62,7 +71,7 @@ namespace TourSite2.Controllers
         }
         public void SaveTickets(Airticket b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -90,14 +99,14 @@ namespace TourSite2.Controllers
 
         public ActionResult Visa()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Visa.ToList();
             return View(data);
         }
 
         public ViewResult EditVisa(int Id = 1)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var dat = context.Visa.FirstOrDefault(p => p.Id == Id);
 
             return View(dat);
@@ -108,7 +117,7 @@ namespace TourSite2.Controllers
         [ValidateInput(false)]
         public ActionResult EditVisa(Visa tour, HttpPostedFileBase image)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             if (ModelState.IsValid)
             {
 
@@ -125,7 +134,7 @@ namespace TourSite2.Controllers
 
         public ActionResult Visas()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Visa.ToList();
 
             return View(data);
@@ -133,7 +142,7 @@ namespace TourSite2.Controllers
         }
         public void SaveVisa(Visa b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -161,14 +170,14 @@ namespace TourSite2.Controllers
 
         public ActionResult Fishing()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Fishing.ToList();
             return View(data);
         }
 
         public ViewResult EditFishing(int Id = 1)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var dat = context.Fishing.FirstOrDefault(p => p.Id == Id);
 
             return View(dat);
@@ -179,7 +188,7 @@ namespace TourSite2.Controllers
         [ValidateInput(false)]
         public ActionResult EditFishing(Fishing tour, HttpPostedFileBase image)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             if (ModelState.IsValid)
             {
 
@@ -196,7 +205,7 @@ namespace TourSite2.Controllers
 
         public ActionResult Fishings()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Fishing.ToList();
 
             return View(data);
@@ -204,7 +213,7 @@ namespace TourSite2.Controllers
         }
         public void SaveFishing(Fishing b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -217,13 +226,8 @@ namespace TourSite2.Controllers
                 Fishing dbEntry = context.Fishing.Find(b.Id);
                 if (dbEntry != null)
                 {
-
-
                     dbEntry.Description = b.Description;
-
                     dbEntry.Name = b.Name;
-
-
                 }
             }
 
@@ -232,14 +236,14 @@ namespace TourSite2.Controllers
 
         public ActionResult Studying()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Studying.ToList();
             return View(data);
         }
 
         public ViewResult EditStudying(int Id = 1)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var dat = context.Studying.FirstOrDefault(p => p.Id == Id);
 
             return View(dat);
@@ -250,7 +254,7 @@ namespace TourSite2.Controllers
         [ValidateInput(false)]
         public ActionResult EditStudying(Studying tour)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             if (ModelState.IsValid)
             {
 
@@ -267,7 +271,7 @@ namespace TourSite2.Controllers
 
         public ActionResult Studyings()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Studying.ToList();
 
             return View(data);
@@ -275,7 +279,7 @@ namespace TourSite2.Controllers
         }
         public void SaveStudying(Studying b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -303,14 +307,14 @@ namespace TourSite2.Controllers
 
         public ActionResult Placement()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Placement.ToList();
             return View(data);
         }
 
         public ViewResult EditPlacement(int Id = 1)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var dat = context.Placement.FirstOrDefault(p => p.Id == Id);
 
             return View(dat);
@@ -321,7 +325,7 @@ namespace TourSite2.Controllers
         [ValidateInput(false)]
         public ActionResult EditPlacement(Placement tour, HttpPostedFileBase image)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             if (ModelState.IsValid)
             {
 
@@ -338,7 +342,7 @@ namespace TourSite2.Controllers
 
         public ActionResult Placements()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Placement.ToList();
 
             return View(data);
@@ -346,7 +350,7 @@ namespace TourSite2.Controllers
         }
         public void SavePlacement(Placement b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -419,7 +423,7 @@ namespace TourSite2.Controllers
         [HttpPost]
         public ActionResult Details(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.HotTours.Find(Id);
 
             return View("PartialDetails", data);
@@ -428,26 +432,19 @@ namespace TourSite2.Controllers
         [HttpGet]
         public ViewResult CountriesDetails(int Id)
         {
-            var context = new TourEntities();
             var data = context.Country.Find(Id);
-
             return View(data);
         }
-        //[HttpPost]
-        //public ViewResult CountriesDetails(Country country)
-        //{
-        //    return View("Thanks", country);
-        //}
+
         public ActionResult AllAbout()
         {
-            var context = new TourEntities();
             var data = context.About.ToList();
             return View(data);
         }
 
         public ViewResult AboutEdit(int Id = 10)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var dat = context.About.FirstOrDefault(p => p.Id == Id);
 
             return View(dat);
@@ -458,7 +455,7 @@ namespace TourSite2.Controllers
         [ValidateInput(false)]
         public ActionResult AboutEdit(About tour, HttpPostedFileBase image)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             if (ModelState.IsValid)
             {
 
@@ -475,7 +472,7 @@ namespace TourSite2.Controllers
 
         public ActionResult ONas()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.About.ToList();
 
             return View(data);
@@ -483,7 +480,7 @@ namespace TourSite2.Controllers
         }
         public void SaveAbout(About b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -508,9 +505,9 @@ namespace TourSite2.Controllers
 
             context.SaveChanges();
         }
-        public ActionResult Index(int ?Id)
+        public ActionResult Index(int? Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.HotTours.Include(m => m.Hotel).ToList();
 
             return View(data);
@@ -524,16 +521,75 @@ namespace TourSite2.Controllers
 
             return View(model);
         }
+
         private void FillModelOrder(ref FormsAuthProvider model)
         {
             model = model ?? new FormsAuthProvider();
 
-            var context = new TourEntities();
+            var context = new TourEntities1();
             //model.Country = new SelectList(context.Country, "Name", "Name");
+        }
+        public ActionResult CaptchaImage(string prefix, bool noisy = true) 
+        { 
+            var rand = new Random((int)DateTime.Now.Ticks); 
+            //generate new question 
+            int a = rand.Next(10, 99); 
+            int b = rand.Next(0, 9); 
+            var captcha = string.Format("{0} + {1} = ?", a, b); 
+ 
+            //store answer 
+            Session["Captcha" + prefix] = a + b; 
+ 
+            //image stream 
+            FileContentResult img = null; 
+ 
+            using (var mem = new MemoryStream()) 
+            using (var bmp = new Bitmap(130, 30)) 
+            using (var gfx = Graphics.FromImage((Image)bmp)) 
+            { 
+                gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit; 
+                gfx.SmoothingMode = SmoothingMode.AntiAlias; 
+                gfx.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height)); 
+ 
+                //add noise 
+                if (noisy) 
+                { 
+                    int i, r, x, y; 
+                    var pen = new Pen(Color.Yellow); 
+                    for (i = 1; i < 10; i++) 
+                    { 
+                        pen.Color = Color.FromArgb( 
+                        (rand.Next(0, 255)), 
+                        (rand.Next(0, 255)), 
+                        (rand.Next(0, 255))); 
+ 
+                        r = rand.Next(0, (130 / 3)); 
+                        x = rand.Next(0, 130); 
+                        y = rand.Next(0, 30);
+
+                        gfx.DrawEllipse(pen, x - r, y - r, r, r);
+                    } 
+                } 
+ 
+                //add question 
+                gfx.DrawString(captcha, new Font("Tahoma", 15), Brushes.Gray, 2, 3); 
+ 
+                //render as Jpeg 
+                bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg); 
+                img = this.File(mem.GetBuffer(), "image/Jpeg"); 
+            } 
+        
+            return img; 
         }
         [HttpPost]
         public ActionResult Order(FormsAuthProvider model)
         {
+            if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
+            {
+                ModelState.AddModelError("Captcha", "Неправильный ответ, поробуйте еще раз");
+                //dispay error and generate a new captcha 
+                return View(model);
+            } 
             if (ModelState.IsValid)
             {
                 int order_number = 0;
@@ -558,22 +614,22 @@ namespace TourSite2.Controllers
                 message2.Subject = "Новый тур";
                 message2.Body = "Новый заказ тура: " + "\r\n" +
                  "Примерные даты вылета:  " + Request.Params["departure"] + "\r\n" +
-                    "Продолжительность тура:  " + model.Duration + "\r\n" 
+                    "Продолжительность тура:  " + model.Duration + "\r\n"
                     + "Категория отеля:  " + Request.Params["check_cat"] + "\r\n" + "Имя:  " + model.Name + "\r\n" + "Количевство детей:  " + Request.Params["Children"] + "\r\n" + "Питание:  " + Request.Params["nutrition"]
                     + "\r\n" + "Ваш номер телефона:  " + model.Phone + "\r\n" + "Страна:" + model.Country + "\r\n" + "e-mail:  " + model.MailAdress + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" + "Пожелания:" + model.Comment;
 
 
-                SmtpClient client = new SmtpClient();
-                client.Host = "smtp.mail.ru";
-                client.Credentials = new System.Net.NetworkCredential("bestpresentkh@mail.ru", "nata2507");
-                client.EnableSsl = true;
+                SmtpClient client1 = new SmtpClient();
+                client1.Host = "smtp.mail.ru";
+                client1.Credentials = new System.Net.NetworkCredential("bestpresentkh@mail.ru", "nata2507");
+                client1.EnableSsl = true;
 
                 try
                 {
                     Task.Factory.StartNew((Action)(() =>
                     {
-                        client.Send(message1);
-                        client.Send(message2);
+                        client1.Send(message1);
+                        client1.Send(message2);
                     }), TaskCreationOptions.AttachedToParent | TaskCreationOptions.LongRunning);
                 }
 
@@ -584,15 +640,15 @@ namespace TourSite2.Controllers
                 }
                 return RedirectToAction("OrderTour");
             }
-            else 
+            else
             {
-                return View(model);
+              return View(model);
+
             }
-            
         }
         public ActionResult Hotels()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Hotel.ToList();
 
             int selectedIndex = 1;
@@ -608,17 +664,15 @@ namespace TourSite2.Controllers
         }
         public ActionResult GetItems(int id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Hotel.ToList();
-      
+
             return PartialView(context.Resort.Where(c => c.CountryId == id).ToList());
-            
-            
         }
-      
+
         public ActionResult Hotel(int? hotelId, int? resortId, int? countrId)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Hotel.ToList();
             if (countrId == -1)
             {
@@ -626,17 +680,21 @@ namespace TourSite2.Controllers
             }
             else
             {
-               data = context.Hotel.Where(s => (resortId.HasValue && s.ResortId == resortId.Value) ||
-               (countrId.HasValue && s.CountryId == countrId.Value)).ToList();
-         
+                data = context.Hotel.Where(s => (resortId.HasValue && s.ResortId == resortId.Value) ||
+                (countrId.HasValue && s.CountryId == countrId.Value)).ToList();
+                if (data.Count == 0)
+                {
+                    //var script = @"alert(""Ничего не найдено"");";
+                    //return JavaScript(script);
+                }
             }
-            
+
             return PartialView("PartialHotels", data);
         }
         [HttpGet]
         public ViewResult HotelDetails(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Hotel.Find(Id);
 
             return View(data);
@@ -644,7 +702,7 @@ namespace TourSite2.Controllers
         [HttpPost]
         public ActionResult CountDetails(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Country.Find(Id);
 
             return View("PartialCountries", data);
@@ -652,20 +710,16 @@ namespace TourSite2.Controllers
 
         public ActionResult Countries()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Country.Include(p => p.Resort).ToList();
 
             return View(data);
         }
-       
+
         public ActionResult OrderTour()
         {
-            
             return View();
         }
-
-
-
     }
 
 

@@ -9,6 +9,7 @@
 @using (Html.BeginForm("Edit", "Admin",
   FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.ValidationSummary(true)
     @Html.HiddenFor(s => s.HotTour.Id)
     <div>Количество людей: @Html.EditorFor(x => x.HotTour.AmountPeople)</div>
     <div>День прибытия: @Html.EditorFor(x => x.HotTour.DepartureDay)</div>
@@ -23,25 +24,6 @@
     <script>
         CKEDITOR.replace('HotTour.Description');
     </script>
-    <div class="editor-label">Image</div>
-    <div class="editor-field">
-        @if (Model.HotTour.ImageData == null)
-        {
-            
-            @:None
-         }
-        else
-        {
-            <img width="150" height="150" src="@Url.Action("GetImage", "Tour", new { Model.HotTour.Id })" />
-        }
-        <div>
-            Upload new image:
-            <input type="file" name="Image" />
-        </div>
-        
-        
-    </div>
-       
     <input type="submit" value="Save" />
     @Html.ActionLink("Cancel and return to List", "Index")
 }

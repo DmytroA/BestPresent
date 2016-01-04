@@ -30,7 +30,9 @@ namespace TourSite2.Models
         public int Children { get; set; }
 
         public string Comment { get; set; }
-
+        [Required]
+        [Display(Name = "Введите сумму на картинке")] 
+        public string Captcha { get; set; }
 
         public bool Authenticate(string username, string password)
         {

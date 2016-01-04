@@ -2,8 +2,40 @@
 
 <div class="content_background">
 
+    <strong>@Model.Name</strong>
+    <table id="table" class="table table-bordered">
+        <thead>
 
-    <div class="pull-right" style="margin-left: 20px;">
+            <tr>
+                <th>Фото</th>
+                <th>Курорт</th>
+                <th>Страна</th>
+         
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><img class="img-rounded" width="200px" height="200px" alt="@Model.Name" src="@Url.Action("GetImageResort", "Tour", new { Model.Id })" /></td>
+            <td>
+                <strong>@Model.Name</strong>
+            </td>
+            <td><strong><a href="@Url.Action("CountryDetails", "Tour",
+                                     new {id = Model.Country.Id })" target="_blank">
+    @Html.DisplayFor(modelItem => Model.Country.Name)
+</a>                </strong></td>
+           
+        </tr>
+
+    </tbody>
+</table>
+<div>
+    <p>
+        @Html.Raw(Model.Description)
+    </p>
+</div>
+    @*<div class="pull-right" style="margin-left: 20px;">
         <p>
             <img class="img-circle" width="350px" height="350px" alt="@Model.Name" src="@Url.Action("GetImageResort", "Tour", new { Model.Id })" />
         </p>
@@ -33,6 +65,6 @@
                     </a>                
             </div>
         </p>
-    </div>
+    </div>*@
 
 </div>

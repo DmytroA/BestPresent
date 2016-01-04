@@ -13,7 +13,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/22/2015 19:03:10</publishTime>
     </File>
     <File Include="bin/DataLayer.dll">
-      <publishTime>09/28/2015 17:12:51</publishTime>
+      <publishTime>12/15/2015 16:05:58</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/05/2015 14:58:59</publishTime>
@@ -36,8 +36,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Ninject.dll">
       <publishTime>02/02/2015 17:27:11</publishTime>
     </File>
+    <File Include="bin/PagedList.dll">
+      <publishTime>10/11/2015 13:10:49</publishTime>
+    </File>
+    <File Include="bin/PagedList.Mvc.dll">
+      <publishTime>10/11/2015 13:10:50</publishTime>
+    </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/22/2015 19:03:08</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>09/07/2013 12:05:10</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
       <publishTime>01/22/2015 19:03:08</publishTime>
@@ -70,13 +79,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/22/2015 19:03:07</publishTime>
     </File>
     <File Include="bin/TourSite2.dll">
-      <publishTime>10/01/2015 16:26:03</publishTime>
+      <publishTime>12/17/2015 14:37:21</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/22/2015 19:03:10</publishTime>
     </File>
+    <File Include="bin/WebGridMvc.dll">
+      <publishTime>12/14/2015 15:57:08</publishTime>
+    </File>
     <File Include="Content/Admin.css">
       <publishTime>02/02/2015 21:24:59</publishTime>
+    </File>
+    <File Include="Content/blank.gif">
+      <publishTime>08/12/2015 16:08:40</publishTime>
+    </File>
+    <File Include="Content/bootstrap-image-gallery.css">
+      <publishTime>07/24/2015 09:47:54</publishTime>
+    </File>
+    <File Include="Content/bootstrap-image-gallery.min.css">
+      <publishTime>07/24/2015 09:47:54</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>07/14/2015 17:03:26</publishTime>
@@ -95,6 +116,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/bootstrap.min.css">
       <publishTime>07/14/2015 17:03:26</publishTime>
+    </File>
+    <File Include="Content/fancybox_loading.gif">
+      <publishTime>08/12/2015 16:08:40</publishTime>
+    </File>
+    <File Include="Content/fancybox_overlay.png">
+      <publishTime>08/12/2015 16:08:40</publishTime>
+    </File>
+    <File Include="Content/fancybox_sprite.png">
+      <publishTime>08/12/2015 16:08:40</publishTime>
+    </File>
+    <File Include="Content/fullscreenButton.png">
+      <publishTime>08/12/2015 16:08:40</publishTime>
     </File>
     <File Include="Content/Images/bg2.jpg">
       <publishTime>01/20/2015 11:37:02</publishTime>
@@ -119,6 +152,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/Images/country.jpg">
       <publishTime>01/16/2015 13:26:33</publishTime>
+    </File>
+    <File Include="Content/Images/favicon.ico">
+      <publishTime>12/14/2015 14:21:58</publishTime>
     </File>
     <File Include="Content/Images/flower.jpg">
       <publishTime>01/19/2015 11:03:10</publishTime>
@@ -198,8 +234,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/Images/thumb4.jpg">
       <publishTime>01/16/2015 18:09:45</publishTime>
     </File>
+    <File Include="Content/Images/up-button.jpg">
+      <publishTime>08/12/2015 11:58:47</publishTime>
+    </File>
+    <File Include="Content/jquery-ui.css">
+      <publishTime>12/17/2015 14:16:54</publishTime>
+    </File>
+    <File Include="Content/jquery.fancybox.css">
+      <publishTime>08/12/2015 16:08:40</publishTime>
+    </File>
+    <File Include="Content/PagedList.css">
+      <publishTime>10/11/2015 13:10:52</publishTime>
+    </File>
     <File Include="Content/Site.css">
-      <publishTime>10/01/2015 16:23:06</publishTime>
+      <publishTime>08/12/2015 15:02:21</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>01/22/2015 19:03:04</publishTime>
@@ -283,7 +331,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/22/2015 19:03:04</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.theme.css">
-      <publishTime>01/22/2015 19:03:04</publishTime>
+      <publishTime>12/17/2015 14:17:10</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>01/22/2015 19:03:04</publishTime>
@@ -385,13 +433,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/14/2015 17:03:26</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>07/16/2015 16:37:48</publishTime>
+      <publishTime>12/14/2015 15:57:09</publishTime>
+    </File>
+    <File Include="Scripts/blank.gif">
+      <publishTime>08/12/2015 16:07:54</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>07/14/2015 17:03:26</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
       <publishTime>07/14/2015 17:03:26</publishTime>
+    </File>
+    <File Include="Scripts/fancybox_loading.gif">
+      <publishTime>08/12/2015 16:07:54</publishTime>
+    </File>
+    <File Include="Scripts/fancybox_overlay.png">
+      <publishTime>08/12/2015 16:07:54</publishTime>
+    </File>
+    <File Include="Scripts/fancybox_sprite.png">
+      <publishTime>08/12/2015 16:07:54</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.js">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -414,8 +474,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery-ui-1.8.24.min.js">
       <publishTime>01/22/2015 19:03:04</publishTime>
     </File>
+    <File Include="Scripts/jquery-ui.js">
+      <publishTime>12/17/2015 14:13:38</publishTime>
+    </File>
     <File Include="Scripts/jquery.cycle.lite.js">
-      <publishTime>06/02/2015 15:08:04</publishTime>
+      <publishTime>02/06/2015 15:08:04</publishTime>
+    </File>
+    <File Include="Scripts/jquery.fancybox.js">
+      <publishTime>08/12/2015 16:07:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.mousewheel-3.0.6.pack.js">
+      <publishTime>08/12/2015 16:07:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.searcher.js">
+      <publishTime>07/12/2015 15:29:35</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
       <publishTime>01/22/2015 19:03:05</publishTime>
@@ -447,11 +519,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/npm.js">
       <publishTime>07/14/2015 17:03:26</publishTime>
     </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>08/12/2015 16:07:54</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>08/12/2015 16:07:54</publishTime>
+    </File>
     <File Include="Scripts/Site.js">
       <publishTime>07/23/2015 12:01:11</publishTime>
     </File>
     <File Include="Scripts/slider.js">
       <publishTime>07/23/2015 12:01:15</publishTime>
+    </File>
+    <File Include="Scripts/webGrid.js">
+      <publishTime>12/14/2015 15:57:08</publishTime>
     </File>
     <File Include="Scripts/_references.js">
       <publishTime>07/16/2015 16:37:49</publishTime>
@@ -465,17 +546,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/Register.cshtml">
       <publishTime>02/02/2015 14:14:41</publishTime>
     </File>
+    <File Include="Views/Admin/AddImage.cshtml">
+      <publishTime>12/15/2015 15:36:06</publishTime>
+    </File>
     <File Include="Views/Admin/AllCountries.cshtml">
       <publishTime>01/04/2015 12:12:29</publishTime>
     </File>
     <File Include="Views/Admin/CountryList.cshtml">
       <publishTime>07/23/2015 11:28:55</publishTime>
     </File>
+    <File Include="Views/Admin/CreateImage.cshtml">
+      <publishTime>12/15/2015 14:03:51</publishTime>
+    </File>
     <File Include="Views/Admin/ECountries.cshtml">
       <publishTime>03/31/2015 19:05:30</publishTime>
     </File>
     <File Include="Views/Admin/Edit.cshtml">
-      <publishTime>09/28/2015 16:57:57</publishTime>
+      <publishTime>10/21/2015 14:26:12</publishTime>
     </File>
     <File Include="Views/Admin/EditCountries.cshtml">
       <publishTime>04/08/2015 17:46:32</publishTime>
@@ -489,6 +576,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Admin/EditResort.cshtml">
       <publishTime>07/23/2015 11:29:17</publishTime>
     </File>
+    <File Include="Views/Admin/FeedbackList.cshtml">
+      <publishTime>07/12/2015 18:33:36</publishTime>
+    </File>
     <File Include="Views/Admin/GetTravelSim.cshtml">
       <publishTime>02/25/2015 20:13:05</publishTime>
     </File>
@@ -499,7 +589,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/28/2015 16:56:02</publishTime>
     </File>
     <File Include="Views/Admin/Index.cshtml">
-      <publishTime>09/28/2015 17:03:33</publishTime>
+      <publishTime>12/15/2015 15:51:23</publishTime>
     </File>
     <File Include="Views/Admin/ResortList.cshtml">
       <publishTime>07/17/2015 14:58:34</publishTime>
@@ -507,23 +597,32 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Admin/TravelSim.cshtml">
       <publishTime>02/25/2015 21:24:28</publishTime>
     </File>
+    <File Include="Views/Feedback/FeedbackDetails.cshtml">
+      <publishTime>07/12/2015 14:59:04</publishTime>
+    </File>
+    <File Include="Views/Feedback/Index.cshtml">
+      <publishTime>07/12/2015 15:03:52</publishTime>
+    </File>
+    <File Include="Views/Feedback/SendFeed.cshtml">
+      <publishTime>07/12/2015 14:59:09</publishTime>
+    </File>
     <File Include="Views/Home/AboutEdit.cshtml">
       <publishTime>04/09/2015 15:20:06</publishTime>
     </File>
     <File Include="Views/Home/AboutUs.cshtml">
-      <publishTime>03/10/2015 20:39:16</publishTime>
+      <publishTime>10/11/2015 13:53:02</publishTime>
     </File>
     <File Include="Views/Home/Airticket.cshtml">
       <publishTime>04/10/2015 14:10:05</publishTime>
     </File>
     <File Include="Views/Home/Airtickets.cshtml">
-      <publishTime>10/01/2015 13:03:03</publishTime>
+      <publishTime>01/10/2015 13:03:03</publishTime>
     </File>
     <File Include="Views/Home/AllAbout.cshtml">
       <publishTime>04/08/2015 17:46:28</publishTime>
     </File>
     <File Include="Views/Home/Countries.cshtml">
-      <publishTime>09/09/2015 11:19:31</publishTime>
+      <publishTime>12/15/2015 16:21:26</publishTime>
     </File>
     <File Include="Views/Home/CountriesDetails.cshtml">
       <publishTime>01/04/2015 12:06:05</publishTime>
@@ -553,34 +652,40 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/10/2015 14:34:05</publishTime>
     </File>
     <File Include="Views/Home/GetItems.cshtml">
-      <publishTime>10/01/2015 13:20:09</publishTime>
+      <publishTime>07/12/2015 17:31:42</publishTime>
     </File>
     <File Include="Views/Home/Gift.cshtml">
       <publishTime>02/28/2015 10:46:34</publishTime>
     </File>
     <File Include="Views/Home/HotelDetails.cshtml">
-      <publishTime>09/09/2015 11:30:29</publishTime>
+      <publishTime>10/11/2015 15:31:24</publishTime>
     </File>
     <File Include="Views/Home/Hotels.cshtml">
-      <publishTime>10/01/2015 16:25:01</publishTime>
+      <publishTime>10/11/2015 15:15:44</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/01/2015 13:07:40</publishTime>
+      <publishTime>12/15/2015 16:21:15</publishTime>
     </File>
     <File Include="Views/Home/ONas.cshtml">
       <publishTime>04/09/2015 15:44:13</publishTime>
     </File>
     <File Include="Views/Home/Order.cshtml">
-      <publishTime>10/01/2015 16:15:37</publishTime>
+      <publishTime>07/12/2015 18:19:11</publishTime>
     </File>
     <File Include="Views/Home/OrderTour.cshtml">
-      <publishTime>04/06/2015 15:54:14</publishTime>
+      <publishTime>07/12/2015 18:14:27</publishTime>
     </File>
     <File Include="Views/Home/OrderTourEmail.cshtml">
       <publishTime>01/27/2015 19:43:55</publishTime>
     </File>
+    <File Include="Views/Home/PartialCountries.cshtml">
+      <publishTime>07/12/2015 18:43:50</publishTime>
+    </File>
+    <File Include="Views/Home/PartialDetails.cshtml">
+      <publishTime>07/12/2015 14:51:38</publishTime>
+    </File>
     <File Include="Views/Home/PartialHotels.cshtml">
-      <publishTime>10/01/2015 12:43:57</publishTime>
+      <publishTime>01/10/2015 12:43:57</publishTime>
     </File>
     <File Include="Views/Home/Placement.cshtml">
       <publishTime>04/10/2015 15:12:28</publishTime>
@@ -600,17 +705,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/Visas.cshtml">
       <publishTime>04/10/2015 14:34:25</publishTime>
     </File>
+    <File Include="Views/Photo/Create.cshtml">
+      <publishTime>12/14/2015 15:44:49</publishTime>
+    </File>
+    <File Include="Views/Photo/Index.cshtml">
+      <publishTime>12/15/2015 14:13:32</publishTime>
+    </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/22/2015 19:02:48</publishTime>
     </File>
     <File Include="Views/Shared/_AdminLayout.cshtml">
-      <publishTime>07/20/2015 19:58:50</publishTime>
+      <publishTime>12/14/2015 15:08:42</publishTime>
+    </File>
+    <File Include="Views/Shared/_DetailsLayout.cshtml">
+      <publishTime>12/15/2015 14:23:41</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/01/2015 15:00:06</publishTime>
+      <publishTime>12/14/2015 15:51:25</publishTime>
     </File>
     <File Include="Views/Subscribe/Sub.cshtml">
-      <publishTime>10/01/2015 16:04:07</publishTime>
+      <publishTime>07/12/2015 18:25:03</publishTime>
     </File>
     <File Include="Views/Subscribe/SubMail.cshtml">
       <publishTime>04/06/2015 17:06:22</publishTime>
@@ -622,10 +736,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/23/2015 15:13:23</publishTime>
     </File>
     <File Include="Views/Tour/DetailOrder.cshtml">
-      <publishTime>10/01/2015 15:44:56</publishTime>
+      <publishTime>07/12/2015 16:36:05</publishTime>
     </File>
     <File Include="Views/Tour/Details.cshtml">
-      <publishTime>10/01/2015 15:23:51</publishTime>
+      <publishTime>07/12/2015 16:25:11</publishTime>
     </File>
     <File Include="Views/Tour/DetailsOrder.cshtml">
       <publishTime>04/06/2015 17:29:03</publishTime>
@@ -640,7 +754,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/24/2015 11:24:01</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>04/07/2015 17:03:35</publishTime>
+      <publishTime>12/15/2015 13:56:16</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>01/22/2015 19:02:48</publishTime>

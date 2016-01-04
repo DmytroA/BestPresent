@@ -12,22 +12,16 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class Feed
     {
+        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "Введите страну")]
-        [Display(Name = "Страна")]
         public string Name { get; set; }
         public string ShortDesc { get; set; }
-
-        [Required(ErrorMessage = "Введите ваш комментарий")]
-        [Display(Name = "Комментарий")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-
-        [Required(ErrorMessage = "Введите ваше имя")]
-        [Display(Name = "Имя")]
         public string Author { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
     }

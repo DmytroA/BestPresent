@@ -1,4 +1,130 @@
 ﻿@model List<DataLayer.Country>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script>
+    (function IIFE() {
+
+        "use strict";
+
+        function factory($) {
+            var pluginName = "searcher",
+                dataKey = "plugin_" + pluginName,
+                defaults = {
+                    // selector for the item element
+                    itemSelector: "tbody > tr",
+                    // selector for the text elements
+                    textSelector: "td",
+                    // selector for the input
+                    inputSelector: "",
+                    // determines whether the search is case sensitive or not
+                    caseSensitive: false,
+                    // function to toggle the visibility of the item
+                    toggle: function (item, containsText) {
+                        $(item).toggle(containsText);
+                    }
+                };
+
+            function Searcher(element, options) {
+                this.element = element;
+
+                this.options = $.extend({}, defaults, options);
+
+                this._create();
+            }
+
+            Searcher.prototype = {
+                dispose: function () {
+                    // unbind all events
+                    this._$input.unbind("." + pluginName);
+                    // toggle all elements with true
+                    var options = this.options,
+                        toggle = options.toggle || defaults.toggle;
+                    this._$element.find(options.itemSelector).each(function () { toggle(this, true); });
+                },
+                _create: function () {
+                    var options = this.options;
+
+                    this._$element = $(this.element);
+
+                    // find the input and bind to various events
+                    this._fn = $.proxy(this._onValueChange, this);
+                    var eventNames = "input." + pluginName + " change." + pluginName + " keyup." + pluginName;
+                    this._$input = $(options.inputSelector).bind(eventNames, this._fn);
+
+                    // remember the last entered value
+                    this._lastValue = "";
+
+                    // call the toggle with true for all items on startup
+                    var toggle = options.toggle || defaults.toggle;
+                    this._$element.find(options.itemSelector).each(function () { toggle(this, true); });
+                },
+                _onValueChange: function () {
+                    var options = this.options,
+                        textSelector = options.textSelector,
+                        toggle = options.toggle || defaults.toggle;
+
+                    // build the regular expression for searching
+                    var flags = "gm" + (!options.caseSensitive ? "i" : "");
+                    var value = new RegExp("(" + escapeRegExp(this._$input.val()) + ")", flags);
+
+                    if (value.toString() === this._lastValue)
+                        return; // nothing has changed
+
+                    this._lastValue = value.toString();
+
+                    this._$element
+                        .find(options.itemSelector)
+                        .each(function eachItem() {
+                            var $item = $(this),
+                                $textElements = textSelector ? $item.find(textSelector) : $item,
+                                itemContainsText = false;
+
+                            $textElements = $textElements.each(function eachTextElement() {
+                                itemContainsText = itemContainsText || !!$(this).text().match(value);
+                                return !itemContainsText; // stop if at least one text element contains the text
+                            });
+
+                            toggle(this, itemContainsText);
+                        });
+                }
+            };
+
+            function escapeRegExp(text) {
+                // see https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions
+                return text.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            }
+
+            $.fn[pluginName] = function pluginHandler(options) {
+                return this.each(function () {
+                    var searcher = $.data(this, dataKey);
+                    if (searcher && options === "dispose") {
+                        searcher.dispose();
+                        $.removeData(this, dataKey);
+                    }
+                        // update the options of the existing
+                    else if (searcher)
+                        $.extend(searcher.options, options);
+                        // create a new searcher
+                    else if (typeof (options) === "object")
+                        $.data(this, dataKey, new Searcher(this, options));
+                });
+            };
+
+        }
+
+        // AMD style (register as an anonymous module)
+        if (typeof (define) === "function" && define.amd)
+            define(["jquery"], factory);
+            // node/CommonJS style (for Browserify)
+        else if (typeof (exports) === "object")
+            module.exports = factory;
+            // browser
+        else
+            factory(jQuery);
+
+    }).call(this);
+
+</script>
 @{
     Layout = "~/Views/Shared/_DetailsLayout.cshtml";
 }
@@ -8,14 +134,8 @@
 <style>
     .hot {
         font-size: 18px;
+        color: #F86126;
     }
-
-        .hot a {
-            color: #F86126 !important;
-            font-size: 18px;
-            text-decoration: none;
-        }
-
     .podr a {
         color: red !important;
         font-size: 10px;
@@ -30,7 +150,6 @@
         height: 65px;
         line-height: 19px;
     }
-
 </style>
 <input type="text" id="text-to-find" placeholder="Поиска по странам" value="">
 
@@ -39,30 +158,24 @@
     <div class="block_one" style="margin-top:20px;" data-id="@country.Id">
         <div class="feed">
             <div class="hot pull-left">
-                <strong><a href="@Url.Action("CountryDetails", "Tour", new { id = country.Id})" target="_blank">@country.Name</a></strong>
+                <strong class="country_name">@country.Name</strong>
             </div>
             <div class="author pull-right">
-                <a href="@Url.Action("CountryDetails", "Tour",
-                                 new { id = country.Id })" target="_blank">
-                    <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 45px;height: 25px;" />
-                </a>
+
+                <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 45px;height: 25px;" />
             </div>
             <div style="clear:both"></div>
             <div class="size" id="desc" style="margin-top:10px;">
                 @Html.Raw(country.Description)
-            </div>
-            <div class="podr">
-                <a href="@Url.Action("CountryDetails", "Tour",
-                                 new { id = country.Id })" target="_blank">
-                    подробнее
-                </a>
             </div>
         </div>
 
     </div>
 }
 <div id="hidden_dialog" style="display:none">
-
+    <div id="loader" style="margin-left:200px; margin-top:200px">
+        <img src="~/Content/Images/load.gif" alt="загрузка" width="300px" height="300px">
+    </div>
 </div>
 <script type="text/javascript">
     $(".block_one").searcher({
@@ -70,7 +183,6 @@
         textSelector: "div",
         inputSelector: "#text-to-find",
         toggle: function (item, containsText) {
-            debugger;
             if (containsText)
                 $(item).fadeIn();
             else
@@ -80,23 +192,25 @@
     $(function () {
         $(".block_one").click(function () {
             var id = $(this).attr("data-id");
+            var country = $(this).find('.country_name').text();
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("CountDetails")",
                 data: { Id: id },
                 datatype: "html",
                 success: function (data) {
-                    $('#hidden_dialog').html(data);
+                    $('#loader').hide();
+                    $('#hidden_dialog').html(data);                    
                 }
             });
-            showDialog();
+            showDialog(country);
         });
     });
-    function showDialog() {
+    function showDialog(country) {
         $("#hidden_dialog").dialog({
-            width: 600,
-            height: 400,
+            title:country,
+            width: 800,
+            height: 800,
         });
     }
 </script>
-

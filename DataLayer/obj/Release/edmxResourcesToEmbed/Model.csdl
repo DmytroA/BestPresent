@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="gb_tourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="About">
     <Key>
       <PropertyRef Name="Id" />
@@ -28,6 +28,17 @@
     <NavigationProperty Name="Country1" Relationship="Self.FK_Country_Country" FromRole="Country" ToRole="Country1" />
     <NavigationProperty Name="Country2" Relationship="Self.FK_Country_Country" FromRole="Country1" ToRole="Country" />
     <NavigationProperty Name="Resort" Relationship="Self.FK_Resort_Country1" FromRole="Country" ToRole="Resort" />
+  </EntityType>
+  <EntityType Name="Feed">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Fishing">
     <Key>
@@ -167,10 +178,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TourEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="TourEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="About" EntityType="Self.About" />
     <EntitySet Name="Airticket" EntityType="Self.Airticket" />
     <EntitySet Name="Country" EntityType="Self.Country" />
+    <EntitySet Name="Feed" EntityType="Self.Feed" />
     <EntitySet Name="Fishing" EntityType="Self.Fishing" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" />
     <EntitySet Name="HotTours" EntityType="Self.HotTours" />
@@ -195,5 +207,16 @@
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="HotTours" EntitySet="HotTours" />
     </AssociationSet>
+    <EntitySet Name="Photo" EntityType="gb_tourModel.Photo" />
   </EntityContainer>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Decription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThumbPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>

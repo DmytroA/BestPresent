@@ -13,6 +13,7 @@ D:\bestpresent\BestPresent\TourSite2\bin\Ninject.dll
 D:\bestpresent\BestPresent\TourSite2\bin\PagedList.dll
 D:\bestpresent\BestPresent\TourSite2\bin\PagedList.Mvc.dll
 D:\bestpresent\BestPresent\TourSite2\bin\System.Net.Http.Formatting.dll
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Helpers.dll
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.dll
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.WebHost.dll
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Mvc.dll
@@ -24,6 +25,7 @@ D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.Deployment.dll
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.dll
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.Razor.dll
 D:\bestpresent\BestPresent\TourSite2\bin\WebGrease.dll
+D:\bestpresent\BestPresent\TourSite2\bin\WebGridMvc.dll
 D:\bestpresent\BestPresent\TourSite2\bin\DataLayer.pdb
 D:\bestpresent\BestPresent\TourSite2\bin\EntityFramework.xml
 D:\bestpresent\BestPresent\TourSite2\bin\EntityFramework.SqlServer.xml
@@ -31,6 +33,7 @@ D:\bestpresent\BestPresent\TourSite2\bin\Moq.xml
 D:\bestpresent\BestPresent\TourSite2\bin\Ninject.xml
 D:\bestpresent\BestPresent\TourSite2\bin\PagedList.xml
 D:\bestpresent\BestPresent\TourSite2\bin\PagedList.Mvc.xml
+D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Helpers.xml
 D:\bestpresent\BestPresent\TourSite2\bin\Newtonsoft.Json.xml
 D:\bestpresent\BestPresent\TourSite2\bin\System.Net.Http.Formatting.xml
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.xml
@@ -43,3 +46,7 @@ D:\bestpresent\BestPresent\TourSite2\bin\System.Web.WebPages.Razor.xml
 D:\bestpresent\BestPresent\TourSite2\obj\Debug\TourSite2.csprojResolveAssemblyReference.cache
 D:\bestpresent\BestPresent\TourSite2\obj\Debug\TourSite2.dll
 D:\bestpresent\BestPresent\TourSite2\obj\Debug\TourSite2.pdb
+D:\bestpresent\BestPresent\TourSite2\bin\Recaptcha.Web.dll
+D:\bestpresent\BestPresent\TourSite2\bin\CaptchaMvc.dll
+D:\bestpresent\BestPresent\TourSite2\bin\CaptchaMvc.pdb
+D:\bestpresent\BestPresent\TourSite2\bin\CaptchaMvc.xml

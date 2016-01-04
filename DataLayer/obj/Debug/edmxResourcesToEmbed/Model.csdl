@@ -122,6 +122,14 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="Visa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
   <Association Name="FK_Country_Country">
     <End Role="Country" Type="Self.Country" Multiplicity="1" />
     <End Role="Country1" Type="Self.Country" Multiplicity="0..1" />
@@ -170,7 +178,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TourEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="TourEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="About" EntityType="Self.About" />
     <EntitySet Name="Airticket" EntityType="Self.Airticket" />
     <EntitySet Name="Country" EntityType="Self.Country" />
@@ -182,6 +190,7 @@
     <EntitySet Name="Resort" EntityType="Self.Resort" />
     <EntitySet Name="Sertificate" EntityType="Self.Sertificate" />
     <EntitySet Name="Studying" EntityType="Self.Studying" />
+    <EntitySet Name="Visa" EntityType="Self.Visa" />
     <AssociationSet Name="FK_Country_Country" Association="Self.FK_Country_Country">
       <End Role="Country" EntitySet="Country" />
       <End Role="Country1" EntitySet="Country" />
@@ -198,14 +207,16 @@
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="HotTours" EntitySet="HotTours" />
     </AssociationSet>
-    <EntitySet Name="Visa" EntityType="gb_tourModel.Visa" />
+    <EntitySet Name="Photo" EntityType="gb_tourModel.Photo" />
   </EntityContainer>
-  <EntityType Name="Visa">
+  <EntityType Name="Photo">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Decription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThumbPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
 </Schema>

@@ -4,6 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-image-gallery.min.css">
     <title>@ViewBag.Title</title>
     <style type="text/css">
         .width {
@@ -158,7 +162,7 @@
         }
     </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -203,7 +207,7 @@
                 <div class="item"><a href="/Home/Countries">Страны и курорты</a></div>
                 <div class="item"><a href="/Home/Hotels ">Отели</a></div>
                 <div class="item"><a href="/Home/Placements ">Туристам</a></div>
-                <div class="item"><a href="/Home/Airtickets ">Авиабилеты</a></div>
+                <div class="item"><a href="/Photo/Index ">Галерея</a></div>
                 <div class="item"><a href="/Home/Gift ">Бонусы</a></div>
                 <div class="item"><a href="/Feedback/Index/">Отзывы</a></div>
                 <div class="item"><a href="/Home/AboutUs/">Контакты</a></div>
@@ -324,7 +328,7 @@
         <div class="copyrights-n-makers">
             <div class="width group">
                 <div class="copyrights">
-                    <span>© Турагентство «Лучший подарок», 2014—2015. Все права защищены.</span>
+                    <span>© Турагентство «Лучший подарок», 2014—@DateTime.Now.Year. Все права защищены.</span>
                 </div>
                 <div class="makers">
                     Разработка сайта D.Andriichuk
@@ -334,7 +338,8 @@
     </footer>
 
     @RenderSection("scripts", required: false)
-
+    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
 
 </body>
 </html>

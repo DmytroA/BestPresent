@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="gb_tourModelStoreContainer" CdmEntityContainer="TourEntities">
+  <EntityContainerMapping StorageEntityContainer="gb_tourModelStoreContainer" CdmEntityContainer="TourEntities1">
     <EntitySetMapping Name="About">
       <EntityTypeMapping TypeName="gb_tourModel.About">
         <MappingFragment StoreEntitySet="About">
@@ -129,8 +129,19 @@
     <EntitySetMapping Name="Visa">
       <EntityTypeMapping TypeName="gb_tourModel.Visa">
         <MappingFragment StoreEntitySet="Visa">
-          <ScalarProperty Name="Decription" ColumnName="Decription" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Decription" ColumnName="Decription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photo">
+      <EntityTypeMapping TypeName="gb_tourModel.Photo">
+        <MappingFragment StoreEntitySet="Photo">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ThumbPath" ColumnName="ThumbPath" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Decription" ColumnName="Decription" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

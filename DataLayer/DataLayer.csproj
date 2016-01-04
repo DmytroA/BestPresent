@@ -87,6 +87,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Photo.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Placement.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

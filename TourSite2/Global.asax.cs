@@ -10,6 +10,7 @@ using System.Data.Entity;
 
 using TourSite2.Models;
 using System.Data.Entity.Infrastructure;
+using System.Web.Configuration;
 
 namespace TourSite2
 {
@@ -27,7 +28,6 @@ namespace TourSite2
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             InitializeByConnection();
         }
-
         public static void InitializeByConnection()
         {
             bool instanceExists = System.Data.Entity.SqlServer.SqlProviderServices.Instance != null;

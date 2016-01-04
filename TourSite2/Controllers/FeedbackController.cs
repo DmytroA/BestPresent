@@ -17,7 +17,7 @@ namespace TourSite2.Controllers
 
         public ActionResult Index()
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Feed.ToList();
             
             return View(data);
@@ -25,14 +25,14 @@ namespace TourSite2.Controllers
         [HttpGet]
         public ActionResult FeedbackDetails(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Feed.SingleOrDefault(m => m.Id == Id);
 
             return View(data);
         }
         public ActionResult SendFeed(int Id)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
             var data = context.Feed.FirstOrDefault(p => p.Id == Id);
             return View(data);
         }
@@ -40,7 +40,7 @@ namespace TourSite2.Controllers
         [ValidateInput(false)]
         public void SaveFeed(Feed b)
         {
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (b.Id == 0)
             {
@@ -100,7 +100,7 @@ namespace TourSite2.Controllers
         public ActionResult SendFeed(Feed feedback)
         {
 
-            var context = new TourEntities();
+            var context = new TourEntities1();
 
             if (ModelState.IsValid)
             {
