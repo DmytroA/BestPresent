@@ -14,7 +14,8 @@ namespace TourSite2.Models
 {
     [Authorize]
     public class AdminController : Controller
-    {    
+    {
+        TourEntities1 db = new TourEntities1();
         public HotTours DeleteTour(int Id)
         {
             var context = new TourEntities1();
@@ -71,6 +72,16 @@ namespace TourSite2.Models
             }
             return dbEntry;
         }
+        public News DeleteNew(int Id)
+        {
+            News dbEntry = db.News.Find(Id);
+            if (dbEntry != null)
+            {
+                db.News.Remove(dbEntry);
+                db.SaveChanges();
+            }
+            return dbEntry;
+        }
         public ViewResult Index()
         {
            
@@ -80,6 +91,11 @@ namespace TourSite2.Models
         {
             TourEntities1 db = new TourEntities1();
             var data = db.Country.ToList();
+            return View(data);
+        }
+        public ActionResult NewsList()
+        {
+            var data = db.News.ToList();
             return View(data);
         }
         public ActionResult FeedbackList()
@@ -191,6 +207,7 @@ namespace TourSite2.Models
             }
         }
 
+       
         public ViewResult CreateHotel()
         {
             var context = new TourEntities1();
@@ -213,6 +230,11 @@ namespace TourSite2.Models
                Country = new SelectList(context.Country, "Id", "Name")
             };
             return View("EditResort", model);
+        }
+        public ViewResult CreateNews()
+        {
+            News model = new News();
+            return View("EditNews", model);
         }
 
         [HttpPost]
@@ -302,6 +324,29 @@ namespace TourSite2.Models
 
             context.SaveChanges();
         }
+        [HttpPost]
+        [ValidateInput(false)]
+        public void SaveNews(News b)
+        {
+            var context = new TourEntities1();
+            if (b.Id == 0)
+            {
+                b.Date = DateTime.Now;
+                context.News.Add(b);
+            }
+            else
+            {
+                News dbEntry = context.News.Find(b.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = b.Name;
+                    dbEntry.Description = b.Description;
+                    dbEntry.Date = DateTime.Now;
+                }
+            }
+
+            context.SaveChanges();
+        }
        
        
         public ViewResult Create()
@@ -317,7 +362,6 @@ namespace TourSite2.Models
         [HttpPost]
         public ActionResult Delete(int TourId = 1)
         {
-            
             HotTours deletedTour = DeleteTour(TourId);
             if (deletedTour != null)
             {
@@ -344,6 +388,16 @@ namespace TourSite2.Models
             if (deletedHotel != null)
             {
                 TempData["message"] = string.Format("{0} удален", deletedHotel.Name);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteNews(int NewsId = 1)
+        {
+            News deletedNews = DeleteNew(NewsId);
+            if (deletedNews != null)
+            {
+                TempData["message"] = string.Format("{0} удален", deletedNews.Name);
             }
             return RedirectToAction("Index");
         }
@@ -440,6 +494,30 @@ namespace TourSite2.Models
             {
                 // there is something wrong with the data values
                 return View(country);
+            }
+        }
+        public ViewResult EditNews(int Id = 1)
+        {
+            var data = db.News.FirstOrDefault(p => p.Id == Id);
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditNews(News news)
+        {
+            var context = new TourEntities1();
+
+            if (ModelState.IsValid)
+            {
+                SaveNews(news);
+                TempData["message"] = string.Format("{0} has been saved", news.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(news);
             }
         }
         [HttpPost]

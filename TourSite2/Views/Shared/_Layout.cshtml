@@ -174,11 +174,10 @@
     <div class="wrapper">
         <div class="header">
 
-
             <div class="logo">
                 <a href="/Home/Index/">  <img src="/Content/Images/logo_test.png"></a>
             </div>
-            
+
             <div class="social">
                 <a href="https://vk.com/id8827767">
                     <div class="icon vk"></div>
@@ -208,7 +207,8 @@
                 <div class="item"><a href="/Home/Hotels ">Отели</a></div>
                 <div class="item"><a href="/Home/Placements ">Туристам</a></div>
                 <div class="item"><a href="/Photo/Index ">Галерея</a></div>
-                <div class="item"><a href="/Home/Gift ">Бонусы</a></div>
+                <div class="item"><a href="/News/Index ">Новости</a></div>
+                @*<div class="item"><a href="/Home/Gift ">Бонусы</a></div>*@
                 <div class="item"><a href="/Feedback/Index/">Отзывы</a></div>
                 <div class="item"><a href="/Home/AboutUs/">Контакты</a></div>
             </div>
@@ -296,7 +296,6 @@
                         <h2 class="widget-title">Мобильные телефоны:</h2>
                         <div class="textwidget">
                             <span>
-
                                 066
                                 <strong>626-00-76</strong>
                             </span>
@@ -336,7 +335,11 @@
             </div>
         </div>
     </footer>
-
+    <div id="hidden_dialog" style="display:none">
+        <div id="loader" style="margin-left:200px; margin-top:200px">
+            <img src="~/Content/Images/load.gif" alt="загрузка" width="300px" height="300px">
+        </div>
+    </div>
     @RenderSection("scripts", required: false)
     <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
     <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
@@ -359,4 +362,27 @@
             }, delay);
         });
     });
-    </script>
+</script>
+@*<script>
+     $(function () {
+         $(".order_button").click(function () {
+             debugger;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Order","Home")",
+                datatype: "html",
+                success: function () {
+                    $('#loader').hide();
+                    $('#hidden_dialog').html();
+                }
+            });
+            showDialog();
+        });
+    });
+    function showDialog() {
+        $("#hidden_dialog").dialog({
+            width: 800,
+            height: 800,
+        });
+    }
+    </script>*@

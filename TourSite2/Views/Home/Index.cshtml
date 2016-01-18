@@ -94,10 +94,10 @@
                         @((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)
                     </div>
 
-                    <a href="@Url.Action("Details", "Tour",
-                                 new { id = tour.Id })" target="_blank">
+                    @*<a href="@Url.Action("Details", "Tour",
+                                 new { id = tour.Id })" target="_blank">*@
                         <img class="hot_pic" src="@Url.Action("GetImageHotel", "Tour", new { tour.Hotel.Id })" />
-                    </a>
+                    @*</a>*@
                 </div>
                 <div class="block_two">
 
@@ -140,6 +140,7 @@
                 data: { Id: id },
                 datatype: "html",
                 success: function (data) {
+                    debugger;
                     $('#loader').hide();
                     $('#hidden_dialog').html(data);
                 }
@@ -148,7 +149,9 @@
         });
     });
     function showDialog(country) {
+        debugger;
         $("#hidden_dialog").dialog({
+            
             title: country,
             width: 800,
             height: 800,

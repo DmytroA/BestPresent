@@ -10,7 +10,7 @@
                 <th>Фото</th>
                 <th>Курорт</th>
                 <th>Страна</th>
-         
+
 
             </tr>
         </thead>
@@ -18,53 +18,26 @@
         <tbody>
             <tr>
                 <td><img class="img-rounded" width="200px" height="200px" alt="@Model.Name" src="@Url.Action("GetImageResort", "Tour", new { Model.Id })" /></td>
-            <td>
-                <strong>@Model.Name</strong>
-            </td>
-            <td><strong><a href="@Url.Action("CountryDetails", "Tour",
+                <td>
+                    <strong>@Model.Name</strong>
+                </td>
+                <td>
+                    <strong>
+                        <a href="@Url.Action("CountryDetails", "Tour",
                                      new {id = Model.Country.Id })" target="_blank">
-    @Html.DisplayFor(modelItem => Model.Country.Name)
-</a>                </strong></td>
-           
-        </tr>
+                            @Html.DisplayFor(modelItem => Model.Country.Name)
+                        </a>
+                    </strong>
+                </td>
 
-    </tbody>
-</table>
-<div>
-    <p>
-        @Html.Raw(Model.Description)
-    </p>
-</div>
-    @*<div class="pull-right" style="margin-left: 20px;">
+            </tr>
+
+        </tbody>
+    </table>
+    <div>
         <p>
-            <img class="img-circle" width="350px" height="350px" alt="@Model.Name" src="@Url.Action("GetImageResort", "Tour", new { Model.Id })" />
+            @Html.Raw(Model.Description)
         </p>
     </div>
-
-
-
-    <div id="album-details" style="margin-left: 20px;">
-
-        <p>
-            <em>Курорт:</em>
-            <strong>@Model.Name</strong>
-</p>
-
-        <p>
-            <em>Описание:</em>
-            <div class="description_width">
-                @Html.Raw(Model.Description)
-            </div>
-        </p>
-        <p>
-            <em>Страна:</em>
-            <div> 
-                  <a href="@Url.Action("CountryDetails", "Tour",
-                                     new {id = Model.Country.Id })" target="_blank">
-                        @Html.DisplayFor(modelItem => Model.Country.Name)
-                    </a>                
-            </div>
-        </p>
-    </div>*@
 
 </div>

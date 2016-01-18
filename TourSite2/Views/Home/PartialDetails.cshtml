@@ -44,6 +44,11 @@
         @Html.Raw(Model.Hotel.Description)
     </p>
 </div>
+<div>
+    <p>
+        @Html.Raw(Model.Description)
+    </p>
+</div>
 <div class="sss">
     @Html.ActionLink("Заказать", "DetailOrder",
         "Tour", new { id = Model.Id }, "")

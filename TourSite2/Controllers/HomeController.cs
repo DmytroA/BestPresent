@@ -19,8 +19,6 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Drawing.Drawing2D;
 
-
-
 namespace TourSite2.Controllers
 {
     public class HomeController : Controller, IDisposable
@@ -97,76 +95,64 @@ namespace TourSite2.Controllers
             context.SaveChanges();
         }
 
-        public ActionResult Visa()
-        {
-            var context = new TourEntities1();
-            var data = context.Visa.ToList();
-            return View(data);
-        }
-
-        public ViewResult EditVisa(int Id = 1)
-        {
-            var context = new TourEntities1();
-            var dat = context.Visa.FirstOrDefault(p => p.Id == Id);
-
-            return View(dat);
-        }
+  
+       
 
 
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult EditVisa(Visa tour, HttpPostedFileBase image)
-        {
-            var context = new TourEntities1();
-            if (ModelState.IsValid)
-            {
+        //[HttpPost]
+        //[ValidateInput(false)]
+        //public ActionResult EditVisa(Visa tour, HttpPostedFileBase image)
+        //{
+        //    var context = new TourEntities1();
+        //    if (ModelState.IsValid)
+        //    {
 
-                SaveVisa(tour);
-                TempData["message"] = string.Format("{0} has been saved", tour.Name);
-                return RedirectToAction("Index", "Admin");
-            }
-            else
-            {
-                // there is something wrong with the data values
-                return View(tour);
-            }
-        }
+        //        SaveVisa(tour);
+        //        TempData["message"] = string.Format("{0} has been saved", tour.Name);
+        //        return RedirectToAction("Index", "Admin");
+        //    }
+        //    else
+        //    {
+        //        // there is something wrong with the data values
+        //        return View(tour);
+        //    }
+        //}
 
-        public ActionResult Visas()
-        {
-            var context = new TourEntities1();
-            var data = context.Visa.ToList();
+        //public ActionResult Visas()
+        //{
+        //    var context = new TourEntities1();
+        //    var data = context.Visa.ToList();
 
-            return View(data);
+        //    return View(data);
 
-        }
-        public void SaveVisa(Visa b)
-        {
-            var context = new TourEntities1();
+        //}
+        //public void SaveVisa(Visa b)
+        //{
+        //    var context = new TourEntities1();
 
-            if (b.Id == 0)
-            {
+        //    if (b.Id == 0)
+        //    {
 
-                context.Visa.Add(b);
-            }
-            else
-            {
+        //        context.Visa.Add(b);
+        //    }
+        //    else
+        //    {
 
-                Visa dbEntry = context.Visa.Find(b.Id);
-                if (dbEntry != null)
-                {
-
-
-                    dbEntry.Decription = b.Decription;
-
-                    dbEntry.Name = b.Name;
+        //        Visa dbEntry = context.Visa.Find(b.Id);
+        //        if (dbEntry != null)
+        //        {
 
 
-                }
-            }
+        //            dbEntry.Decription = b.Decription;
 
-            context.SaveChanges();
-        }
+        //            dbEntry.Name = b.Name;
+
+
+        //        }
+        //    }
+
+        //    context.SaveChanges();
+        //}
 
         public ActionResult Fishing()
         {
@@ -458,14 +444,12 @@ namespace TourSite2.Controllers
             var context = new TourEntities1();
             if (ModelState.IsValid)
             {
-
                 SaveAbout(tour);
                 TempData["message"] = string.Format("{0} has been saved", tour.Name);
                 return RedirectToAction("Index", "Admin");
             }
             else
             {
-                // there is something wrong with the data values
                 return View(tour);
             }
         }
@@ -604,12 +588,13 @@ namespace TourSite2.Controllers
                 MailAddress To = new MailAddress("nata_bar@list.ru"); //nata_bar@list.ru
                 MailMessage message1 = new MailMessage(from, to);
                 MailMessage message2 = new MailMessage(from, To);
+
+                message1.IsBodyHtml = true;
                 message1.Subject = "Информация о туре!";
                 message1.Body = "Здравствуйте," + "\r\n" + "Благодарим Вас за оставленную заявку на подбор тура на сайте Туристического агентства Лучший подарок" + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" + "\r\n" + "Вы заказали: " + "\r\n" +
                  "Примерные даты вылета:  " + Request.Params["departure"] + "\r\n" +
                     "Продолжительность тура:  " + model.Duration + "\r\n" + "Категория отеля:  " + Request.Params["check_cat"] + "\r\n" + "Ваше имя:  " + model.Name + "\r\n" + "Детей:  " + Request.Params["Children"] + "\r\n" + "Питание:  " + Request.Params["nutrition"]
                     + "\r\n" + "Ваш номер телефона:  " + model.Phone + "\r\n" + "Страна:" + model.Country + "\r\n" + "Где вы раньше бывали:  " + model.RestPlace + "\r\n" + "Предполагаемый бюджет:  " + model.EstimatedBudget + "\r\n" + "E-mail:  " + model.MailAdress + "\r\n" + "\r\n" + "В ближайшее время наши менеджеры обработают Вашу заявку  и свяжутся с Вами по указанным в заказе контактам. " + "\r\n" + "\r\n" + "\r\n" + "С уважением  и благодарностью сотрудники ТА Лучший подарок" + "\r\n" + "г. Харьков, Полтавский шлях 123, 2 этаж, офис №6" + "\r\n" + "тел. (057) 297-60-97" + "\r\n" + "моб. 066-626-00-76" + "\r\n" + "068-922-70-76";
-
 
                 message2.Subject = "Новый тур";
                 message2.Body = "Новый заказ тура: " + "\r\n" +
@@ -646,11 +631,33 @@ namespace TourSite2.Controllers
 
             }
         }
-        public ActionResult Hotels()
+        public ActionResult Hotels(string sortOrder)
         {
-            var context = new TourEntities1();
-            var data = context.Hotel.ToList();
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : string.Empty;
+            ViewBag.CountrySortParm = String.IsNullOrEmpty(sortOrder) ? "country_desc" : string.Empty;
+            ViewBag.ResortSortParam = String.IsNullOrEmpty(sortOrder) ? "resort" : string.Empty;
+            ViewBag.CategorySortParam = String.IsNullOrEmpty(sortOrder) ? "category" : string.Empty; 
 
+            var hotels = from s in context.Hotel
+                           select s;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    hotels = hotels.OrderBy(s => s.Name);
+                    break;
+                case "country_desc":
+                    hotels = hotels.OrderBy(s => s.Resort.Country.Name);
+                    break;
+                case "resort":
+                    hotels = hotels.OrderBy(s => s.Resort.Name);
+                    break;
+                case "category":
+                    hotels = hotels.OrderByDescending(s => s.Category);
+                    break;
+                default:
+                    hotels = hotels.OrderBy(s => s.Id);
+                    break;
+            }
             int selectedIndex = 1;
             var countries = context.Country.ToList();
             countries.Insert(0, new Country { Id = -1, Name = "Выберите страну" });
@@ -660,7 +667,14 @@ namespace TourSite2.Controllers
             ViewBag.Countries = country;
             SelectList resorts = new SelectList(context.Resort.Where(c => c.CountryId == selectedIndex), "Id", "Name");
             ViewBag.Resorts = resorts;
-            return View(data);
+
+            return View(hotels.ToList());
+            //var context = new TourEntities1();
+            //var data = context.Hotel.ToList();
+
+      
+
+            //return View(data);
         }
         public ActionResult GetItems(int id)
         {

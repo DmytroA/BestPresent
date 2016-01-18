@@ -15,10 +15,10 @@
     <thead>
     
         <tr>
-        <th>Название отеля</th>
-        <th>Страна</th>
-        <th>Курорт</th>
-        <th>Катег</th>
+        <th>@Html.ActionLink("Название Отеля", "Hotels", new { sortOrder = ViewBag.NameSortParm })</th>
+        <th>@Html.ActionLink("Страна", "Hotels", new { sortOrder = ViewBag.CountrySortParm })</th>
+        <th>@Html.ActionLink("Курорт", "Hotels", new { sortOrder = ViewBag.ResortSortParam })</th>
+        <th>@Html.ActionLink("Катег", "Hotels", new { sortOrder = ViewBag.CategorySortParam})</th>
         <th>Расположение отеля</th>
         <th>Комментарий</th>
     </tr>

@@ -19,6 +19,7 @@ namespace DataLayer
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
         public string Name { get; set; }
+        [DataType(DataType.MultilineText)]
         public string ShortDesc { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

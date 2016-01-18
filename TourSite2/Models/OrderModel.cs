@@ -20,5 +20,8 @@ namespace TourSite2.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string MailAdress { get; set; }
         public string Comment { get; set; }
+        [Required]
+        [Display(Name = "Введите сумму на картинке")]
+        public string Captcha { get; set; }
     }
 }

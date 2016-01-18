@@ -16,10 +16,10 @@ namespace DataLayer
     
     public partial class Airticket
     {
-        [HiddenInput(DisplayValue = false)]
+         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
         public string Name { get; set; }
-        [DataType(DataType.MultilineText)]  
+         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

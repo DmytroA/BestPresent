@@ -36,7 +36,7 @@ namespace DataLayer
         public virtual DbSet<Resort> Resort { get; set; }
         public virtual DbSet<Sertificate> Sertificate { get; set; }
         public virtual DbSet<Studying> Studying { get; set; }
-        public virtual DbSet<Visa> Visa { get; set; }
         public virtual DbSet<Photo> Photo { get; set; }
+        public virtual DbSet<News> News { get; set; }
     }
 }
