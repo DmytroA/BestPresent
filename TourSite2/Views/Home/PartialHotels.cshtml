@@ -15,7 +15,7 @@
     <thead>
     
         <tr>
-        <th>@Html.ActionLink("Название Отеля", "Hotels", new { sortOrder = ViewBag.NameSortParm })</th>
+        <th class="hotel_name">@Html.ActionLink("Название Отеля", "Hotels", new { sortOrder = ViewBag.NameSortParm })</th>
         <th>@Html.ActionLink("Страна", "Hotels", new { sortOrder = ViewBag.CountrySortParm })</th>
         <th>@Html.ActionLink("Курорт", "Hotels", new { sortOrder = ViewBag.ResortSortParam })</th>
         <th>@Html.ActionLink("Катег", "Hotels", new { sortOrder = ViewBag.CategorySortParam})</th>
@@ -46,3 +46,4 @@
         </tbody>
     }
 </table>
+

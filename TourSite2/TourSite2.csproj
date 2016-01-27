@@ -198,7 +198,9 @@
     <Content Include="Content\Images\bg5.jpg" />
     <Content Include="Content\Images\bg6.jpg" />
     <Content Include="Content\Images\bonus.png" />
+    <Content Include="Content\Images\callback.png" />
     <Content Include="Content\Images\country.jpg" />
+    <Content Include="Content\Images\down-tick.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\icons.png" />
     <Content Include="Content\Images\imgo.jpg" />
@@ -209,6 +211,9 @@
     <Content Include="Content\Images\load.gif" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\mama.jpg" />
+    <Content Include="Content\Images\MenuButton.png" />
+    <Content Include="Content\Images\phone.png" />
+    <Content Include="Content\Images\popup.png" />
     <Content Include="Content\Images\social.jpg" />
     <Content Include="Content\Images\step1.png" />
     <Content Include="Content\Images\step2.png" />
@@ -324,6 +329,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\slider.js" />
+    <Content Include="Scripts\tabslide.js" />
     <Content Include="Scripts\webGrid.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Home\AboutEdit.cshtml" />
@@ -374,6 +380,9 @@
     <Content Include="Views\Admin\EditNews.cshtml" />
     <Content Include="Views\Admin\NewsList.cshtml" />
     <Content Include="Views\News\NewsDetails.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\EmailTemplate.cshtml" />
+    <Content Include="Views\Home\PartialOrder.cshtml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>

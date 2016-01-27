@@ -566,6 +566,42 @@ namespace TourSite2.Controllers
             return img; 
         }
         [HttpPost]
+        public ActionResult Callback()
+        {
+            MailAddress from = new MailAddress("info@bestprezent.com.ua");
+            MailAddress to = new MailAddress("dand2mj@gmail.com");
+            MailMessage message1 = new MailMessage(from, to);
+            message1.IsBodyHtml = true;
+            message1.Subject = "Перезвонить!";
+            message1.Body = "Абонент " + Request.Params["aName"] +  "\r\n" + " просит перезвонить по номеру " + Request.Params["aTel"];
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp-5.1gb.ua";
+            smtp.EnableSsl = false;
+            System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+            NetworkCred.UserName = "u77204";
+            NetworkCred.Password = "2507nata";
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = NetworkCred;
+            //smtp.Port = int.Parse(ConfigurationManager.AppSettings["Port"]);
+            
+
+                try
+                {
+                    Task.Factory.StartNew((Action)(() =>
+                    {
+                        smtp.Send(message1);
+                    }), TaskCreationOptions.AttachedToParent | TaskCreationOptions.LongRunning);
+                }
+
+
+                catch (Exception ex)
+                {
+
+                }
+                return RedirectToAction("Index");
+            
+        }
+        [HttpPost]
         public ActionResult Order(FormsAuthProvider model)
         {
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)

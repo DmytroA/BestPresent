@@ -22,9 +22,10 @@ namespace TourSite2
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr"));
 
-            bundles.Add(new ScriptBundle("~/bundles/modern")
+            bundles.Add(new ScriptBundle("~/bundles/script")
                 .Include("~/Scripts/jquery-2.1.4.js")
                         .Include("~/Scripts/jquery-ui.js")
+                        .Include("~/Scripts/tabslide.js")
                         .Include("~/Scripts/jquery.searcher.js")
                         .Include("~/Scripts/bootstrap.js")
                         .Include("~/Scripts/jquery.mousewheel-3.0.6.pack.js")

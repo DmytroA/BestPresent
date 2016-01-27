@@ -2,7 +2,7 @@
 @using CaptchaMvc.HtmlHelpers
 
 <script type="text/javascript" src="~/Scripts/jquery-ui.js"></script>
-
+<script src="~/Scripts/Site.js"></script>
 <style type="text/css">
     .order_form {
         margin-left: 50px;
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="formGroupInputLarge1" class="col-sm-2 control-label">Количество детей</label>
-            <div class="col-sm-3">
+            <div class="col-sm-3" id="OrderTour_children_num">
                 @Html.TextBoxFor(m => m.Children, new { @class = "form-control", placeholder = "Дети", tabindex = 1 })
                 @Html.ValidationMessageFor(m => m.Children)
             </div>

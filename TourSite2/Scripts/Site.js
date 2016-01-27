@@ -1,4 +1,5 @@
 ﻿$("#OrderTour_children_num").change(function () {
+    debugger;
     setChildrenNum($(this).val());
 });
 
