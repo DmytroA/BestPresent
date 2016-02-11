@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Drawing.Drawing2D;
+using PagedList;
 
 namespace TourSite2.Controllers
 {
@@ -569,7 +570,8 @@ namespace TourSite2.Controllers
         public ActionResult Callback()
         {
             MailAddress from = new MailAddress("info@bestprezent.com.ua");
-            MailAddress to = new MailAddress("dand2mj@gmail.com");
+            MailAddress to = new MailAddress("nata_bar@list.ru");
+            //MailAddress toMe = new MailAddress("dand2mj@gmail.com");
             MailMessage message1 = new MailMessage(from, to);
             message1.IsBodyHtml = true;
             message1.Subject = "Перезвонить!";
@@ -583,8 +585,6 @@ namespace TourSite2.Controllers
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = NetworkCred;
             //smtp.Port = int.Parse(ConfigurationManager.AppSettings["Port"]);
-            
-
                 try
                 {
                     Task.Factory.StartNew((Action)(() =>
@@ -598,7 +598,7 @@ namespace TourSite2.Controllers
                 {
 
                 }
-                return RedirectToAction("Index");
+                return View();
             
         }
         [HttpPost]
@@ -667,7 +667,7 @@ namespace TourSite2.Controllers
 
             }
         }
-        public ActionResult Hotels(string sortOrder)
+        public ActionResult Hotels(int? page, string sortOrder)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : string.Empty;
             ViewBag.CountrySortParm = String.IsNullOrEmpty(sortOrder) ? "country_desc" : string.Empty;
@@ -704,13 +704,10 @@ namespace TourSite2.Controllers
             SelectList resorts = new SelectList(context.Resort.Where(c => c.CountryId == selectedIndex), "Id", "Name");
             ViewBag.Resorts = resorts;
 
-            return View(hotels.ToList());
-            //var context = new TourEntities1();
-            //var data = context.Hotel.ToList();
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
 
-      
-
-            //return View(data);
+            return View(hotels.ToPagedList(pageNumber,pageSize));
         }
         public ActionResult GetItems(int id)
         {
@@ -734,8 +731,8 @@ namespace TourSite2.Controllers
                 (countrId.HasValue && s.CountryId == countrId.Value)).ToList();
                 if (data.Count == 0)
                 {
-                    //var script = @"alert(""Ничего не найдено"");";
-                    //return JavaScript(script);
+                    ViewBag.Zero = "К сожалению, по Вашему запросу ничего не найдено";
+                    //TempData["msg"] = "<script>alert('К сожалению, по Вашему запросу ничего не найдено');</script>";
                 }
             }
 

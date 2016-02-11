@@ -1,41 +1,57 @@
-﻿@model IEnumerable<DataLayer.Hotel>
-@{
-    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
-}
+﻿@model PagedList.IPagedList<DataLayer.Hotel>
+    @using PagedList.Mvc;
+    @{
+        Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+    }
+    <input type="text" id="search" placeholder="Быстрый поиск" />
 
-<input type="text" id="search" placeholder="Быстрый поиск" />
+    <div style="float:left;padding-left:50px;padding-bottom:20px">
+        <h3>Выберите страну</h3>
+        @Html.DropDownList("Country", ViewBag.Countries as SelectList, new { id = "country" })
+    </div>
+    <div id="drop" style="float:right;padding-right:300px;display:none;">
+        <h3>Выберите город</h3>
+        @Html.DropDownList("Resort", ViewBag.Resorts as SelectList, new { id = "resort" })
+    </div>
 
-<div style="float:left;padding-left:50px;padding-bottom:20px">
-    <h3>Выберите страну</h3>
-    @Html.DropDownList("Country", ViewBag.Countries as SelectList, new { id = "country" })
-</div>
-<div id="drop" style="float:right;padding-right:300px;display:none;">
-    <h3>Выберите город</h3>
-    @Html.DropDownList("Resort", ViewBag.Resorts as SelectList, new { id = "resort" })
-</div>
-@section scripts{
-    <script type="text/javascript">
-        $(function () {
-            $('#country').change(function () {                
-                var id = $(this).val();
-                var countrId = $('#country').val();
+    @section scripts{
+        <script type="text/javascript">
+            $(function () {
+                $('#country').change(function () {
+                    var id = $(this).val();
+                    var countrId = $('#country').val();
 
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("GetItems")/' + id,
-                    success: function (data) {
-                        //$.post('Hotel', { countrId: countrId }, function (result) {
-                        //    $('#tableHotels').html(result);
-                        //});
-                        $('#resort').replaceWith(data);
-                        $('#drop').css("display","block");
-                    }
+                    $.ajax({
+                        type: 'GET',
+                        url: '@Url.Action("GetItems")/' + id,
+                        success: function (data) {
+                            //$.post('Hotel', { countrId: countrId }, function (result) {
+                            //    $('#tableHotels').html(result);
+                            //});
+                            $('#resort').replaceWith(data);
+                            $('#drop').css("display", "block");
+                        }
+                    });
                 });
+            })
+            $(".tickRotate").click(function () {
+                debugger;
+                var _this = $(this);
+                var current = _this.attr("src");
+                var swap = _this.attr("data-swap");
+                _this.attr('src', swap).attr("data-swap", current);
             });
-        })
-    </script>
-}
 
-<div id="tableHotels">
-    @Html.Partial("PartialHotels");
-</div>
+        </script>
+
+    }
+
+    <div id="tableHotels">
+        @Html.Partial("PartialHotels");
+    </div>
+    <div style="margin-top:10px">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Hotels",
+                    new { page }))
+    </div>

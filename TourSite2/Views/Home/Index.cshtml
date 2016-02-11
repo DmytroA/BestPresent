@@ -101,8 +101,8 @@
                 </div>
                 <div class="block_two">
 
-
                     <div><label class="lab">Выезд:</label> <span class="item"><strong>@tour.DepartureDay</strong></span></div>
+
                     <div><label class="lab">Питание:</label><span class="item"><strong>@tour.Food</strong></span></div>
 
                     <div><label class="lab">Продолжительность:</label><span class="item"><strong> @tour.Period ночей</strong></span></div>
@@ -110,8 +110,6 @@
                     <div><label class="lab">Кол-во людей:</label><span class="item"><strong>@tour.AmountPeople</strong></span></div>
 
                     <div><label class="lab">Тип тура:</label><span class="item"><strong>@tour.TourType</strong></span></div>
-
-
 
                 </div>
                 <div class="price">@tour.Price</div>
@@ -140,21 +138,26 @@
                 data: { Id: id },
                 datatype: "html",
                 success: function (data) {
-                    debugger;
                     $('#loader').hide();
                     $('#hidden_dialog').html(data);
+                    //$("body").css({ 'overflow': 'hidden' });
                 }
             });
             showDialog(country);
         });
     });
     function showDialog(country) {
-        debugger;
+    
         $("#hidden_dialog").dialog({
-            
+            open:function(event, ui) {
+                $("body").css({ overflow: 'hidden' })
+            },
+            beforeClose: function(event, ui) {
+                $("body").css({ overflow: 'inherit' })
+            },
             title: country,
             width: 800,
-            height: 800,
+            height: 500,
         });
     }
 </script>

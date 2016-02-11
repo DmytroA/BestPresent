@@ -170,7 +170,47 @@
 <body>
     <div class="bg">
     </div>
-
+    <div id="callback"></div>
+    <div id="callback_panel">
+        <div class="logo">
+            <span>Желаете созвониться?</span>
+            <span>Заполните форму<br> мы перезвоним!</span>
+        </div>
+        <div>
+            <div style="float:left">
+                <img src="~/Content/Images/mts.png" width="40" height="40">
+            </div>
+            <div style="float:right;margin-top:10px;font-size:18px">
+                <p>+380 (66) 626 00 76</p>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <div>
+            <div style="float:left">
+                <img src="~/Content/Images/kyivstar_icon.png" width="40" height="40">
+            </div>
+            <div style="float:right; margin-top:10px;font-size:18px">
+                <p>+380 (68) 992 70 76</p>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <div>
+            <div style="float:left">
+                <img src="~/Content/Images/email.png" width="40" height="40">
+            </div>
+            <div style="float:right; margin-top:10px;font-size:18px">
+                <p><a href="mailto:nata_bar@list.ru">nata_bar@list.ru</a></p>
+            </div>
+        </div>
+        @using (Html.BeginForm("Callback", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="form callback_form" method="post">
+                <input name="aName" type="text" placeholder="Ваше имя">
+                <input name="aTel" type="text" placeholder="Ваш номер телефона">
+                <input name="submit_btn" value="Отправить" type="submit" class="btn btn-submit">
+            </div>
+        }
+    </div>
     <div class="wrapper">
         <div class="header">
 
@@ -336,6 +376,37 @@
             $('body, html').animate({
                 scrollTop: 0
             }, delay);
+        });
+    });
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+        // browser window scroll (in pixels) after which the "back to top" link is shown
+        var offset = 200,
+    //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+        offset_opacity = 200,
+    //duration of the top scrolling animation (in ms)
+        scroll_top_duration = 900;
+        var $callback = $('#callback');
+        //hide or show the "back to top" link
+        $(window).scroll(function () {
+            ($(this).scrollTop() > offset) ? $callback.addClass('visible') : $callback.removeClass('visible fade-out');
+            if ($(this).scrollTop() > offset_opacity) {
+                $callback.addClass('fade-out');
+            }
+        });
+        $callback.on('click', function () {
+            if ($(this).hasClass('open')) {
+                $("#callback_panel").animate({ right: '-500px' }, 500);
+                $("#callback").css("opacity", "1")
+                $("#callback").animate({ right: '0px' }, 500);
+                $("#callback").removeClass('open');
+            } else {
+                $("#callback_panel").animate({ right: '0px' }, 500);
+                $("#callback").css("opacity", "0.2");
+                $("#callback").animate({ right: '500px' }, 500);
+                $("#callback").addClass('open');
+            }
         });
     });
 </script>

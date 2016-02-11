@@ -11,15 +11,11 @@ namespace DataLayer
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
     
     public partial class Placement
     {
-        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
         public string Name { get; set; }
-        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

@@ -32,11 +32,11 @@ namespace DataLayer
         public virtual DbSet<Fishing> Fishing { get; set; }
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<HotTours> HotTours { get; set; }
+        public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<Placement> Placement { get; set; }
         public virtual DbSet<Resort> Resort { get; set; }
         public virtual DbSet<Sertificate> Sertificate { get; set; }
         public virtual DbSet<Studying> Studying { get; set; }
-        public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<News> News { get; set; }
     }
 }

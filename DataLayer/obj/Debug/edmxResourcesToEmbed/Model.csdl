@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="gb_tourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="About">
     <Key>
       <PropertyRef Name="Id" />
@@ -84,6 +84,16 @@
     <Property Name="HotelId" Type="Int32" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Hotel" Relationship="Self.FK_HotTours_Hotel" FromRole="HotTours" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ThumbPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="Placement">
     <Key>
@@ -178,6 +188,7 @@
     <EntitySet Name="Fishing" EntityType="Self.Fishing" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" />
     <EntitySet Name="HotTours" EntityType="Self.HotTours" />
+    <EntitySet Name="Photo" EntityType="Self.Photo" />
     <EntitySet Name="Placement" EntityType="Self.Placement" />
     <EntitySet Name="Resort" EntityType="Self.Resort" />
     <EntitySet Name="Sertificate" EntityType="Self.Sertificate" />
@@ -198,19 +209,8 @@
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="HotTours" EntitySet="HotTours" />
     </AssociationSet>
-    <EntitySet Name="Photo" EntityType="gb_tourModel.Photo" />
-    <EntitySet Name="News" EntityType="gb_tourModel.News" />
+    <EntitySet Name="News" EntityType="Model.News" />
   </EntityContainer>
-  <EntityType Name="Photo">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Decription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ThumbPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
   <EntityType Name="News">
     <Key>
       <PropertyRef Name="Id" />

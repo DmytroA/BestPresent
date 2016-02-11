@@ -348,7 +348,6 @@ namespace TourSite2.Models
             context.SaveChanges();
         }
        
-       
         public ViewResult Create()
         {
             var context = new TourEntities1();

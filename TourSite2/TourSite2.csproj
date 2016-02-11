@@ -201,6 +201,7 @@
     <Content Include="Content\Images\callback.png" />
     <Content Include="Content\Images\country.jpg" />
     <Content Include="Content\Images\down-tick.png" />
+    <Content Include="Content\Images\email.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\icons.png" />
     <Content Include="Content\Images\imgo.jpg" />
@@ -208,10 +209,13 @@
     <Content Include="Content\Images\kupon2.png" />
     <Content Include="Content\Images\kupon3.png" />
     <Content Include="Content\Images\kupon4.png" />
+    <Content Include="Content\Images\kyivstar_icon.png" />
     <Content Include="Content\Images\load.gif" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\mama.jpg" />
     <Content Include="Content\Images\MenuButton.png" />
+    <Content Include="Content\Images\mts.png" />
+    <Content Include="Content\Images\orangeBoxBlackBorder.gif" />
     <Content Include="Content\Images\phone.png" />
     <Content Include="Content\Images\popup.png" />
     <Content Include="Content\Images\social.jpg" />
@@ -228,6 +232,7 @@
     <Content Include="Content\Images\thumb3.jpg" />
     <Content Include="Content\Images\thumb4.jpg" />
     <Content Include="Content\Images\up-button.jpg" />
+    <Content Include="Content\Images\up-tick.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\PagedList.css" />
@@ -383,6 +388,7 @@
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\EmailTemplate.cshtml" />
     <Content Include="Views\Home\PartialOrder.cshtml" />
+    <Content Include="Views\Home\Callback.cshtml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>

@@ -33,3 +33,4 @@ D:\bestpresent\BestPresent\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
 D:\bestpresent\BestPresent\DataLayer\bin\Debug\System.Web.Mvc.xml
 D:\bestpresent\BestPresent\DataLayer\obj\Debug\DataLayer.dll
 D:\bestpresent\BestPresent\DataLayer\obj\Debug\DataLayer.pdb
+D:\bestpresent\BestPresent\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
