@@ -122,6 +122,12 @@
     <Property Name="HotTourId" Type="int" />
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+    <Property Name="Children" Type="int" />
+    <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="PastPlace" Type="nvarchar(max)" />
+    <Property Name="Finance" Type="nvarchar(max)" />
+    <Property Name="Comment" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Resort">
     <Key>

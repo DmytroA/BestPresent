@@ -617,11 +617,16 @@ namespace TourSite2.Controllers
                     while (iter.MoveNext() && order_number < 10000)
                         order_number = order_number * 10 + iter.Current;
 
+                model.DepartureDay = Request.Params["departure"];
+                model.Food = Request.Params["nutrition"];
+                model.HotelCategory = Request.Params["check_cat"];
+                model.ReservationNumber = order_number;
+
                 DateTime thisday = DateTime.Now;
 
-                MailAddress from = new MailAddress("bestpresentkh@mail.ru");
+                MailAddress from = new MailAddress("info@bestprezent.com.ua");
                 MailAddress to = new MailAddress(model.MailAdress);
-                MailAddress To = new MailAddress("nata_bar@list.ru"); //nata_bar@list.ru
+                MailAddress To = new MailAddress("nata_bar@list.ru"); //nata_bar@list.ru"
                 MailMessage message1 = new MailMessage(from, to);
                 MailMessage message2 = new MailMessage(from, To);
 
@@ -647,17 +652,22 @@ namespace TourSite2.Controllers
                     + "Пожелания:" + model.Comment;
 
 
-                SmtpClient client1 = new SmtpClient();
-                client1.Host = "smtp.mail.ru";
-                client1.Credentials = new System.Net.NetworkCredential("bestpresentkh@mail.ru", "nata2507");
-                client1.EnableSsl = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp-5.1gb.ua";
+                smtp.EnableSsl = false;
+                System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+                NetworkCred.UserName = "u77204";
+                NetworkCred.Password = "2507nata";
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = NetworkCred;
 
                 try
                 {
                     Task.Factory.StartNew((Action)(() =>
                     {
-                        client1.Send(message1);
-                        client1.Send(message2);
+                        NewReservation(model);
+                        smtp.Send(message1);
+                        smtp.Send(message2);
                     }), TaskCreationOptions.AttachedToParent | TaskCreationOptions.LongRunning);
                 }
 
@@ -673,6 +683,37 @@ namespace TourSite2.Controllers
               return View(model);
 
             }
+        }
+        public void NewReservation(FormsAuthProvider model)
+        {
+                Reservation reservation = new Reservation
+                {
+                   Children = model.Children,
+                   Period = model.Duration,
+                   Comment = model.Comment,
+                   Country = model.Country,
+                   DepartureDay = model.DepartureDay,
+                   Email = model.MailAdress,
+                   Finance = model.EstimatedBudget,
+                   FirstName = model.Name,
+                   Food = model.Food,
+                   HotelCategory = model.HotelCategory,
+                   PastPlace = model.RestPlace,
+                   Phone = model.Phone,
+                   ReservationNumber = model.ReservationNumber
+                };
+
+                try
+                {
+                    context.Reservation.Add(reservation);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                context.SaveChanges();
+            
         }
         public ActionResult Hotels(int? page, string sortOrder)
         {

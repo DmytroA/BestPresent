@@ -127,6 +127,12 @@
           <Property Name="HotTourId" Type="int" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Children" Type="int" />
+          <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="100" />
+          <Property Name="PastPlace" Type="nvarchar(max)" />
+          <Property Name="Finance" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Resort">
           <Key>
@@ -495,6 +501,12 @@
           <Property Name="HotTourId" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Children" Type="Int32" />
+          <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PastPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Finance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HotTours" Relationship="gb_x_bestpd87Model.FK_Reservation_Reservation" FromRole="Reservation" ToRole="HotTours" />
           </EntityType>
         <Association Name="FK_Reservation_Reservation">
@@ -664,6 +676,12 @@
           <EntitySetMapping Name="Reservation">
             <EntityTypeMapping TypeName="gb_x_bestpd87Model.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Finance" ColumnName="Finance" />
+                <ScalarProperty Name="PastPlace" ColumnName="PastPlace" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="HotTourId" ColumnName="HotTourId" />

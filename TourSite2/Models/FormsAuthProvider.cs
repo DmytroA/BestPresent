@@ -14,11 +14,15 @@ namespace TourSite2.Models
         public string Name { get; set; }
         [Required(ErrorMessage = "Введите номер")]
         public string Phone { get; set; }
+        public string DepartureDay { get; set; }
+
+        public string HotelCategory { get; set; }
+        public string Food { get; set; }
         public string EstimatedBudget { get; set; }
         //[Required(ErrorMessage = "Введите преположительный день отлета")]
         //public string DepartureDay { get; set; }
         [Required(ErrorMessage = "Введите продолжительномть")]
-        public string Duration { get; set; }
+        public int Duration { get; set; }
         [Required(ErrorMessage = "Введите страну")]
         public string Country { get; set; }
         public string RestPlace { get; set; }
@@ -34,6 +38,7 @@ namespace TourSite2.Models
         [Display(Name = "Введите сумму на картинке")] 
         public string Captcha { get; set; }
 
+        public int ReservationNumber { get; set; }
         public bool Authenticate(string username, string password)
         {
             bool result = FormsAuthentication.Authenticate(username, password);

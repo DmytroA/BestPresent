@@ -150,6 +150,12 @@
     <EntitySetMapping Name="Reservation">
       <EntityTypeMapping TypeName="gb_x_bestpd87Model.Reservation">
         <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Finance" ColumnName="Finance" />
+          <ScalarProperty Name="PastPlace" ColumnName="PastPlace" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="HotTourId" ColumnName="HotTourId" />

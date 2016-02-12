@@ -21,7 +21,7 @@
         <AssociationConnector Association="gb_x_bestpd87Model.FK_Hotel_Resort" ManuallyRouted="false" />
         <AssociationConnector Association="gb_x_bestpd87Model.FK_HotTours_Hotel" ManuallyRouted="false" />
         <EntityTypeShape EntityType="gb_x_bestpd87Model.News" Width="1.5" PointX="7.375" PointY="8.75" />
-        <EntityTypeShape EntityType="gb_x_bestpd87Model.Reservation" Width="1.5" PointX="9.75" PointY="1.125" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Reservation" Width="1.5" PointX="9.75" PointY="8.875" />
         <AssociationConnector Association="gb_x_bestpd87Model.FK_Reservation_Reservation" />
       </Diagram>
     </edmx:Diagrams>
