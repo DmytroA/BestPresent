@@ -4,24 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="29ba8d75d670477b938a8ee118a90f49" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.About" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Airticket" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Country" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Feed" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Fishing" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Hotel" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.HotTours" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Photo" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Placement" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Resort" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Sertificate" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Studying" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_Country_Country" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Resort_Country1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Hotel_Resort" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_HotTours_Hotel" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.News" Width="1.5" PointX="7.375" PointY="8.75" />
+      <Diagram DiagramId="970fbd33ab4b4c90a8bc8de9541c7d76" Name="Diagram1">
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.About" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Airticket" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Country" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Feed" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Fishing" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Hotel" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.HotTours" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Photo" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Placement" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Resort" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Sertificate" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Studying" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="gb_x_bestpd87Model.FK_Resort_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="gb_x_bestpd87Model.FK_Hotel_Resort" ManuallyRouted="false" />
+        <AssociationConnector Association="gb_x_bestpd87Model.FK_HotTours_Hotel" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.News" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="gb_x_bestpd87Model.Reservation" Width="1.5" PointX="9.75" PointY="1.125" />
+        <AssociationConnector Association="gb_x_bestpd87Model.FK_Reservation_Reservation" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

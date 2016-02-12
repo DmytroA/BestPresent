@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="gb_x_bestpd87Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="Id" />
@@ -89,7 +89,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
@@ -110,6 +110,23 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReservationNumber" Type="int" />
+          <Property Name="Period" Type="int" />
+          <Property Name="DepartureDay" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="Food" Type="nvarchar" MaxLength="50" />
+          <Property Name="TourType" Type="nvarchar" MaxLength="100" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="HotTourId" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Resort">
           <Key>
@@ -174,6 +191,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reservation_Reservation">
+          <End Role="HotTours" Type="Self.HotTours" Multiplicity="0..1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotTours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="HotTourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Reservation1">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="Reservation1" Type="Self.Reservation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Resort_Country1">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="Resort" Type="Self.Resort" Multiplicity="*" />
@@ -186,7 +227,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ModelStoreContainer">
+        <EntityContainer Name="gb_x_bestpd87ModelStoreContainer">
           <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Airticket" EntityType="Self.Airticket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
@@ -197,6 +238,7 @@
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Placement" EntityType="Self.Placement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resort" EntityType="Self.Resort" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sertificate" EntityType="Self.Sertificate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Studying" EntityType="Self.Studying" Schema="dbo" store:Type="Tables" />
@@ -212,6 +254,14 @@
             <End Role="Hotel" EntitySet="Hotel" />
             <End Role="HotTours" EntitySet="HotTours" />
           </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Reservation" Association="Self.FK_Reservation_Reservation">
+            <End Role="HotTours" EntitySet="HotTours" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Reservation1" Association="Self.FK_Reservation_Reservation1">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="Reservation1" EntitySet="Reservation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Resort_Country1" Association="Self.FK_Resort_Country1">
             <End Role="Country" EntitySet="Country" />
             <End Role="Resort" EntitySet="Resort" />
@@ -220,7 +270,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="gb_x_bestpd87Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="About">
           <Key>
             <PropertyRef Name="Id" />
@@ -246,10 +296,8 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Country1" Relationship="Self.FK_Country_Country" FromRole="Country" ToRole="Country1" />
-          <NavigationProperty Name="Country2" Relationship="Self.FK_Country_Country" FromRole="Country1" ToRole="Country" />
           <NavigationProperty Name="Resort" Relationship="Self.FK_Resort_Country1" FromRole="Country" ToRole="Resort" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Feed">
           <Key>
             <PropertyRef Name="Id" />
@@ -305,6 +353,7 @@
           <Property Name="HotelId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_HotTours_Hotel" FromRole="HotTours" ToRole="Hotel" />
+          <NavigationProperty Name="Reservation" Relationship="gb_x_bestpd87Model.FK_Reservation_Reservation" FromRole="HotTours" ToRole="Reservation" />
         </EntityType>
         <EntityType Name="Photo">
           <Key>
@@ -353,18 +402,6 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_Country_Country">
-          <End Role="Country" Type="Self.Country" Multiplicity="1" />
-          <End Role="Country1" Type="Self.Country" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Country1">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Resort_Country1">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="Resort" Type="Self.Resort" Multiplicity="*" />
@@ -414,10 +451,6 @@
           <EntitySet Name="Resort" EntityType="Self.Resort" />
           <EntitySet Name="Sertificate" EntityType="Self.Sertificate" />
           <EntitySet Name="Studying" EntityType="Self.Studying" />
-          <AssociationSet Name="FK_Country_Country" Association="Self.FK_Country_Country">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="Country1" EntitySet="Country" />
-          </AssociationSet>
           <AssociationSet Name="FK_Resort_Country1" Association="Self.FK_Resort_Country1">
             <End Role="Country" EntitySet="Country" />
             <End Role="Resort" EntitySet="Resort" />
@@ -430,25 +463,60 @@
             <End Role="Hotel" EntitySet="Hotel" />
             <End Role="HotTours" EntitySet="HotTours" />
           </AssociationSet>
-          <EntitySet Name="News" EntityType="Model.News" />
+          <EntitySet Name="News" EntityType="gb_x_bestpd87Model.News" />
+          <EntitySet Name="Reservation" EntityType="gb_x_bestpd87Model.Reservation" />
+          <AssociationSet Name="FK_Reservation_Reservation" Association="gb_x_bestpd87Model.FK_Reservation_Reservation">
+            <End Role="HotTours" EntitySet="HotTours" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="News">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReservationNumber" Type="Int32" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="DepartureDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Food" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TourType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HotTourId" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HotTours" Relationship="gb_x_bestpd87Model.FK_Reservation_Reservation" FromRole="Reservation" ToRole="HotTours" />
+          </EntityType>
+        <Association Name="FK_Reservation_Reservation">
+          <End Type="gb_x_bestpd87Model.HotTours" Role="HotTours" Multiplicity="0..1" />
+          <End Type="gb_x_bestpd87Model.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotTours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="HotTourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="TourEntities1">
+        <EntityContainerMapping StorageEntityContainer="gb_x_bestpd87ModelStoreContainer" CdmEntityContainer="TourEntities1">
           <EntitySetMapping Name="About">
-            <EntityTypeMapping TypeName="Model.About">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.About">
               <MappingFragment StoreEntitySet="About">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -457,7 +525,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Airticket">
-            <EntityTypeMapping TypeName="Model.Airticket">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Airticket">
               <MappingFragment StoreEntitySet="Airticket">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -466,7 +534,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Country">
-            <EntityTypeMapping TypeName="Model.Country">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Country">
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -477,7 +545,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Feed">
-            <EntityTypeMapping TypeName="Model.Feed">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Feed">
               <MappingFragment StoreEntitySet="Feed">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -489,7 +557,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fishing">
-            <EntityTypeMapping TypeName="Model.Fishing">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Fishing">
               <MappingFragment StoreEntitySet="Fishing">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -498,7 +566,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hotel">
-            <EntityTypeMapping TypeName="Model.Hotel">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -514,7 +582,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotTours">
-            <EntityTypeMapping TypeName="Model.HotTours">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.HotTours">
               <MappingFragment StoreEntitySet="HotTours">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -534,7 +602,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Photo">
-            <EntityTypeMapping TypeName="Model.Photo">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Photo">
               <MappingFragment StoreEntitySet="Photo">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Decription" ColumnName="Decription" />
@@ -545,7 +613,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Placement">
-            <EntityTypeMapping TypeName="Model.Placement">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Placement">
               <MappingFragment StoreEntitySet="Placement">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -554,7 +622,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Resort">
-            <EntityTypeMapping TypeName="Model.Resort">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Resort">
               <MappingFragment StoreEntitySet="Resort">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -566,7 +634,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sertificate">
-            <EntityTypeMapping TypeName="Model.Sertificate">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Sertificate">
               <MappingFragment StoreEntitySet="Sertificate">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -575,7 +643,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Studying">
-            <EntityTypeMapping TypeName="Model.Studying">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Studying">
               <MappingFragment StoreEntitySet="Studying">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -584,11 +652,29 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="Model.News">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.News">
               <MappingFragment StoreEntitySet="News">
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservation">
+            <EntityTypeMapping TypeName="gb_x_bestpd87Model.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HotTourId" ColumnName="HotTourId" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="TourType" ColumnName="TourType" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DepartureDay" ColumnName="DepartureDay" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="ReservationNumber" ColumnName="ReservationNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

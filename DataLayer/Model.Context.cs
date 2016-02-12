@@ -38,5 +38,6 @@ namespace DataLayer
         public virtual DbSet<Sertificate> Sertificate { get; set; }
         public virtual DbSet<Studying> Studying { get; set; }
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<Reservation> Reservation { get; set; }
     }
 }

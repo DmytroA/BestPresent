@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="TourEntities1">
+  <EntityContainerMapping StorageEntityContainer="gb_x_bestpd87ModelStoreContainer" CdmEntityContainer="TourEntities1">
     <EntitySetMapping Name="About">
-      <EntityTypeMapping TypeName="Model.About">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.About">
         <MappingFragment StoreEntitySet="About">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Airticket">
-      <EntityTypeMapping TypeName="Model.Airticket">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Airticket">
         <MappingFragment StoreEntitySet="Airticket">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -20,7 +20,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Country">
-      <EntityTypeMapping TypeName="Model.Country">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Country">
         <MappingFragment StoreEntitySet="Country">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Feed">
-      <EntityTypeMapping TypeName="Model.Feed">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Feed">
         <MappingFragment StoreEntitySet="Feed">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -43,7 +43,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Fishing">
-      <EntityTypeMapping TypeName="Model.Fishing">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Fishing">
         <MappingFragment StoreEntitySet="Fishing">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -52,7 +52,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Hotel">
-      <EntityTypeMapping TypeName="Model.Hotel">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Hotel">
         <MappingFragment StoreEntitySet="Hotel">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -68,7 +68,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HotTours">
-      <EntityTypeMapping TypeName="Model.HotTours">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.HotTours">
         <MappingFragment StoreEntitySet="HotTours">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -88,7 +88,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Photo">
-      <EntityTypeMapping TypeName="Model.Photo">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Photo">
         <MappingFragment StoreEntitySet="Photo">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Decription" ColumnName="Decription" />
@@ -99,7 +99,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Placement">
-      <EntityTypeMapping TypeName="Model.Placement">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Placement">
         <MappingFragment StoreEntitySet="Placement">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -108,7 +108,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Resort">
-      <EntityTypeMapping TypeName="Model.Resort">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Resort">
         <MappingFragment StoreEntitySet="Resort">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -120,7 +120,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sertificate">
-      <EntityTypeMapping TypeName="Model.Sertificate">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Sertificate">
         <MappingFragment StoreEntitySet="Sertificate">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -129,7 +129,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Studying">
-      <EntityTypeMapping TypeName="Model.Studying">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Studying">
         <MappingFragment StoreEntitySet="Studying">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -138,11 +138,29 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="News">
-      <EntityTypeMapping TypeName="Model.News">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.News">
         <MappingFragment StoreEntitySet="News">
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservation">
+      <EntityTypeMapping TypeName="gb_x_bestpd87Model.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="HotTourId" ColumnName="HotTourId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="TourType" ColumnName="TourType" />
+          <ScalarProperty Name="Food" ColumnName="Food" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="DepartureDay" ColumnName="DepartureDay" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="ReservationNumber" ColumnName="ReservationNumber" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

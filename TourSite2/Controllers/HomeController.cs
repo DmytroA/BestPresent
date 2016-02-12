@@ -630,14 +630,21 @@ namespace TourSite2.Controllers
                 message1.Body = "Здравствуйте," + "\r\n" + "Благодарим Вас за оставленную заявку на подбор тура на сайте Туристического агентства Лучший подарок" + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" + "\r\n" + "Вы заказали: " + "\r\n" +
                  "Примерные даты вылета:  " + Request.Params["departure"] + "\r\n" +
                     "Продолжительность тура:  " + model.Duration + "\r\n" + "Категория отеля:  " + Request.Params["check_cat"] + "\r\n" + "Ваше имя:  " + model.Name + "\r\n" + "Детей:  " + Request.Params["Children"] + "\r\n" + "Питание:  " + Request.Params["nutrition"]
-                    + "\r\n" + "Ваш номер телефона:  " + model.Phone + "\r\n" + "Страна:" + model.Country + "\r\n" + "Где вы раньше бывали:  " + model.RestPlace + "\r\n" + "Предполагаемый бюджет:  " + model.EstimatedBudget + "\r\n" + "E-mail:  " + model.MailAdress + "\r\n" + "\r\n" + "В ближайшее время наши менеджеры обработают Вашу заявку  и свяжутся с Вами по указанным в заказе контактам. " + "\r\n" + "\r\n" + "\r\n" + "С уважением  и благодарностью сотрудники ТА Лучший подарок" + "\r\n" + "г. Харьков, Полтавский шлях 123, 2 этаж, офис №6" + "\r\n" + "тел. (057) 297-60-97" + "\r\n" + "моб. 066-626-00-76" + "\r\n" + "068-922-70-76";
+                    + "\r\n" + "Ваш номер телефона:  " + model.Phone + "\r\n" + "Страна:" + model.Country + "\r\n" + "Где вы раньше бывали:  " 
+                    + model.RestPlace + "\r\n" + "Предполагаемый бюджет:  " + model.EstimatedBudget + "\r\n" + "E-mail:  " + model.MailAdress +
+                    "\r\n" + "\r\n" + "В ближайшее время наши менеджеры обработают Вашу заявку  и свяжутся с Вами по указанным в заказе контактам. " + 
+                    "\r\n" + "\r\n" + "\r\n" + "С уважением  и благодарностью сотрудники ТА Лучший подарок" + "\r\n" + 
+                    "г. Харьков, Полтавский шлях 123, 2 этаж, офис №6" + "\r\n" + "тел. (057) 297-60-97" + "\r\n" + "моб. 066-626-00-76" + "\r\n"
+                    + "068-922-70-76";
 
                 message2.Subject = "Новый тур";
                 message2.Body = "Новый заказ тура: " + "\r\n" +
                  "Примерные даты вылета:  " + Request.Params["departure"] + "\r\n" +
                     "Продолжительность тура:  " + model.Duration + "\r\n"
                     + "Категория отеля:  " + Request.Params["check_cat"] + "\r\n" + "Имя:  " + model.Name + "\r\n" + "Количевство детей:  " + Request.Params["Children"] + "\r\n" + "Питание:  " + Request.Params["nutrition"]
-                    + "\r\n" + "Ваш номер телефона:  " + model.Phone + "\r\n" + "Страна:" + model.Country + "\r\n" + "e-mail:  " + model.MailAdress + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" + "Пожелания:" + model.Comment;
+                    + "\r\n" + "Ваш номер телефона:  " + model.Phone + "\r\n" + "Страна:" + model.Country + "\r\n" +
+                    "e-mail:  " + model.MailAdress + "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n"
+                    + "Пожелания:" + model.Comment;
 
 
                 SmtpClient client1 = new SmtpClient();
@@ -704,7 +711,7 @@ namespace TourSite2.Controllers
             SelectList resorts = new SelectList(context.Resort.Where(c => c.CountryId == selectedIndex), "Id", "Name");
             ViewBag.Resorts = resorts;
 
-            int pageSize = 20;
+            int pageSize = 40;
             int pageNumber = (page ?? 1);
 
             return View(hotels.ToPagedList(pageNumber,pageSize));

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="gb_x_bestpd87Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="About">
     <Key>
       <PropertyRef Name="Id" />
@@ -25,8 +25,6 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Country1" Relationship="Self.FK_Country_Country" FromRole="Country" ToRole="Country1" />
-    <NavigationProperty Name="Country2" Relationship="Self.FK_Country_Country" FromRole="Country1" ToRole="Country" />
     <NavigationProperty Name="Resort" Relationship="Self.FK_Resort_Country1" FromRole="Country" ToRole="Resort" />
   </EntityType>
   <EntityType Name="Feed">
@@ -84,6 +82,7 @@
     <Property Name="HotelId" Type="Int32" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Hotel" Relationship="Self.FK_HotTours_Hotel" FromRole="HotTours" ToRole="Hotel" />
+    <NavigationProperty Name="Reservation" Relationship="gb_x_bestpd87Model.FK_Reservation_Reservation" FromRole="HotTours" ToRole="Reservation" />
   </EntityType>
   <EntityType Name="Photo">
     <Key>
@@ -132,18 +131,6 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <Association Name="FK_Country_Country">
-    <End Role="Country" Type="Self.Country" Multiplicity="1" />
-    <End Role="Country1" Type="Self.Country" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Country">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Country1">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Resort_Country1">
     <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
     <End Role="Resort" Type="Self.Resort" Multiplicity="*" />
@@ -193,10 +180,6 @@
     <EntitySet Name="Resort" EntityType="Self.Resort" />
     <EntitySet Name="Sertificate" EntityType="Self.Sertificate" />
     <EntitySet Name="Studying" EntityType="Self.Studying" />
-    <AssociationSet Name="FK_Country_Country" Association="Self.FK_Country_Country">
-      <End Role="Country" EntitySet="Country" />
-      <End Role="Country1" EntitySet="Country" />
-    </AssociationSet>
     <AssociationSet Name="FK_Resort_Country1" Association="Self.FK_Resort_Country1">
       <End Role="Country" EntitySet="Country" />
       <End Role="Resort" EntitySet="Resort" />
@@ -209,15 +192,50 @@
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="HotTours" EntitySet="HotTours" />
     </AssociationSet>
-    <EntitySet Name="News" EntityType="Model.News" />
+    <EntitySet Name="News" EntityType="gb_x_bestpd87Model.News" />
+    <EntitySet Name="Reservation" EntityType="gb_x_bestpd87Model.Reservation" />
+    <AssociationSet Name="FK_Reservation_Reservation" Association="gb_x_bestpd87Model.FK_Reservation_Reservation">
+      <End Role="HotTours" EntitySet="HotTours" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="News">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReservationNumber" Type="Int32" />
+    <Property Name="Period" Type="Int32" />
+    <Property Name="DepartureDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Food" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TourType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HotTourId" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HotTours" Relationship="gb_x_bestpd87Model.FK_Reservation_Reservation" FromRole="Reservation" ToRole="HotTours" />
+  </EntityType>
+  <Association Name="FK_Reservation_Reservation">
+    <End Type="gb_x_bestpd87Model.HotTours" Role="HotTours" Multiplicity="0..1" />
+    <End Type="gb_x_bestpd87Model.Reservation" Role="Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotTours">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="HotTourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

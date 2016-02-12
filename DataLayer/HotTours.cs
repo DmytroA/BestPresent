@@ -14,6 +14,11 @@ namespace DataLayer
     
     public partial class HotTours
     {
+        public HotTours()
+        {
+            this.Reservation = new HashSet<Reservation>();
+        }
+    
         public int Id { get; set; }
         public string Description { get; set; }
         public string Price { get; set; }
@@ -30,5 +35,6 @@ namespace DataLayer
         public string Name { get; set; }
     
         public virtual Hotel Hotel { get; set; }
+        public virtual ICollection<Reservation> Reservation { get; set; }
     }
 }

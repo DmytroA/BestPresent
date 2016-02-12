@@ -23,5 +23,6 @@ namespace TourSite2.Models
         [Required]
         [Display(Name = "Введите сумму на картинке")]
         public string Captcha { get; set; }
+        public int ReservationNumber { get; set; }
     }
 }

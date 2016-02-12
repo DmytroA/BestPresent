@@ -20,6 +20,7 @@ namespace TourSite2.Controllers
     {
         //
         // GET: /Tour/
+        TourEntities1 context = new TourEntities1();
         public FileContentResult GetImage(int Id)
         {
             var context = new TourEntities1();
@@ -101,7 +102,7 @@ namespace TourSite2.Controllers
             return View(data);
         }
 
-       
+
 
         [HttpGet]
         public ViewResult ResortDetails(int Id)
@@ -138,72 +139,6 @@ namespace TourSite2.Controllers
         //    var orderedTour = context.HotTours.Single(tour => tour.Id == id);
         //    return View(orderedTour);
         //}
-        [HttpPost]
-        public ActionResult DetailOrder(OrderModel model)
-        {
-
-            var context = new TourEntities1();
-            int id = Int32.Parse(Request.Params["id"]);
-            model.HotTours = context.HotTours.Single(tour => tour.Id == id);
-
-            if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
-            {
-                ModelState.AddModelError("Captcha", "Неправильный ответ, поробуйте еще раз");
-                //dispay error and generate a new captcha 
-                return View(model);
-            } 
-
-            if (ModelState.IsValid)
-            {
-                DateTime thisday = DateTime.Now;
-
-                int order_number = 0;
-                using (var iter = GetNonRepeatingDigits().GetEnumerator())
-                    while (iter.MoveNext() && order_number < 10000)
-                        order_number = order_number * 10 + iter.Current;
-
-                MailAddress from = new MailAddress("bestpresentkh@mail.ru");
-                MailAddress to = new MailAddress(model.MailAdress);
-                MailAddress To = new MailAddress("nata_bar@list.ru"); //nata_bar@list.ru"
-                MailMessage message1 = new MailMessage(from, to);
-                MailMessage message2 = new MailMessage(from, To);
-                message1.Subject = "Информация о туре!";
-                message1.Body = "Здравствуйте," + "\r\n" + "Благодарим Вас за оставленную заявку на подбор тура на сайте Туристического агентства Лучший подарок" +
-                    "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" +
-                    "Курорт:  " + model.HotTours.Hotel.Resort.Name + "\r\n" + "Отель: " + model.HotTours.Hotel.Name + "\r\n" + "Цена: " + model.HotTours.Price +
-                    "\r\n" + "\r\n" + "В ближайшее время наши менеджеры обработают Вашу заявку  и свяжутся с Вами по указанным в заказе контактам. " + "\r\n" + "\r\n" +
-                    "\r\n" + "С уважением  и благодарностью сотрудники ТА Лучший подарок" + "\r\n" + "г. Харьков, Полтавский шлях 123, 2 этаж, офис №6" + "\r\n" + "тел. (057) 297-60-97" + "\r\n" + "моб. 066-626-00-76" + "\r\n" + "068-922-70-76";
-
-                message1.IsBodyHtml = true;
-                message2.Subject = "Заказ горящего тура!!";
-                message2.Body = "Новый заказ!" + "\r\n" + "Имя туриста: " + model.Name+ "\r\n" + model.MailAdress + "\r\n" +
-                    "Телефон:  " + model.Phone + "\r\n" + "Пожелания:" + model.Comment + "\r\n" + "Id тура:" + model.HotTours.Id + "\r\n" + "Курорт:  " + model.HotTours.Hotel.Resort.Name + "\r\n" + "Отель: " + model.HotTours.Hotel.Name + "\r\n" + "Цена: " + model.HotTours.Price;
-                SmtpClient client = new SmtpClient();
-                client.Host = "smtp.mail.ru";
-                client.Credentials = new System.Net.NetworkCredential("bestpresentkh@mail.ru", "nata2507");
-                client.EnableSsl = true;
-
-                try
-                {
-                    Task.Factory.StartNew((Action)(() =>
-                    {
-                        client.Send(message1);
-                        client.Send(message2);
-                    }), TaskCreationOptions.AttachedToParent | TaskCreationOptions.LongRunning);
-                }
-
-                catch (Exception ex)
-                {
-
-                }
-                return RedirectToAction("AddToCart");
-            }
-            else
-            {
-                // Go back to the main store page for more shopping
-                return View(model);
-            }
-        }
         public ActionResult CaptchaImage(string prefix, bool noisy = true)
         {
             var rand = new Random((int)DateTime.Now.Ticks);
@@ -256,12 +191,183 @@ namespace TourSite2.Controllers
 
             return img;
         }
-        public ActionResult DetailOrder(int id,OrderModel model)
+        [HttpPost]
+        public ActionResult DetailOrder(OrderModel model)
         {
-            var context = new TourEntities1();
+            if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
+            {
+                ModelState.AddModelError("Captcha", "Неправильный ответ, поробуйте еще раз");
+                //dispay error and generate a new captcha 
+                return View(model);
+            }
+            int id = Int32.Parse(Request.Params["id"]);
+            model.HotTours = context.HotTours.Single(tour => tour.Id == id);
+
+            int order_number = 0;
+            using (var iter = GetNonRepeatingDigits().GetEnumerator())
+                while (iter.MoveNext() && order_number < 10000)
+                    order_number = order_number * 10 + iter.Current;
+            model.ReservationNumber = order_number;
+
+            if (ModelState.IsValid)
+            {
+                DateTime thisday = DateTime.Now;
+
+                MailAddress from = new MailAddress("info@bestprezent.com.ua");
+                MailAddress to = new MailAddress(model.MailAdress);
+                MailAddress To = new MailAddress("nata_bar@list.ru"); //nata_bar@list.ru"
+                MailMessage message1 = new MailMessage(from, to);
+                MailMessage message2 = new MailMessage(from, To);
+                message1.Subject = "Информация о туре!";
+                message1.Body = "Здравствуйте," + "\r\n" + "Благодарим Вас за оставленную заявку на подбор тура на сайте Туристического агентства Лучший подарок" +
+                    "\r\n" + "Дата заказа:  " + thisday.ToString() + "\r\n" + "Номер заказа:  " + order_number + "\r\n" +
+                    "Курорт:  " + model.HotTours.Hotel.Resort.Name + "\r\n" + "Отель: " + model.HotTours.Hotel.Name + "\r\n" + "Цена: " + model.HotTours.Price +
+                    "\r\n" + "\r\n" + "В ближайшее время наши менеджеры обработают Вашу заявку  и свяжутся с Вами по указанным в заказе контактам. " + "\r\n" + "\r\n" +
+                    "\r\n" + "С уважением  и благодарностью сотрудники ТА Лучший подарок" + "\r\n" + "г. Харьков, Полтавский шлях 123, 2 этаж, офис №6" + "\r\n" + "тел. (057) 297-60-97" + "\r\n" + "моб. 066-626-00-76" + "\r\n" + "068-922-70-76";
+
+                message1.IsBodyHtml = true;
+                message2.Subject = "Заказ горящего тура!!";
+                message2.Body = "Новый заказ!" + "\r\n" + "Имя туриста: " + model.Name + "\r\n" + model.MailAdress + "\r\n" +
+                    "Телефон:  " + model.Phone + "\r\n" + "Пожелания:" + model.Comment + "\r\n" + "Id тура:" + model.HotTours.Id + "\r\n" + "Курорт:  " + model.HotTours.Hotel.Resort.Name + "\r\n" + "Отель: " + model.HotTours.Hotel.Name + "\r\n" + "Цена: " + model.HotTours.Price;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp-5.1gb.ua";
+                smtp.EnableSsl = false;
+                System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+                NetworkCred.UserName = "u77204";
+                NetworkCred.Password = "2507nata";
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = NetworkCred;
+
+                try
+                {
+                    SaveReservation(model);
+                    Task.Factory.StartNew((Action)(() =>
+                    {
+                        smtp.Send(message1);
+                        smtp.Send(message2);
+                    }), TaskCreationOptions.AttachedToParent | TaskCreationOptions.LongRunning);
+                }
+
+                catch (Exception ex)
+                {
+
+                }
+                return RedirectToAction("AddToCart");
+            }
+            else
+            {
+                // Go back to the main store page for more shopping
+                return View(model);
+            }
+        }
+        public void SaveReservation(OrderModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Reservation reservation = new Reservation
+                {
+                    DepartureDay = model.HotTours.DepartureDay,
+                    FirstName = model.Name,
+                    Food = model.HotTours.Food,
+                    HotTourId = model.HotTours.Id,
+                    Location = model.HotTours.Location,
+                    Period = model.HotTours.Period,
+                    Price = model.HotTours.Price,
+                    ReservationNumber = model.ReservationNumber,
+                    TourType = model.HotTours.TourType,
+                    Phone = model.Phone,
+                    Email = model.MailAdress
+                };
+
+                try
+                {
+                    context.Reservation.Add(reservation);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                context.SaveChanges();
+            }
+        }
+        public ActionResult DetailOrder(int id, OrderModel model)
+        {
             model.HotTours = context.HotTours.Single(tour => tour.Id == id);
 
             return View(model);
+        }
+        public ActionResult OrderHotel(int id)
+        {
+            OrderHotelModel model = new OrderHotelModel();
+            model.Hotels = context.Hotel.Find(id);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult OrderHotel(OrderHotelModel model)
+        {
+            var context = new TourEntities1();
+            int id = Int32.Parse(Request.Params["id"]);
+            model.Hotels = context.Hotel.Single(s => s.Id == id);
+            //if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
+            //{
+            //    ModelState.AddModelError("Captcha", "Неправильный ответ, поробуйте еще раз");
+            //    //dispay error and generate a new captcha 
+            //    return View(model);
+            //}
+
+            if (ModelState.IsValid)
+            {
+                DateTime thisday = DateTime.Now;
+
+                int order_number = 0;
+                using (var iter = GetNonRepeatingDigits().GetEnumerator())
+                    while (iter.MoveNext() && order_number < 10000)
+                        order_number = order_number * 10 + iter.Current;
+
+                MailAddress from = new MailAddress("info@bestprezent.com.ua");
+                MailAddress to = new MailAddress(model.MailAdress);
+                MailAddress To = new MailAddress("nata_bar@list.ru"); //nata_bar@list.ru"
+                MailMessage message1 = new MailMessage(from, to);
+                MailMessage message2 = new MailMessage(from, To);
+                message1.Subject = "Информация о заказе!";
+                message1.Body = "Вы заказали отель:" + model.Hotels.Name + "\r\n" + "Описание" + model.Hotels.Description + "\r\n" + "В ближайшее время наши менеджеры обработают Вашу заявку  и свяжутся с Вами по указанным в заказе контактам. " +
+                    "\r\n" + "\r\n" + "\r\n" + "С уважением  и благодарностью сотрудники ТА Лучший подарок" + "\r\n" +
+                    "г. Харьков, Полтавский шлях 123, 2 этаж, офис №6" + "\r\n" + "тел. (057) 297-60-97" + "\r\n" + "моб. 066-626-00-76" + "\r\n"
+                    + "068-922-70-76";
+                message1.IsBodyHtml = true;
+                message2.Subject = "Заказ отеля!!";
+                message2.Body = "Заказ отеля!" + "\r\n" + "Имя туриста: " + model.Name + "\r\n" + model.MailAdress + "\r\n" +
+                    "Телефон:  " + model.Phone + "\r\n" + "Пожелания:" + model.Comment + "\r\n" + "Id тура:" + model.Hotels.Id + "\r\n"
+                    + "Курорт:  " + model.Hotels.Resort.Name + "\r\n" + "Отель: " + model.Hotels.Name + "\r\n" + model.Hotels.Description;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp-5.1gb.ua";
+                smtp.EnableSsl = false;
+                System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+                NetworkCred.UserName = "u77204";
+                NetworkCred.Password = "2507nata";
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = NetworkCred;
+
+                try
+                {
+                    Task.Factory.StartNew((Action)(() =>
+                    {
+                        smtp.Send(message1);
+                        smtp.Send(message2);
+                    }), TaskCreationOptions.AttachedToParent | TaskCreationOptions.LongRunning);
+                }
+
+                catch (Exception ex)
+                {
+
+                }
+                return RedirectToAction("AddToCart");
+            }
+            else
+            {
+                return View(model);
+            }
         }
         public ActionResult Hotels(int? Id)
         {

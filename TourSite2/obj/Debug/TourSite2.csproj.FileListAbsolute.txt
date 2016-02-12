@@ -1,3 +1,4 @@
+D:\bestpresent\BestPresent\TourSite2\obj\Debug\TourSite2.csprojResolveAssemblyReference.cache
 D:\bestpresent\BestPresent\TourSite2\bin\TourSite2.dll.config
 D:\bestpresent\BestPresent\TourSite2\bin\TourSite2.dll
 D:\bestpresent\BestPresent\TourSite2\bin\TourSite2.pdb
@@ -47,6 +48,5 @@ D:\bestpresent\BestPresent\TourSite2\bin\Newtonsoft.Json.xml
 D:\bestpresent\BestPresent\TourSite2\bin\System.Net.Http.Formatting.xml
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.xml
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Http.WebHost.xml
-D:\bestpresent\BestPresent\TourSite2\obj\Debug\TourSite2.csprojResolveAssemblyReference.cache
 D:\bestpresent\BestPresent\TourSite2\obj\Debug\TourSite2.dll
 D:\bestpresent\BestPresent\TourSite2\obj\Debug\TourSite2.pdb
