@@ -11,11 +11,15 @@ namespace DataLayer
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Placement
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [Required(ErrorMessage = "Description is required")]
+        [DataType(DataType.MultilineText)]
+       
         public string Description { get; set; }
     }
 }

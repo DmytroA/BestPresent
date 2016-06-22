@@ -1,0 +1,36 @@
+﻿@model TourSite2.Models.CheckReservationModel 
+@{
+    ViewBag.Title = "CheckReservation";
+}
+
+@using (Html.BeginForm("CheckReservation", "Check", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <legend>Проверить информацию тура</legend>
+    <form class="form-horizontal" role="form">
+      
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Номер заказа</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.ReservationNumber, new { @class = "form-control", placeholder = "Номер заказа", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.ReservationNumber)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success btn-lg">Проверить</button>
+            </div>
+        </div>
+
+    </form>
+}

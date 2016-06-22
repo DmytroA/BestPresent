@@ -1,0 +1,55 @@
+﻿@model DataLayer.HotTours
+@{ Layout = null; }
+@{
+    ViewBag.Title = "Details";
+}
+<strong>@Model.Hotel.Name</strong>
+<table id="table" class="table table-bordered">
+    <thead>
+
+        <tr>
+            <th>Фото</th>
+            <th>Отель</th>
+            <th>Стоимость</th>
+            <th>Кол-во людей</th>
+            <th>Размещение</th>
+            <th>Питание</th>
+            <th>Дата начала</th>
+            <th>Кол-во ночей</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><img class="img-thumbnail" width="250px" height="250px" src="@Url.Action("GetImageHotel", "Tour", new { Model.Hotel.Id })" /></td>
+            <td>
+                <a href="@Url.Action("HotelDetails", "Home",
+                  new {id = Model.Hotel.Id })" target="_blank">@Model.Hotel.Name</a> @Model.Hotel.Category, @Model.Hotel.Resort.Country.Name,@Model.Hotel.Resort.Name
+            </td>
+            <td>
+                <strong>@String.Format("{0:F}", Model.Price)</strong>
+            </td>
+            <td><strong>@Model.AmountPeople</strong></td>
+            <td><strong>@Model.Location</strong></td>
+            <td><strong>@Model.Food</strong></td>
+            <td><strong>@Model.DepartureDay</strong></td>
+            <td><strong>@Model.Period</strong></td>
+        </tr>
+
+    </tbody>
+</table>
+<div>
+    <p>
+        @Html.Raw(Model.Hotel.Description)
+    </p>
+</div>
+<div>
+    <p>
+        @Html.Raw(Model.Description)
+    </p>
+</div>
+<div class="sss">
+    @Html.ActionLink("Заказать", "DetailOrder",
+        "Tour", new { id = Model.Id }, "")
+</div>

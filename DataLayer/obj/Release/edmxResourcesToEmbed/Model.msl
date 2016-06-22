@@ -1,26 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="gb_tourModelStoreContainer" CdmEntityContainer="TourEntities1">
-    <EntitySetMapping Name="About">
-      <EntityTypeMapping TypeName="gb_tourModel.About">
-        <MappingFragment StoreEntitySet="About">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Airticket">
-      <EntityTypeMapping TypeName="gb_tourModel.Airticket">
-        <MappingFragment StoreEntitySet="Airticket">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="TourEntities1">
     <EntitySetMapping Name="Country">
-      <EntityTypeMapping TypeName="gb_tourModel.Country">
+      <EntityTypeMapping TypeName="Model.Country">
         <MappingFragment StoreEntitySet="Country">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -31,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Feed">
-      <EntityTypeMapping TypeName="gb_tourModel.Feed">
+      <EntityTypeMapping TypeName="Model.Feed">
         <MappingFragment StoreEntitySet="Feed">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -42,17 +24,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Fishing">
-      <EntityTypeMapping TypeName="gb_tourModel.Fishing">
-        <MappingFragment StoreEntitySet="Fishing">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Hotel">
-      <EntityTypeMapping TypeName="gb_tourModel.Hotel">
+      <EntityTypeMapping TypeName="Model.Hotel">
         <MappingFragment StoreEntitySet="Hotel">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -68,7 +41,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HotTours">
-      <EntityTypeMapping TypeName="gb_tourModel.HotTours">
+      <EntityTypeMapping TypeName="Model.HotTours">
         <MappingFragment StoreEntitySet="HotTours">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -87,8 +60,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Photo">
+      <EntityTypeMapping TypeName="Model.Photo">
+        <MappingFragment StoreEntitySet="Photo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Decription" ColumnName="Decription" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ThumbPath" ColumnName="ThumbPath" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Placement">
-      <EntityTypeMapping TypeName="gb_tourModel.Placement">
+      <EntityTypeMapping TypeName="Model.Placement">
         <MappingFragment StoreEntitySet="Placement">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -96,8 +80,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Reservation">
+      <EntityTypeMapping TypeName="Model.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReservationNumber" ColumnName="ReservationNumber" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="DepartureDay" ColumnName="DepartureDay" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Food" ColumnName="Food" />
+          <ScalarProperty Name="TourType" ColumnName="TourType" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="HotTourId" ColumnName="HotTourId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
+          <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PastPlace" ColumnName="PastPlace" />
+          <ScalarProperty Name="Finance" ColumnName="Finance" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Resort">
-      <EntityTypeMapping TypeName="gb_tourModel.Resort">
+      <EntityTypeMapping TypeName="Model.Resort">
         <MappingFragment StoreEntitySet="Resort">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -108,40 +116,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Sertificate">
-      <EntityTypeMapping TypeName="gb_tourModel.Sertificate">
-        <MappingFragment StoreEntitySet="Sertificate">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="Model.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Studying">
-      <EntityTypeMapping TypeName="gb_tourModel.Studying">
-        <MappingFragment StoreEntitySet="Studying">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Visa">
-      <EntityTypeMapping TypeName="gb_tourModel.Visa">
-        <MappingFragment StoreEntitySet="Visa">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Decription" ColumnName="Decription" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Photo">
-      <EntityTypeMapping TypeName="gb_tourModel.Photo">
-        <MappingFragment StoreEntitySet="Photo">
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="ThumbPath" ColumnName="ThumbPath" />
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-          <ScalarProperty Name="Decription" ColumnName="Decription" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

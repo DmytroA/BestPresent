@@ -1,99 +1,195 @@
 ﻿@model List<DataLayer.Country>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-@{
-    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
-}
-@{
-    ViewBag.Title = "Страны и курорты";
-}
-<style>
-    .hot {
-        font-size: 18px;
+    @{
+        Layout = "~/Views/Shared/_DetailsLayout.cshtml";
     }
-
-        .hot a {
-            color: #F86126 !important;
-            font-size: 18px;
-            text-decoration: none;
-        }
-
-    .podr a {
-        color: red !important;
-        font-size: 10px;
+    @{
+        ViewBag.Title = "Страны и курорты";
     }
+    <style>
+            .view {
+                width: 300px;
+                height: 200px;
+                margin: 10px;
+                float: left;
+                border: 10px solid #fff;
+                overflow: hidden;
+                position: relative;
+                text-align: center;
+                box-shadow: 1px 1px 2px #e6e6e6;
+                cursor: default;
+                background: #fff url(../images/bgimg.jpg) no-repeat center center;
+            }
 
-    .size {
-        white-space: nowrap;
-        overflow: hidden;
-        /*background: #fc0;
-        padding: 5px;*/
-        text-overflow: ellipsis;
-        height: 65px;
-        line-height: 19px;
-    }
-
-</style>
-<input type="text" id="text-to-find" placeholder="Поиска по странам" value="">
-
-@foreach (var country in Model)
-{
-    <div class="block_one" style="margin-top:20px;" data-id="@country.Id">
-        <div class="feed">
-            <div class="hot pull-left">
-                <strong>@country.Name</strong>
-            </div>
-            <div class="author pull-right">
-               
-                    <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 45px;height: 25px;" />
-            </div>
-            <div style="clear:both"></div>
-            <div class="size" id="desc" style="margin-top:10px;">
-                @Html.Raw(country.Description)
-            </div>
-            <div class="podr">
-                    подробнее
-            </div>
-        </div>
-
-    </div>
-}
-<div id="hidden_dialog" style="display:none">
-
-</div>
-<script type="text/javascript">
-    $(".block_one").searcher({
-        itemSelector: ".feed",
-        textSelector: "div",
-        inputSelector: "#text-to-find",
-        toggle: function (item, containsText) {
-            debugger;
-            if (containsText)
-                $(item).fadeIn();
-            else
-                $(item).fadeOut();
-        }
-    });
-    $(function () {
-        $(".block_one").click(function () {
-            var id = $(this).attr("data-id");
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("CountDetails")",
-                data: { Id: id },
-                datatype: "html",
-                success: function (data) {
-                    $('#hidden_dialog').html(data);
+                .view .mask, .view .content {
+                    width: 300x;
+                    height: 200px;
+                    position: absolute;
+                    overflow: hidden;
+                    top: 0;
+                    left: 0;
                 }
-            });
-            showDialog();
-        });
-    });
-    function showDialog() {
-        $("#hidden_dialog").dialog({
-            width: 800,
-            height: 800,
-        });
-    }
-</script>
 
+                .view img {
+                    display: block;
+                    position: relative;
+                }
+
+                .view h2 {
+                    text-transform: uppercase;
+                    color: #fff;
+                    text-align: center;
+                    position: relative;
+                    font-size: 17px;
+                    padding: 10px;
+                    background: rgba(0, 0, 0, 0.8);
+                    margin: 20px 0 0 0;
+                }
+
+                .view p {
+                    font-family: Georgia, serif;
+                    font-style: italic;
+                    font-size: 12px;
+                    position: relative;
+                    color: #fff;
+                    padding: 10px 20px 20px;
+                    text-align: center;
+                }
+
+                .view a.info {
+                    display: inline-block;
+                    text-decoration: none;
+                    padding: 7px 14px;
+                    background: #000;
+                    color: #fff;
+                    text-transform: uppercase;
+                    box-shadow: 0 0 1px #000;
+                }
+
+                    .view a.info:hover {
+                        box-shadow: 0 0 5px #000;
+                    }
+
+            /* ЭФФЕКТ 1*/
+            .view-first img {
+                transition: all 0.2s linear;
+            }
+
+            .view-first .mask {
+                opacity: 0;
+                background-color: rgba(0,0,0, 0.5);
+                transition: all 0.4s ease-in-out;
+            }
+
+            .view-first h2 {
+                transform: translateY(-100px);
+                opacity: 0;
+                transition: all 0.2s ease-in-out;
+            }
+
+            .view-first p {
+                transform: translateY(100px);
+                opacity: 0;
+                transition: all 0.2s linear;
+            }
+
+            .view-first a.info {
+                opacity: 0;
+                transition: all 0.2s ease-in-out;
+            }
+
+            .view-first:hover img {
+                transform: scale(1.1);
+            }
+
+            .view-first:hover .mask {
+                opacity: 1;
+            }
+
+            .view-first:hover h2,
+            .view-first:hover p,
+            .view-first:hover a.info {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+
+            .view-first:hover p {
+                transition-delay: 0.1s;
+            }
+
+            .view-first:hover a.info {
+                transition-delay: 0.2s;
+            }
+            /*.hot {
+            font-size: 18px;
+            color: #F86126;
+        }
+        .podr a {
+            color: red !important;
+            font-size: 10px;
+        }
+
+        .size {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 65px;
+            line-height: 19px;
+        }*/
+    </style>
+    @*<input type="text" id="text-to-find" style="position:absolute;" placeholder="Поиска по странам" value="">*@
+    <div>
+        @foreach (var country in Model)
+        {
+            <div class="view view-first" data-id="@country.Id">
+                <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 300px;height: 200px;" />
+                <div class="mask">
+                    <h2 class="country_name">@country.Name</h2>
+                    <p>Краткое описание новости, статьи, поста.</p>
+                    <a href="#" class="info">Подробнее</a>
+                </div>
+            </div>
+
+        }
+    </div>
+    <div id="hidden_dialog" style="display:none">
+        <div id="loader" style="margin-left:200px; margin-top:200px">
+            <img src="~/Content/Images/load.gif" alt="загрузка" width="300px" height="300px">
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".block_one").searcher({
+            itemSelector: ".feed",
+            textSelector: "div",
+            inputSelector: "#text-to-find",
+            toggle: function (item, containsText) {
+                if (containsText)
+                    $(item).fadeIn();
+                else
+                    $(item).fadeOut();
+            }
+        });
+        $(function () {
+            $(".view").click(function () {
+                var id = $(this).attr("data-id");
+                var country = $(this).find('.country_name').text();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("CountDetails")",
+                    data: { Id: id },
+                    datatype: "html",
+                    success: function (data) {
+                        $('#loader').hide();
+                        $('#hidden_dialog').html(data);
+                    }
+                });
+                showDialog(country);
+            });
+        });
+        function showDialog(country) {
+            $("#hidden_dialog").dialog({
+                title: country,
+                width: 800,
+                height: 800,
+            });
+        }
+    </script>

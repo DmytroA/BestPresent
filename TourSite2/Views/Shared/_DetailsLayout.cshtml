@@ -5,9 +5,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/bootstrap-image-gallery.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="~/Content/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/datatables.css">
+    <link rel="stylesheet" href="~/Content/jquery.fancybox.css">
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/tabslide.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/respond.js"></script>
+    <script src="~/Scripts/datatables.js"></script>
+   
     <title>@ViewBag.Title</title>
     <style type="text/css">
         .width {
@@ -161,11 +172,6 @@
             vertical-align: middle;
         }
     </style>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
-
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="bg">
@@ -212,22 +218,33 @@
         }
     </div>
     <div class="wrapper">
+        <div style="display:none;" id="discount_dialog"></div>
         <div class="header">
 
 
             <div class="logo">
-                <a href="/Home/Index/">  <img src="/Content/Images/logo.png"></a>
+                <a href="/Home/Index/">  <img src="/Content/Images/logo_test.png"></a>
             </div>
             <div class="label">
                 Туристическое агентство<br><span>Лучший Подарок</span>
             </div>
+            <div style="clear:both"></div>
+            @*<div id="random-country" style="position:absolute;margin-top:85px;margin-left:465px;">
+                <a href="/Home/RandomCountry/">
+                    <div class="order_button_country">
+                        Случайная страна
+                    </div>
+                </a>
+            </div>*@
             <div class="social">
                 <a href="https://vk.com/id8827767">
                     <div class="icon vk"></div>
                 </a>
-                <div class="icon fb"></div>
-                <div class="icon tw"></div>
-            </div>
+                <a href="https://www.facebook.com/profile.php?id=100007852423960&fref=ts">
+                    <div class="icon fb"></div>
+                    </a>
+                    <div class="icon tw"></div>
+</div>
 
             <div class="order">
                 <a href="/Home/Order">
@@ -238,8 +255,16 @@
                 <div class="contacts"><span>тел. 066-626-00-76, 068-992-70-76 - Наталья</span></div>
 
             </div>
-            <div class="subscribe_button"><a href="/Subscribe/Sub/"><img src="/Content/Images/new_sub.png"></a> </div>
 
+            <div class="subscribe_button" title="Подписка"><a href="/Subscribe/Sub/"><img src="/Content/Images/new_sub.png"></a> </div>
+            @*<div class="check_reservation">
+                <a href="/Check/CheckReservation">
+
+                    <div class="check_button">
+                        Состояние тура
+                    </div>
+                </a>
+            </div>*@
 
             <div class="nav">
                 <div class="item"><a href="/Home/Index">Главная</a></div>
@@ -250,10 +275,21 @@
                 <div class="item"><a href="/Photo/Index ">Галерея</a></div>
                 <div class="item"><a href="/News/Index ">Новости</a></div>
                 @*<div class="item"><a href="/Home/Gift ">Бонусы</a></div>*@
-                <div class="item"><a href="/Feedback/Index/">Отзывы</a></div>
+                @*<div class="item"><a href="/Feedback/Index/">Отзывы</a></div>*@
                 <div class="item"><a href="/Home/AboutUs/">Контакты</a></div>
+                <div class="item"><a href="/Home/BlogList/">Блог</a></div>
             </div>
             <div style="clear: both"></div>
+            <div id="akcia">
+               <img src="~/Content/Images/skidka.png" alt="Участвуй в наших Акциях" title="Участвуй в наших Акциях">
+            </div>
+            <div title="Случайная страна">
+                <a href="/Home/RandomCountry">
+                    <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32" style="bottom: 475px; left: 55px; position: fixed;z-index: 4; cursor: pointer;display: inline-block;opacity:0.3;">
+                        <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 30c-1.967 0-3.84-0.407-5.538-1.139l7.286-8.197c0.163-0.183 0.253-0.419 0.253-0.664v-3c0-0.552-0.448-1-1-1-3.531 0-7.256-3.671-7.293-3.707-0.188-0.188-0.442-0.293-0.707-0.293h-4c-0.552 0-1 0.448-1 1v6c0 0.379 0.214 0.725 0.553 0.894l3.447 1.724v5.871c-3.627-2.53-6-6.732-6-11.489 0-2.147 0.484-4.181 1.348-6h3.652c0.265 0 0.52-0.105 0.707-0.293l4-4c0.188-0.188 0.293-0.442 0.293-0.707v-2.419c1.268-0.377 2.61-0.581 4-0.581 2.2 0 4.281 0.508 6.134 1.412-0.13 0.109-0.256 0.224-0.376 0.345-1.133 1.133-1.757 2.64-1.757 4.243s0.624 3.109 1.757 4.243c1.139 1.139 2.663 1.758 4.239 1.758 0.099 0 0.198-0.002 0.297-0.007 0.432 1.619 1.211 5.833-0.263 11.635-0.014 0.055-0.022 0.109-0.026 0.163-2.541 2.596-6.084 4.208-10.004 4.208z"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
         <div class="content">
             <div class="content_background">
@@ -327,6 +363,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="weather">
+                    <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://pogoda.yandex.ru/kharkiv" target="_blank"><img src="//info.weather.yandex.net/kharkiv/3.ru.png?domain=ru" border="0" alt="Яндекс.Погода" /><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0" /></a>
+                </div>
                 <div class="widget-area prefooter-widget-area" role="complementary">
                     <div id="text-7" class="widget widget_text">
                         <h2 class="widget-title">Время работы:</h2>
@@ -356,10 +395,6 @@
     </footer>
 
     @RenderSection("scripts", required: false)
-    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-    <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
-
-
 </body>
 </html>
 <script>
@@ -397,16 +432,35 @@
         });
         $callback.on('click', function () {
             if ($(this).hasClass('open')) {
-                $("#callback_panel").animate({ right: '-500px' }, 500);
+                $("#callback_panel").animate({ right: '-260px' }, 300);
                 $("#callback").css("opacity", "1")
-                $("#callback").animate({ right: '0px' }, 500);
+                $("#callback").animate({ right: '0px' }, 300);
                 $("#callback").removeClass('open');
             } else {
-                $("#callback_panel").animate({ right: '0px' }, 500);
+                $("#callback_panel").animate({ right: '0px' }, 300);
                 $("#callback").css("opacity", "0.2");
-                $("#callback").animate({ right: '500px' }, 500);
+                $("#callback").animate({ right: '260px' }, 300);
                 $("#callback").addClass('open');
             }
         });
     });
+    $('#akcia').on('click', function () {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("Discount")',
+            success: function (data) {
+                debugger;
+                $('#discount_dialog').html(data);
+            }
+        });
+        showDiscount();
+    });
+    function showDiscount() {
+        $("#discount_dialog").dialog({
+            title: "Акция",
+            modal: true,
+            width: 650,
+            height: 300,
+        });
+    }
 </script>

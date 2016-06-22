@@ -1,0 +1,43 @@
+﻿@model DataLayer.News
+
+@{
+    ViewBag.Title = "NewsDetails";
+}
+
+@{
+
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+}
+
+<style>
+    .de {
+        margin-top: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        color: #4E4E4E;
+        width: 900px;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+</style>
+<div class="content_background">
+
+    <div id="album-details" style="margin-left: 20px;">
+
+        <div class="name pull-left">
+
+            <em><strong>@Model.Name</strong></em>
+
+        </div>
+        
+        <div style="clear:both"></div>
+        <div class="de">
+            <p>
+                @Html.Raw(Model.Description)
+            </p>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿
+<div class="logo"></div>
+
+<div class="user">
+    <p id="user">User</p>
+    <div id="station_group">
+        <div class="station_list" id="toggle-link">
+            <div id="station_call">Station</div>
+        </div>
+       
+    </div>
+</div>
+
+<div id="clear"></div>
+<hr>
+<div class="navigation">
+    <ul>
+        <li><a href="#" data-val="@Url.Action("Selection","Contest") ">Guest Lists</a></li>
+        <li><a href="#" data-val="https://next.promosuite.com/MyPromoSuite.aspx">Full Site</a></li>
+        <li><a href="#" data-val="@Url.Action("Help","Home") ">Help</a></li>
+        <li><a href="#" data-val="@Url.Action("LogOut","Home") ">Logout</a></li>
+    </ul>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        var HelpAction = '@Url.Action("Help", "Home")';
+    </script>
+}
+

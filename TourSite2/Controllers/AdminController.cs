@@ -38,6 +38,16 @@ namespace TourSite2.Models
             }
             return dbEntry;
         }
+        public Blog DeleteBlog(int Id)
+        {
+            Blog dbEntry = db.Blog.Find(Id);
+            if (dbEntry != null)
+            {
+                db.Blog.Remove(dbEntry);
+                db.SaveChanges();
+            }
+            return dbEntry;
+        }
         public Resort DeleteResort(int Id)
         {
             var context = new TourEntities1();
@@ -49,7 +59,37 @@ namespace TourSite2.Models
             }
             return dbEntry;
         }
+        public Author DeleteAuthor(int Id)
+        {
+            Author dbEntry = db.Author.Find(Id);
+            if (dbEntry != null)
+            {
+                db.Author.Remove(dbEntry);
+                db.SaveChanges();
+            }
+            return dbEntry;
+        }
+        public Theme DeleteTheme(int Id)
+        {
+            Theme dbEntry = db.Theme.Find(Id);
+            if (dbEntry != null)
+            {
+                db.Theme.Remove(dbEntry);
+                db.SaveChanges();
+            }
+            return dbEntry;
+        }
 
+        //public Reservation DeleteReservation(int Id)
+        //{
+        //    Reservation dbEntry = db.Reservation.Find(Id);
+        //    if (dbEntry != null)
+        //    {
+        //        db.Reservation.Remove(dbEntry);
+        //        db.SaveChanges();
+        //    }
+        //    return dbEntry;
+        //}
         public Hotel DeleteHotel(int Id)
         {
             var context = new TourEntities1();
@@ -61,17 +101,17 @@ namespace TourSite2.Models
             }
             return dbEntry;
         }
-        public Feed DeleteFeedback(int Id)
-        {
-            var context = new TourEntities1();
-            Feed dbEntry = context.Feed.Find(Id);
-            if (dbEntry != null)
-            {
-                context.Feed.Remove(dbEntry);
-                context.SaveChanges();
-            }
-            return dbEntry;
-        }
+        //public Feed DeleteFeedback(int Id)
+        //{
+        //    var context = new TourEntities1();
+        //    Feed dbEntry = context.Feed.Find(Id);
+        //    if (dbEntry != null)
+        //    {
+        //        context.Feed.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //    return dbEntry;
+        //}
         public News DeleteNew(int Id)
         {
             News dbEntry = db.News.Find(Id);
@@ -84,7 +124,7 @@ namespace TourSite2.Models
         }
         public ViewResult Index()
         {
-           
+
             return View();
         }
         public ActionResult CountryList()
@@ -98,12 +138,17 @@ namespace TourSite2.Models
             var data = db.News.ToList();
             return View(data);
         }
-        public ActionResult FeedbackList()
+        public ActionResult BlogList()
         {
-            TourEntities1 db = new TourEntities1();
-            var data = db.Feed.ToList();
+            var data = db.Blog.ToList();
             return View(data);
         }
+        //public ActionResult FeedbackList()
+        //{
+        //    TourEntities1 db = new TourEntities1();
+        //    var data = db.Feed.ToList();
+        //    return View(data);
+        //}
         public ActionResult HotelList()
         {
             TourEntities1 db = new TourEntities1();
@@ -118,10 +163,24 @@ namespace TourSite2.Models
         }
         public ActionResult HotTourList()
         {
-            TourEntities1 db = new TourEntities1();
             var data = db.HotTours.ToList(); ;
             return View(data);
         }
+        public ActionResult AuthorList()
+        {
+            var data = db.Author.ToList();
+            return View(data);
+        }
+        public ActionResult ThemeList()
+        {
+            var data = db.Theme.ToList();
+            return View(data);
+        }
+        //public ActionResult ReserveList()
+        //{
+        //    var data = db.Reservation.ToList();
+        //    return View(data);
+        //}
         public ViewResult Edit(int Id)
         {
             EditHotTourModel model = null;
@@ -141,17 +200,55 @@ namespace TourSite2.Models
         }
         public ViewResult EditCountry(int Id)
         {
-
             var context = new TourEntities1();
             var data = context.Country.FirstOrDefault(p => p.Id == Id);
             return View(data);
+        }
+        public ViewResult EditAuthor(int Id)
+        {
+            var model = db.Author.FirstOrDefault(p => p.Id == Id);
+            return View(model);
+        }
+        public ViewResult EditTheme(int Id)
+        {
+            var model = db.Theme.FirstOrDefault(p => p.Id == Id);
+            return View(model);
+        }
+        public FileContentResult GetImageBlog(int Id)
+        {
+            Blog blog = db.Blog.FirstOrDefault(p => p.Id == Id);
+            if (blog != null)
+            {
+                return File(blog.ImageData, blog.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public ViewResult EditBlogPost(int Id)
+        {
+            EditBlogModel model = null;
+            FillModelEditBlog(ref model, Id);
+            return View(model);
+            //var context = new TourSite2Entities();
+            //var dat = context.HotTours.FirstOrDefault(p => p.Id == Id);
+            //return View(dat);
+        }
+        private void FillModelEditBlog(ref EditBlogModel model, int Id)
+        {
+            model = model ?? new EditBlogModel();
+
+            model.Blogs = db.Blog.FirstOrDefault(p => p.Id == Id);
+            model.Author = new SelectList(db.Author, "Id", "Name");
+            model.Theme = new SelectList(db.Theme, "Id", "Name");
         }
 
         public ViewResult EditHotel(int Id)
         {
             EditHotelModel model = null;
             FillModelEditHotel(ref model, Id);
-           
+
             return View(model);
         }
         private void FillModelEditHotel(ref EditHotelModel model, int Id)
@@ -167,25 +264,30 @@ namespace TourSite2.Models
             EditResortModel model = null;
             FillModelEditResort(ref model, Id);
             //context.Entry(data).Collection(m => m.Country).Load();
-           
+
             //ViewBag.list = new SelectList(context.Country,"Id","Name");
             return View(model);
         }
 
         private void FillModelEditResort(ref EditResortModel model, int Id)
         {
-            model = model?? new EditResortModel();
+            model = model ?? new EditResortModel();
 
             var context = new TourEntities1();
             model.Resort = context.Resort.FirstOrDefault(p => p.Id == Id);
             model.Country = new SelectList(context.Country, "Id", "Name");
         }
 
+        //public ActionResult ReservationInfo(int Id)
+        //{
+        //    Reservation data = db.Reservation.Find(Id);
+        //    return View(data);
+        //}
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult EditResort(EditResortModel model, HttpPostedFileBase image)
         {
-            
+
             var context = new TourEntities1();
 
             if (ModelState.IsValid)
@@ -207,27 +309,47 @@ namespace TourSite2.Models
             }
         }
 
-       
+
         public ViewResult CreateHotel()
         {
             var context = new TourEntities1();
             EditHotelModel model = new EditHotelModel()
             {
                 Hotel = new Hotel(),
-                Resort = new SelectList(context.Resort,"Id","Name")
+                Resort = new SelectList(context.Resort, "Id", "Name")
             };
             return View("EditHotel", model);
+        }
+        public ViewResult CreateBlog()
+        {
+            EditBlogModel model = new EditBlogModel()
+            {
+                Blogs = new Blog(),
+                Author = new SelectList(db.Author, "Id", "Name"),
+                Theme = new SelectList(db.Theme, "Id", "Name")
+            };
+            return View("EditBlogPost", model);
         }
         public ViewResult CreateCountry()
         {
             return View("EditCountry", new Country());
         }
+
+        public ViewResult CreateAuthor()
+        {
+            return View("EditAuthor", new Author());
+        }
+        public ViewResult CreateTheme()
+        {
+            return View("EditTheme", new Theme());
+        }
         public ViewResult CreateResort()
         {
             var context = new TourEntities1();
-            EditResortModel model = new EditResortModel() { 
-               Resort = new Resort(),
-               Country = new SelectList(context.Country, "Id", "Name")
+            EditResortModel model = new EditResortModel()
+            {
+                Resort = new Resort(),
+                Country = new SelectList(context.Country, "Id", "Name")
             };
             return View("EditResort", model);
         }
@@ -254,7 +376,7 @@ namespace TourSite2.Models
                 Country dbEntry = context.Country.Find(b.Id);
                 if (dbEntry != null)
                 {
-                    
+
                     dbEntry.Name = b.Name;
                     dbEntry.Description = b.Description;
                     dbEntry.ImageData = b.ImageData ?? dbEntry.ImageData;
@@ -264,6 +386,76 @@ namespace TourSite2.Models
             }
 
             context.SaveChanges();
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public void SaveAuthor(Author author)
+        {
+            if (author.Id == 0)
+            {
+                db.Author.Add(author);
+            }
+            else
+            {
+
+                Author dbEntry = db.Author.Find(author.Id);
+                if (dbEntry != null)
+                {
+
+                    dbEntry.Name = author.Name;
+                }
+            }
+
+            db.SaveChanges();
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public void SaveTheme(Theme theme)
+        {
+            if (theme.Id == 0)
+            {
+                db.Theme.Add(theme);
+            }
+            else
+            {
+
+                Theme dbEntry = db.Theme.Find(theme.Id);
+                if (dbEntry != null)
+                {
+
+                    dbEntry.Name = theme.Name;
+                }
+            }
+
+            db.SaveChanges();
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public void SaveBlogPost(Blog blog)
+        {
+            if (blog.Id == 0)
+            {
+                blog.Date = DateTime.Now;
+                db.Blog.Add(blog);
+            }
+            else
+            {
+
+                Blog dbEntry = db.Blog.Find(blog.Id);
+                if (dbEntry != null)
+                {
+
+                    dbEntry.Name = blog.Name;
+                    dbEntry.ImageData = blog.ImageData ?? dbEntry.ImageData;
+                    dbEntry.ImageMimeType = blog.ImageMimeType;
+                    dbEntry.Date = DateTime.Now;
+                    dbEntry.AuthorId = blog.AuthorId;
+                    dbEntry.Text = blog.Text;
+                    dbEntry.ThemeId = blog.ThemeId;
+                }
+            }
+
+            db.SaveChanges();
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -347,7 +539,7 @@ namespace TourSite2.Models
 
             context.SaveChanges();
         }
-       
+
         public ViewResult Create()
         {
             var context = new TourEntities1();
@@ -376,6 +568,36 @@ namespace TourSite2.Models
             if (deletedCountry != null)
             {
                 TempData["message"] = string.Format("{0} удален", deletedCountry.Name);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteAuthors(int authorId = 1)
+        {
+            Author deletedAuthor = DeleteAuthor(authorId);
+            if (deletedAuthor != null)
+            {
+                TempData["message"] = string.Format("{0} удален", deletedAuthor.Name);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteThemes(int themeId = 1)
+        {
+            Theme deletedTheme = DeleteTheme(themeId);
+            if (deletedTheme != null)
+            {
+                TempData["message"] = string.Format("{0} удален", deletedTheme.Name);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteBlogPost(int blogId = 1)
+        {
+            Blog deletedBlog = DeleteBlog(blogId);
+            if (deletedBlog != null)
+            {
+                TempData["message"] = string.Format("{0} удален", deletedBlog.Name);
             }
             return RedirectToAction("Index");
         }
@@ -411,20 +633,30 @@ namespace TourSite2.Models
             }
             return RedirectToAction("Index");
         }
+        //public ActionResult DeleteReservations(int reservationId)
+        //{
+        //    Reservation deletedReservation = DeleteReservation(reservationId);
+        //    if (deletedReservation != null)
+        //    {
+        //        //ModelState.AddModelError("deletereservation", string.Format("{0} удален", deletedReservation.ReservationNumber));
+        //        TempData["deletedmessage"] = string.Format("{0} удален", deletedReservation.ReservationNumber);
+        //    }
+        //    return RedirectToAction("ReserveList");
+        //}
         [HttpPost]
         [ValidateInput(false)]
         public void SaveHotTour(HotTours b)
         {
             var context = new TourEntities1();
-          
+
             if (b.Id == 0)
             {
-              
+
                 context.HotTours.Add(b);
             }
             else
             {
-                
+
                 HotTours dbEntry = context.HotTours.Find(b.Id);
                 if (dbEntry != null)
                 {
@@ -439,10 +671,10 @@ namespace TourSite2.Models
                     dbEntry.Period = b.Period;
                     dbEntry.TourType = b.TourType;
                     dbEntry.Location = b.Location;
-                    dbEntry.HotelId = b.HotelId;                   
+                    dbEntry.HotelId = b.HotelId;
                 }
             }
-            
+
             context.SaveChanges();
         }
         [HttpPost]
@@ -493,6 +725,61 @@ namespace TourSite2.Models
             {
                 // there is something wrong with the data values
                 return View(country);
+            }
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditAuthor(Author author)
+        {
+            if (ModelState.IsValid)
+            {
+                SaveAuthor(author);
+                TempData["message"] = string.Format("{0} has been saved", author.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(author);
+            }
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditTheme(Theme theme)
+        {
+            if (ModelState.IsValid)
+            {
+                SaveTheme(theme);
+                TempData["message"] = string.Format("{0} has been saved", theme.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(theme);
+            }
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditBlogPost(EditBlogModel model, HttpPostedFileBase image)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    model.Blogs.ImageMimeType = image.ContentType;
+                    model.Blogs.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(model.Blogs.ImageData, 0, image.ContentLength);
+                }
+                SaveBlogPost(model.Blogs);
+                TempData["message"] = string.Format("{0} has been saved", model.Blogs.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                FillModelEditBlog(ref model, model.Blogs.Id);
+                return View(model);
             }
         }
         public ViewResult EditNews(int Id = 1)
@@ -581,6 +868,40 @@ namespace TourSite2.Models
             newImg.Save(Server.MapPath(pathToSave), img.RawFormat);
 
         }
+        public ActionResult EditDiscount()
+        {
+            var data = db.Discount.Find(1);
+            return View(data);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditDiscount(Discount discount)
+        {
+
+            SaveDiscount(discount);
+            TempData["message"] = string.Format("{0} has been saved", discount.Id);
+            return RedirectToAction("Index", "Admin");
+
+
+        }
+        public void SaveDiscount(Discount discount)
+        {
+            if (discount.Id == 0)
+            {
+                db.Discount.Add(discount);
+            }
+            else
+            {
+                Discount dbEntry = db.Discount.Find(discount.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Description = discount.Description;
+                    dbEntry.Name = discount.Name;
+                }
+            }
+
+            db.SaveChanges();
+        }
         [HttpPost]
         public ActionResult CreateImage(Photo photo, IEnumerable<HttpPostedFileBase> files)
         {
@@ -606,21 +927,17 @@ namespace TourSite2.Models
                 file.InputStream.CopyTo(ms);
                 file.InputStream.Dispose();
                 ms.Seek(0, SeekOrigin.Begin);
-                //var img = System.Drawing.Image.FromStream(ms);
-                //img.Save("./asd123.png");
 
                 using (var img1 = System.Drawing.Image.FromStream(ms))
                 {
                     model.ThumbPath = String.Format("/ImageGallery/thumbs/{0}{1}", fileName, extension);
                     model.ImagePath = String.Format("/ImageGallery/{0}{1}", fileName, extension);
-                    // Save thumbnail size image, 100 x 100
+
                     SaveToFolder(img1, fileName, extension, new Size(100, 100), model.ThumbPath);
 
-                    // Save large size image, 800 x 800
                     SaveToFolder(img1, fileName, extension, new Size(600, 600), model.ImagePath);
                 }
 
-                // Save record to database
                 model.CreatedOn = DateTime.Now;
                 context.Photo.Add(model);
                 context.SaveChanges();

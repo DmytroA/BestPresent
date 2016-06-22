@@ -1,0 +1,27 @@
+﻿@model DataLayer.News
+
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit @Model.Name</h1>
+@using (Html.BeginForm("EditNews", "Admin",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+   
+     @Html.HiddenFor(s => s.Id)
+    <div>Имя: @Html.EditorFor(x => x.Name)</div>
+    <div>Описание: @Html.EditorFor(x => x.Description)</div>
+        <script>
+            CKEDITOR.replace('Description');
+        </script>
+
+    
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index")
+}
+
+<p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+
+<p>@Html.ActionLink("Админка", "Index")</p>

@@ -1,0 +1,20 @@
+﻿@model DataLayer.Discount
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Редактирование страницы Акции</h1>
+@using (Html.BeginForm("EditDiscount", "Admin",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+     @Html.HiddenFor(s => s.Id)
+    <div>Название: @Html.EditorFor(x => x.Name)</div>
+    <div>Текст: @Html.EditorFor(x => x.Description)</div>
+    <script>
+        CKEDITOR.replace('Description');
+    </script>
+    
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index", "Admin")
+}

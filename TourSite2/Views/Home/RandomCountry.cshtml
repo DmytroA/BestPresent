@@ -1,0 +1,43 @@
+﻿@model DataLayer.Country
+@{
+    ViewBag.Title = "Случайная страна";
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+}
+<div class="content_background">
+    <table id="table" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Фото</th>
+                <th>Страна</th>
+                <th>Курорты</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img class="img-thumbnail" width="250px" height="250px" alt="@Model.Name" src="@Url.Action("GetImageCountry", "Tour", new { Model.Id })" /></td>
+                <td>
+                    @Model.Name
+                </td>
+                <td>
+                    @foreach (var resort in Model.Resort)
+                    {
+                        <a href="@Url.Action("ResortDetails", "Tour",
+                                     new {id = resort.Id })" target="_blank">
+                            @Html.DisplayFor(modelItem => resort.Name)
+                        </a>
+                        <div style="clear:both"></div>
+                    }
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+    <p>
+        <div>
+            @Html.Raw(Model.Description)
+        </div>
+    </p>
+
+</div>

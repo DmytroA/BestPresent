@@ -1,21 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="gb_x_bestpd87Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="About">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Airticket">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="Id" />
@@ -26,6 +10,8 @@
     <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Resort" Relationship="Self.FK_Resort_Country1" FromRole="Country" ToRole="Resort" />
+    <NavigationProperty Name="Country1" Relationship="Model.FK_Country_Country" FromRole="Country" ToRole="Country1" />
+    <NavigationProperty Name="Country2" Relationship="Model.FK_Country_Country" FromRole="Country1" ToRole="Country" />
   </EntityType>
   <EntityType Name="Feed">
     <Key>
@@ -37,14 +23,6 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Date" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="Fishing">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Hotel">
     <Key>
@@ -82,7 +60,7 @@
     <Property Name="HotelId" Type="Int32" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Hotel" Relationship="Self.FK_HotTours_Hotel" FromRole="HotTours" ToRole="Hotel" />
-    <NavigationProperty Name="Reservation" Relationship="gb_x_bestpd87Model.FK_Reservation_Reservation" FromRole="HotTours" ToRole="Reservation" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Reservation" FromRole="HotTours" ToRole="Reservation" />
   </EntityType>
   <EntityType Name="Photo">
     <Key>
@@ -102,6 +80,32 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReservationNumber" Type="Int32" />
+    <Property Name="Period" Type="Int32" />
+    <Property Name="DepartureDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Food" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TourType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HotTourId" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Children" Type="Int32" />
+    <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PastPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Finance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HotTours" Relationship="Self.FK_Reservation_Reservation" FromRole="Reservation" ToRole="HotTours" />
+    <NavigationProperty Name="Reservation1" Relationship="Model.FK_Reservation_Reservation1" FromRole="Reservation" ToRole="Reservation1" />
+    <NavigationProperty Name="Reservation2" Relationship="Model.FK_Reservation_Reservation1" FromRole="Reservation1" ToRole="Reservation" />
+  </EntityType>
   <EntityType Name="Resort">
     <Key>
       <PropertyRef Name="Id" />
@@ -114,22 +118,6 @@
     <Property Name="ImageMimeType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Country" Relationship="Self.FK_Resort_Country1" FromRole="Resort" ToRole="Country" />
     <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_Resort" FromRole="Resort" ToRole="Hotel" />
-  </EntityType>
-  <EntityType Name="Sertificate">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Studying">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Resort_Country1">
     <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
@@ -167,19 +155,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reservation_Reservation">
+    <End Role="HotTours" Type="Self.HotTours" Multiplicity="0..1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotTours">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="HotTourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="TourEntities1" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="About" EntityType="Self.About" />
-    <EntitySet Name="Airticket" EntityType="Self.Airticket" />
     <EntitySet Name="Country" EntityType="Self.Country" />
     <EntitySet Name="Feed" EntityType="Self.Feed" />
-    <EntitySet Name="Fishing" EntityType="Self.Fishing" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" />
     <EntitySet Name="HotTours" EntityType="Self.HotTours" />
     <EntitySet Name="Photo" EntityType="Self.Photo" />
     <EntitySet Name="Placement" EntityType="Self.Placement" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" />
     <EntitySet Name="Resort" EntityType="Self.Resort" />
-    <EntitySet Name="Sertificate" EntityType="Self.Sertificate" />
-    <EntitySet Name="Studying" EntityType="Self.Studying" />
     <AssociationSet Name="FK_Resort_Country1" Association="Self.FK_Resort_Country1">
       <End Role="Country" EntitySet="Country" />
       <End Role="Resort" EntitySet="Resort" />
@@ -192,56 +188,126 @@
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="HotTours" EntitySet="HotTours" />
     </AssociationSet>
-    <EntitySet Name="News" EntityType="gb_x_bestpd87Model.News" />
-    <EntitySet Name="Reservation" EntityType="gb_x_bestpd87Model.Reservation" />
-    <AssociationSet Name="FK_Reservation_Reservation" Association="gb_x_bestpd87Model.FK_Reservation_Reservation">
+    <AssociationSet Name="FK_Reservation_Reservation" Association="Self.FK_Reservation_Reservation">
       <End Role="HotTours" EntitySet="HotTours" />
       <End Role="Reservation" EntitySet="Reservation" />
     </AssociationSet>
+    <EntitySet Name="News" EntityType="Model.News" />
+    <AssociationSet Name="FK_Country_Country" Association="Model.FK_Country_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Country1" EntitySet="Country" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Reservation1" Association="Model.FK_Reservation_Reservation1">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Reservation1" EntitySet="Reservation" />
+    </AssociationSet>
+    <EntitySet Name="Author" EntityType="Model.Author" />
+    <EntitySet Name="Theme" EntityType="Model.Theme" />
+    <EntitySet Name="Blog" EntityType="Model.Blog" />
+    <AssociationSet Name="FK_Blog_Author" Association="Model.FK_Blog_Author">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_Theme" Association="Model.FK_Blog_Theme">
+      <End Role="Theme" EntitySet="Theme" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <EntitySet Name="Discount" EntityType="Model.Discount" />
   </EntityContainer>
   <EntityType Name="News">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="Reservation">
+  <Association Name="FK_Country_Country">
+    <End Type="Model.Country" Role="Country" Multiplicity="1" />
+    <End Type="Model.Country" Role="Country1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Country1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Reservation1">
+    <End Type="Model.Reservation" Role="Reservation" Multiplicity="1" />
+    <End Type="Model.Reservation" Role="Reservation1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Author">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ReservationNumber" Type="Int32" />
-    <Property Name="Period" Type="Int32" />
-    <Property Name="DepartureDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Food" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TourType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="HotTourId" Type="Int32" />
-    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Children" Type="Int32" />
-    <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="PastPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Finance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="HotTours" Relationship="gb_x_bestpd87Model.FK_Reservation_Reservation" FromRole="Reservation" ToRole="HotTours" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Blog" Relationship="Model.FK_Blog_Author" FromRole="Author" ToRole="Blog" />
   </EntityType>
-  <Association Name="FK_Reservation_Reservation">
-    <End Type="gb_x_bestpd87Model.HotTours" Role="HotTours" Multiplicity="0..1" />
-    <End Type="gb_x_bestpd87Model.Reservation" Role="Reservation" Multiplicity="*" />
+  <EntityType Name="Theme">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Blog" Relationship="Model.FK_Blog_Theme" FromRole="Theme" ToRole="Blog" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorId" Type="Int32" Nullable="false" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ThemeId" Type="Int32" />
+    <NavigationProperty Name="Author" Relationship="Model.FK_Blog_Author" FromRole="Blog" ToRole="Author" />
+    <NavigationProperty Name="Theme" Relationship="Model.FK_Blog_Theme" FromRole="Blog" ToRole="Theme" />
+  </EntityType>
+  <Association Name="FK_Blog_Author">
+    <End Type="Model.Author" Role="Author" Multiplicity="1" />
+    <End Type="Model.Blog" Role="Blog" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="HotTours">
+      <Principal Role="Author">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Reservation">
-        <PropertyRef Name="HotTourId" />
+      <Dependent Role="Blog">
+        <PropertyRef Name="AuthorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Blog_Theme">
+    <End Type="Model.Theme" Role="Theme" Multiplicity="0..1" />
+    <End Type="Model.Blog" Role="Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Theme">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="ThemeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

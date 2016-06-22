@@ -37,4 +37,8 @@
             @Html.Raw(Model.Description)
         </div>
     </p>
+    @Html.ActionLink("Заказать", "OrderHotel",
+        "Tour", new { id = Model.Id }, "")
+
+
 </div>

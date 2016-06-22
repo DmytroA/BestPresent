@@ -1,21 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="gb_tourModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="About">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Airticket">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar(max)" />
-  </EntityType>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="Id" />
@@ -36,14 +20,6 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Author" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Date" Type="datetime" />
-  </EntityType>
-  <EntityType Name="Fishing">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Hotel">
     <Key>
@@ -79,6 +55,15 @@
     <Property Name="HotelId" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
   <EntityType Name="Photo">
     <Key>
       <PropertyRef Name="Id" />
@@ -97,6 +82,29 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReservationNumber" Type="int" />
+    <Property Name="Period" Type="int" />
+    <Property Name="DepartureDay" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirstName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" />
+    <Property Name="Food" Type="nvarchar" MaxLength="50" />
+    <Property Name="TourType" Type="nvarchar" MaxLength="100" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="HotTourId" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+    <Property Name="Children" Type="int" />
+    <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="PastPlace" Type="nvarchar(max)" />
+    <Property Name="Finance" Type="nvarchar(max)" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Resort">
     <Key>
       <PropertyRef Name="Id" />
@@ -107,30 +115,6 @@
     <Property Name="CountryId" Type="int" />
     <Property Name="ImageData" Type="varbinary(max)" />
     <Property Name="ImageMimeType" Type="varchar(max)" />
-  </EntityType>
-  <EntityType Name="Sertificate">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="Studying">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="Visa">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Decription" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Country_Country">
     <End Role="Country" Type="Self.Country" Multiplicity="1" />
@@ -168,6 +152,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reservation_Reservation">
+    <End Role="HotTours" Type="Self.HotTours" Multiplicity="0..1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotTours">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="HotTourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Reservation1">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="Reservation1" Type="Self.Reservation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Resort_Country1">
     <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
     <End Role="Resort" Type="Self.Resort" Multiplicity="*" />
@@ -180,20 +188,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="gb_tourModelStoreContainer">
-    <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Airticket" EntityType="Self.Airticket" Schema="dbo" store:Type="Tables" />
+  <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feed" EntityType="Self.Feed" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Fishing" EntityType="Self.Fishing" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HotTours" EntityType="Self.HotTours" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Placement" EntityType="Self.Placement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Resort" EntityType="Self.Resort" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Sertificate" EntityType="Self.Sertificate" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Studying" EntityType="Self.Studying" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Visa" EntityType="Self.Visa" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Country_Country" Association="Self.FK_Country_Country">
       <End Role="Country" EntitySet="Country" />
       <End Role="Country1" EntitySet="Country" />
@@ -205,6 +209,14 @@
     <AssociationSet Name="FK_HotTours_Hotel" Association="Self.FK_HotTours_Hotel">
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="HotTours" EntitySet="HotTours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Reservation" Association="Self.FK_Reservation_Reservation">
+      <End Role="HotTours" EntitySet="HotTours" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Reservation1" Association="Self.FK_Reservation_Reservation1">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Reservation1" EntitySet="Reservation" />
     </AssociationSet>
     <AssociationSet Name="FK_Resort_Country1" Association="Self.FK_Resort_Country1">
       <End Role="Country" EntitySet="Country" />

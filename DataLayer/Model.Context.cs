@@ -25,19 +25,18 @@ namespace DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<About> About { get; set; }
-        public virtual DbSet<Airticket> Airticket { get; set; }
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Feed> Feed { get; set; }
-        public virtual DbSet<Fishing> Fishing { get; set; }
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<HotTours> HotTours { get; set; }
         public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<Placement> Placement { get; set; }
-        public virtual DbSet<Resort> Resort { get; set; }
-        public virtual DbSet<Sertificate> Sertificate { get; set; }
-        public virtual DbSet<Studying> Studying { get; set; }
-        public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Reservation> Reservation { get; set; }
+        public virtual DbSet<Resort> Resort { get; set; }
+        public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<Author> Author { get; set; }
+        public virtual DbSet<Theme> Theme { get; set; }
+        public virtual DbSet<Blog> Blog { get; set; }
+        public virtual DbSet<Discount> Discount { get; set; }
     }
 }

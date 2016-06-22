@@ -1,0 +1,47 @@
+﻿@model TourSite2.Models.EditBlogModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit @Model.Blogs.Name</h1>
+@using (Html.BeginForm("EditBlogPost", "Admin",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(s => s.Blogs.Id)
+    <div>Название блога: @Html.EditorFor(x => x.Blogs.Name)</div>
+    <div>Автор:   @Html.DropDownListFor(m => m.Blogs.AuthorId, Model.Author)</div>
+    <div>Тема:   @Html.DropDownListFor(m => m.Blogs.ThemeId, Model.Theme)</div>
+    
+    <div>Текст: @Html.EditorFor(x => x.Blogs.Text)</div>
+
+    <div>Картинка: @Html.EditorFor(x => x.Blogs.ImageMimeType)</div>
+    
+    <div class="editor-label">Image</div>
+    <div class="editor-field">
+        @if (Model.Blogs.ImageData == null)
+        {
+            @:None
+         }
+        else
+        {
+            <img width="150" height="150" src="@Url.Action("GetImageBlog", "Admin", new { Model.Blogs.Id })" />
+        }
+        <div>
+            Upload new image:
+            <input type="file" name="Image" />
+        </div>
+
+        <script>
+            CKEDITOR.replace('Blogs.Text');
+        </script>
+
+    </div>
+
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index")
+}
+
+<p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+
+<p>@Html.ActionLink("Админка", "Index")</p>

@@ -1,21 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="gb_tourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="About">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Airticket">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="Id" />
@@ -39,14 +23,6 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Date" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="Fishing">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Hotel">
     <Key>
@@ -84,6 +60,17 @@
     <Property Name="HotelId" Type="Int32" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Hotel" Relationship="Self.FK_HotTours_Hotel" FromRole="HotTours" ToRole="Hotel" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Reservation" FromRole="HotTours" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ThumbPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="Placement">
     <Key>
@@ -92,6 +79,32 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReservationNumber" Type="Int32" />
+    <Property Name="Period" Type="Int32" />
+    <Property Name="DepartureDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Food" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TourType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HotTourId" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Children" Type="Int32" />
+    <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PastPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Finance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HotTours" Relationship="Self.FK_Reservation_Reservation" FromRole="Reservation" ToRole="HotTours" />
+    <NavigationProperty Name="Reservation1" Relationship="Self.FK_Reservation_Reservation1" FromRole="Reservation" ToRole="Reservation1" />
+    <NavigationProperty Name="Reservation2" Relationship="Self.FK_Reservation_Reservation1" FromRole="Reservation1" ToRole="Reservation" />
   </EntityType>
   <EntityType Name="Resort">
     <Key>
@@ -105,30 +118,6 @@
     <Property Name="ImageMimeType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Country" Relationship="Self.FK_Resort_Country1" FromRole="Resort" ToRole="Country" />
     <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_Resort" FromRole="Resort" ToRole="Hotel" />
-  </EntityType>
-  <EntityType Name="Sertificate">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Studying">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Visa">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Country_Country">
     <End Role="Country" Type="Self.Country" Multiplicity="1" />
@@ -178,19 +167,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reservation_Reservation">
+    <End Role="HotTours" Type="Self.HotTours" Multiplicity="0..1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotTours">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="HotTourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Reservation1">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="Reservation1" Type="Self.Reservation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="TourEntities1" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="About" EntityType="Self.About" />
-    <EntitySet Name="Airticket" EntityType="Self.Airticket" />
     <EntitySet Name="Country" EntityType="Self.Country" />
     <EntitySet Name="Feed" EntityType="Self.Feed" />
-    <EntitySet Name="Fishing" EntityType="Self.Fishing" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" />
     <EntitySet Name="HotTours" EntityType="Self.HotTours" />
+    <EntitySet Name="Photo" EntityType="Self.Photo" />
     <EntitySet Name="Placement" EntityType="Self.Placement" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" />
     <EntitySet Name="Resort" EntityType="Self.Resort" />
-    <EntitySet Name="Sertificate" EntityType="Self.Sertificate" />
-    <EntitySet Name="Studying" EntityType="Self.Studying" />
-    <EntitySet Name="Visa" EntityType="Self.Visa" />
     <AssociationSet Name="FK_Country_Country" Association="Self.FK_Country_Country">
       <End Role="Country" EntitySet="Country" />
       <End Role="Country1" EntitySet="Country" />
@@ -207,16 +216,23 @@
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="HotTours" EntitySet="HotTours" />
     </AssociationSet>
-    <EntitySet Name="Photo" EntityType="gb_tourModel.Photo" />
+    <AssociationSet Name="FK_Reservation_Reservation" Association="Self.FK_Reservation_Reservation">
+      <End Role="HotTours" EntitySet="HotTours" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Reservation1" Association="Self.FK_Reservation_Reservation1">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Reservation1" EntitySet="Reservation" />
+    </AssociationSet>
+    <EntitySet Name="News" EntityType="Model.News" />
   </EntityContainer>
-  <EntityType Name="Photo">
+  <EntityType Name="News">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Decription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ThumbPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

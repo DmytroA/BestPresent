@@ -11,12 +11,16 @@ namespace DataLayer
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Feed
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string ShortDesc { get; set; }
+        [Required(ErrorMessage = "Description is required")]
+        [DataType(DataType.MultilineText)]
+       
         public string Description { get; set; }
         public string Author { get; set; }
         public Nullable<System.DateTime> Date { get; set; }

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DataLayer.Discount>
+@{
+    ViewBag.Title = "Акция";
+    Layout = null;
+    }
+
+    @foreach (var item in Model)
+    {
+        @Html.Raw(item.Description)
+    }

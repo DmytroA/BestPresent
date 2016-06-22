@@ -194,12 +194,12 @@ namespace TourSite2.Controllers
         [HttpPost]
         public ActionResult DetailOrder(OrderModel model)
         {
-            if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
-            {
-                ModelState.AddModelError("Captcha", "Неправильный ответ, поробуйте еще раз");
-                //dispay error and generate a new captcha 
-                return View(model);
-            }
+            //if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
+            //{
+            //    ModelState.AddModelError("Captcha", "Неправильный ответ, поробуйте еще раз");
+            //    //dispay error and generate a new captcha 
+            //    return View(model);
+            //}
             int id = Int32.Parse(Request.Params["id"]);
             model.HotTours = context.HotTours.Single(tour => tour.Id == id);
 
@@ -240,7 +240,7 @@ namespace TourSite2.Controllers
 
                 try
                 {
-                    SaveReservation(model);
+                    //SaveReservation(model);
                     Task.Factory.StartNew((Action)(() =>
                     {
                         smtp.Send(message1);
@@ -260,37 +260,37 @@ namespace TourSite2.Controllers
                 return View(model);
             }
         }
-        public void SaveReservation(OrderModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                Reservation reservation = new Reservation
-                {
-                    DepartureDay = model.HotTours.DepartureDay,
-                    FirstName = model.Name,
-                    Food = model.HotTours.Food,
-                    HotTourId = model.HotTours.Id,
-                    Location = model.HotTours.Location,
-                    Period = model.HotTours.Period,
-                    Price = model.HotTours.Price,
-                    ReservationNumber = model.ReservationNumber,
-                    TourType = model.HotTours.TourType,
-                    Phone = model.Phone,
-                    Email = model.MailAdress
-                };
+        //public void SaveReservation(OrderModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Reservation reservation = new Reservation
+        //        {
+        //            DepartureDay = model.HotTours.DepartureDay,
+        //            FirstName = model.Name,
+        //            Food = model.HotTours.Food,
+        //            HotTourId = model.HotTours.Id,
+        //            Location = model.HotTours.Location,
+        //            Period = model.HotTours.Period,
+        //            Price = model.HotTours.Price,
+        //            ReservationNumber = model.ReservationNumber,
+        //            TourType = model.HotTours.TourType,
+        //            Phone = model.Phone,
+        //            Email = model.MailAdress
+        //        };
 
-                try
-                {
-                    context.Reservation.Add(reservation);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+        //        try
+        //        {
+        //            context.Reservation.Add(reservation);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e);
+        //        }
 
-                context.SaveChanges();
-            }
-        }
+        //        context.SaveChanges();
+        //    }
+        //}
         public ActionResult DetailOrder(int id, OrderModel model)
         {
             model.HotTours = context.HotTours.Single(tour => tour.Id == id);

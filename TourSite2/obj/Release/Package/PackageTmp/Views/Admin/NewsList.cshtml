@@ -1,0 +1,37 @@
+﻿
+@model List<DataLayer.News>
+    @{
+
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+
+    <h1>Все страны</h1>
+    <table class="Grid">
+        <tr>
+            <th>ID</th>
+            <th>News</th>
+
+            <th>Actions</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+
+                <td>@Html.ActionLink(item.Name, "EditNews", new { item.Id })</td>
+
+                <td>
+                    @using (Html.BeginForm("DeleteNews", "Admin"))
+                    {
+                        @Html.Hidden("NewsId", item.Id)
+                        <input type="submit" value="Delete" />
+                    }
+                </td>
+
+            </tr>
+        }
+    </table>
+    <p>@Html.ActionLink("Добавить новость", "CreateNews")</p>
+    <p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+
+    <p>@Html.ActionLink("Админка", "Index")</p>

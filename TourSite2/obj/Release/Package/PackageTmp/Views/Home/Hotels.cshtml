@@ -1,41 +1,51 @@
-﻿@model IEnumerable<DataLayer.Hotel>
-@{
-    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
-}
+﻿@model List<DataLayer.Hotel>
+    @{
+        Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+    }
+               <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+                   <div style="float:left;">
+                       <h3>Выберите страну</h3>
+                       @Html.DropDownList("Country", ViewBag.Countries as SelectList, new { id = "country", style = "width:185px;  padding:5px; margin-bottom:20px;" })
+                   </div>
+                   <div id="drop" style="float:right;padding-right:500px;display:none;">
+                       <h3>Выберите город</h3>
+                       @Html.DropDownList("Resort", ViewBag.Resorts as SelectList, new { id = "resort", style = "width:185px;  padding:5px; margin-bottom:20px;" })
+                   </div>
 
-<input type="text" id="search" placeholder="Быстрый поиск" />
+                   @section scripts{
+                       <script type="text/javascript">
+                           $(document).ready(function () {
+                               $('#hotel-table').DataTable();
+                           });
 
-<div style="float:left;padding-left:50px;padding-bottom:20px">
-    <h3>Выберите страну</h3>
-    @Html.DropDownList("Country", ViewBag.Countries as SelectList, new { id = "country" })
-</div>
-<div id="drop" style="float:right;padding-right:300px;display:none;">
-    <h3>Выберите город</h3>
-    @Html.DropDownList("Resort", ViewBag.Resorts as SelectList, new { id = "resort" })
-</div>
-@section scripts{
-    <script type="text/javascript">
-        $(function () {
-            $('#country').change(function () {                
-                var id = $(this).val();
-                var countrId = $('#country').val();
+                   $(function () {
+                       $('#country').change(function () {
+                           var id = $(this).val();
+                           var countrId = $('#country').val();
+                           debugger;
+                           $.ajax({
+                               type: 'GET',
+                               url: '@Url.Action("GetItems")/' + id,
+                               success: function (data) {
+                                   $('#resort').html(data);
+                                   $('#drop').css("display", "block");
+                               }
+                           });
+                       });
+                   })
+                   $('#resort').change(function () {
+                       var countrId = $('#country').val();
+                       var resortId = $('#resort').val();
+                       var hotelId = $('#hotel').val();
+                       $.post('Hotel', { hotelId: hotelId, resortId: resortId, countrId: countrId }, function (result) {
+                           $('#tableHotels').html(result);
+                           $('#hotel-table').DataTable();
+                       });
+                   });
+               </script>
 
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("GetItems")/' + id,
-                    success: function (data) {
-                        //$.post('Hotel', { countrId: countrId }, function (result) {
-                        //    $('#tableHotels').html(result);
-                        //});
-                        $('#resort').replaceWith(data);
-                        $('#drop').css("display","block");
-                    }
-                });
-            });
-        })
-    </script>
-}
+    }
 
-<div id="tableHotels">
-    @Html.Partial("PartialHotels");
-</div>
+    <div id="tableHotels">
+        @Html.Partial("PartialHotels");
+    </div>

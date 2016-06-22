@@ -158,12 +158,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CheckController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\SubscribeController.cs" />
     <Compile Include="Controllers\TourController.cs" />
+    <Compile Include="Extentions.cs" />
+    <Compile Include="Models\BlogModel.cs" />
+    <Compile Include="Models\CheckReservationModel.cs" />
+    <Compile Include="Models\EditBlogModel.cs" />
     <Compile Include="Models\EditHotelModel.cs" />
     <Compile Include="Models\EditHotTourModel.cs" />
     <Compile Include="Models\EditResortModel.cs" />
@@ -171,6 +176,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HotelModel.cs" />
     <Compile Include="Models\IAuthProvider.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\NinjectFactory.cs" />
@@ -183,16 +189,20 @@
   <ItemGroup>
     <Content Include="Content\Admin.css" />
     <Content Include="Content\blank.gif" />
+    <Content Include="Content\blueimp-gallery.css" />
+    <Content Include="Content\blueimp-gallery.min.css" />
     <Content Include="Content\bootstrap-image-gallery.css" />
     <Content Include="Content\bootstrap-image-gallery.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.css" />
     <Content Include="Content\fancybox_loading.gif" />
     <Content Include="Content\fancybox_overlay.png" />
     <Content Include="Content\fancybox_sprite.png" />
     <Content Include="Content\fullscreenButton.png" />
+    <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Images\bg2.jpg" />
     <Content Include="Content\Images\bg4 — копия.jpg" />
     <Content Include="Content\Images\bg4.jpg" />
@@ -234,6 +244,8 @@
     <Content Include="Content\Images\thumb4.jpg" />
     <Content Include="Content\Images\up-button.jpg" />
     <Content Include="Content\Images\up-tick.png" />
+    <Content Include="Content\Images\smirnova.jpg" />
+    <Content Include="Content\Images\skidka.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\PagedList.css" />
@@ -301,15 +313,20 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\Images\sub2.psd" />
-    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\dima.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Icon.png" />
+    <Content Include="images\sort_asc.png" />
+    <Content Include="images\sort_both.png" />
+    <Content Include="images\sort_desc.png" />
     <Content Include="RecaptchaNet.Readme.txt" />
     <Content Include="Scripts\blank.gif" />
+    <Content Include="Scripts\blueimp-gallery.js" />
+    <Content Include="Scripts\blueimp-gallery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\datatables.js" />
     <Content Include="Scripts\fancybox_loading.gif" />
     <Content Include="Scripts\fancybox_overlay.png" />
     <Content Include="Scripts\fancybox_sprite.png" />
@@ -318,6 +335,8 @@
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.blueimp-gallery.js" />
+    <Content Include="Scripts\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\jquery.cycle.lite.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.mousewheel-3.0.6.pack.js" />
@@ -370,7 +389,6 @@
     <Content Include="Views\Home\HotelDetails.cshtml" />
     <Content Include="Views\Tour\DetailOrder.cshtml" />
     <Content Include="Views\Home\PartialHotels.cshtml" />
-    <Content Include="Views\Home\GetItems.cshtml" />
     <Content Include="Views\Shared\_DetailsLayout.cshtml" />
     <Content Include="Views\Feedback\Index.cshtml" />
     <Content Include="Views\Feedback\FeedbackDetails.cshtml" />
@@ -391,6 +409,23 @@
     <Content Include="Views\Home\PartialOrder.cshtml" />
     <Content Include="Views\Home\Callback.cshtml" />
     <Content Include="Views\Tour\OrderHotel.cshtml" />
+    <Content Include="Views\Admin\ReserveList.cshtml" />
+    <Content Include="Views\Admin\ReservationInfo.cshtml" />
+    <Content Include="Views\Check\CheckReservation.cshtml" />
+    <Content Include="Views\Check\Reservation.cshtml" />
+    <Content Include="Views\Check\UpdateReservation.cshtml" />
+    <Content Include="Views\Check\EditReservation.cshtml" />
+    <Content Include="Views\Check\PartialReservation.cshtml" />
+    <Content Include="Views\Home\RandomCountry.cshtml" />
+    <Content Include="Views\Home\BlogList.cshtml" />
+    <Content Include="Views\Admin\BlogList.cshtml" />
+    <Content Include="Views\Admin\EditBlogPost.cshtml" />
+    <Content Include="Views\Admin\EditAuthor.cshtml" />
+    <Content Include="Views\Admin\EditTheme.cshtml" />
+    <Content Include="Views\Admin\AuthorList.cshtml" />
+    <Content Include="Views\Admin\ThemeList.cshtml" />
+    <Content Include="Views\Admin\EditDiscount.cshtml" />
+    <Content Include="Views\Home\Discount.cshtml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>

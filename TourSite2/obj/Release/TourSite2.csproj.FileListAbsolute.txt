@@ -128,3 +128,7 @@ D:\bestpresent\BestPresent\TourSite2\bin\WebGridMvc.dll
 D:\bestpresent\BestPresent\TourSite2\bin\PagedList.xml
 D:\bestpresent\BestPresent\TourSite2\bin\PagedList.Mvc.xml
 D:\bestpresent\BestPresent\TourSite2\bin\System.Web.Helpers.xml
+D:\bestpresent\BestPresent\TourSite2\bin\CaptchaMvc.dll
+D:\bestpresent\BestPresent\TourSite2\bin\Recaptcha.Web.dll
+D:\bestpresent\BestPresent\TourSite2\bin\CaptchaMvc.pdb
+D:\bestpresent\BestPresent\TourSite2\bin\CaptchaMvc.xml

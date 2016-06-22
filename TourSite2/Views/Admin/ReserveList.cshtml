@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DataLayer.Reservation>
+
+    @{
+        ViewBag.Title = "Admin: Зарезервированные туры";
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    @Html.ValidationMessage("deletereservation")
+    <h1>Все туры</h1>
+    <table class="Grid">
+        <tr>
+            <th>ID</th>
+            <th>Reservation number</th>
+            <th>Name</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td id="info">@item.Id</td>
+                <td class="reservationNumber" data-id="@item.Id" data-name="@item.FirstName">@item.ReservationNumber</td>
+                <td>@item.FirstName</td>
+                <td>
+                    @using (Html.BeginForm("DeleteReservations", "Admin"))
+                    {
+                        @Html.Hidden("ReservationId", item.Id)
+                        <input type="submit" value="Delete" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+    <p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+
+    <p>@Html.ActionLink("Админка", "Index")</p>
+    
+    <div id="hidden_dialog" style="display:none">
+        <div style="margin-left:200px; margin-top:200px">
+
+        </div>
+
+    </div>
+    <script type="text/javascript">
+    $(function () {
+        $(".reservationNumber").click(function () {
+            debugger;
+            var id = $(this).attr("data-id");
+            var resNumber = $(this).attr("data-name");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Reservation","Check")",
+                data: { Id: id },
+                datatype: "html",
+                success: function (data) {
+                    $('#hidden_dialog').html(data);
+                }
+            });
+            showDialog(resNumber);
+        });
+    });
+        function showDialog(resNumber) {
+
+        $("#hidden_dialog").dialog({
+            open:function(event, ui) {
+                $("body").css({ overflow: 'hidden' })
+            },
+            beforeClose: function(event, ui) {
+                $("body").css({ overflow: 'inherit' })
+            },
+            title: resNumber,
+            width: 800,
+            height: 500,
+        });
+    }
+    </script>

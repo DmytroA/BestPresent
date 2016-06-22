@@ -1,20 +1,31 @@
-﻿<!DOCTYPE html>
+﻿@using CaptchaMvc.HtmlHelpers
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/bootstrap-image-gallery.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="~/Content/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/datatables.css">
+    <link rel="stylesheet" href="~/Content/jquery.fancybox.css">
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/tabslide.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/respond.js"></script>
+    <script src="~/Scripts/datatables.js"></script>
     <title>@ViewBag.Title</title>
-    <style type="text/css">
-        .width {
+        <style type="text/css">
+            .width {
             margin: 0 auto;
             padding: 0 20px;
             width: 960px;
-        }
+            }
 
         .group:before, .group:after {
             content: " ";
@@ -160,45 +171,93 @@
             margin-right: 5px;
             vertical-align: middle;
         }
-    </style>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+        </style>
 </head>
 <body>
     <div class="bg">
     </div>
-
+    <div id="callback"></div>
+    <div id="callback_panel">
+        <div class="logo">
+            <span>Желаете созвониться?</span>
+            <span>Заполните форму<br> мы перезвоним!</span>
+        </div>
+        <div>
+            <div style="float:left">
+                <img src="~/Content/Images/mts.png" width="40" height="40">
+            </div>
+            <div style="float:right;margin-top:10px;font-size:18px">
+                <p>+380 (66) 626 00 76</p>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <div>
+            <div style="float:left">
+                <img src="~/Content/Images/kyivstar_icon.png" width="40" height="40">
+            </div>
+            <div style="float:right; margin-top:10px;font-size:18px">
+                <p>+380 (68) 992 70 76</p>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <div>
+            <div style="float:left">
+                <img src="~/Content/Images/email.png" width="40" height="40">
+            </div>
+            <div style="float:right; margin-top:10px;font-size:18px">
+                <p><a href="mailto:nata_bar@list.ru">nata_bar@list.ru</a></p>
+            </div>
+        </div>
+        @using (Html.BeginForm("Callback", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="form callback_form" method="post">
+                <input name="aName" type="text" placeholder="Ваше имя">
+                <input name="aTel" type="text" placeholder="Ваш номер телефона">
+                <input name="submit_btn" value="Отправить" type="submit" class="btn btn-submit">
+            </div>
+        }
+    </div>
     <div class="wrapper">
+        
         <div class="header">
-
-
             <div class="logo">
                 <a href="/Home/Index/">  <img src="/Content/Images/logo_test.png"></a>
             </div>
-            
             <div class="social">
                 <a href="https://vk.com/id8827767">
                     <div class="icon vk"></div>
                 </a>
-                <div class="icon fb"></div>
+                <a href="https://www.facebook.com/profile.php?id=100007852423960&fref=ts">
+                    <div class="icon fb"></div>
+                </a>
                 <div class="icon tw"></div>
             </div>
 
             <div class="order">
+                @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
                 <a href="/Home/Order">
+
                     <div class="order_button">
                         Заказ Тура
                     </div>
                 </a>
                 <div class="contacts"><span>тел. 066-626-00-76, 068-992-70-76 - Наталья</span></div>
+                <div class="email">Email - <a href="mailto:nata_bar@list.ru">nata_bar@list.ru</a></div>
 
             </div>
             <div class="subscribe_button" title="Подписка"><a href="/Subscribe/Sub/"><img src="/Content/Images/new_sub.png"></a> </div>
+            
             <div class="label">
                 Туристическое агентство<br><span>Лучший Подарок</span>
             </div>
+            @*<div class="check_reservation">
+                <a href="/Check/CheckReservation">
+
+                    <div class="check_button">
+                        Состояние тура
+                    </div>
+                </a>
+                </div>*@
 
             <div class="nav">
                 <div class="item"><a href="/Home/Index">Главная</a></div>
@@ -207,14 +266,17 @@
                 <div class="item"><a href="/Home/Hotels ">Отели</a></div>
                 <div class="item"><a href="/Home/Placements ">Туристам</a></div>
                 <div class="item"><a href="/Photo/Index ">Галерея</a></div>
-                <div class="item"><a href="/Home/Gift ">Бонусы</a></div>
-                <div class="item"><a href="/Feedback/Index/">Отзывы</a></div>
+                <div class="item"><a href="/News/Index ">Новости</a></div>
+                @*<div class="item"><a href="/Home/Gift ">Бонусы</a></div>*@
+                @*<div class="item"><a href="/Feedback/Index/">Отзывы</a></div>*@
                 <div class="item"><a href="/Home/AboutUs/">Контакты</a></div>
+                <div class="item"><a href="/Home/RandomCountry/">Случайная страна</a></div>
             </div>
             <div style="clear: both"></div>
         </div>
 
         <div class="block">
+
             <div class="block_bg"></div>
             <div class="features">
                 <div class="mod">
@@ -239,6 +301,7 @@
         <div class="content">
             <div class="content_background">
                 <div class="main_content">
+
                     @RenderBody()
 
                     <!-- RedHelper -->
@@ -295,7 +358,6 @@
                         <h2 class="widget-title">Мобильные телефоны:</h2>
                         <div class="textwidget">
                             <span>
-
                                 066
                                 <strong>626-00-76</strong>
                             </span>
@@ -307,6 +369,9 @@
                             </span>
                         </div>
                     </div>
+                </div>
+                <div class="weather">
+                <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://pogoda.yandex.ru/kharkiv" target="_blank"><img src="//info.weather.yandex.net/kharkiv/3.ru.png?domain=ru" border="0" alt="Яндекс.Погода" /><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0" /></a>
                 </div>
                 <div class="widget-area prefooter-widget-area" role="complementary">
                     <div id="text-7" class="widget widget_text">
@@ -327,7 +392,7 @@
         <div class="copyrights-n-makers">
             <div class="width group">
                 <div class="copyrights">
-                    <span>© Турагентство «Лучший подарок», 2014—2015. Все права защищены.</span>
+                    <span>© Турагентство «Лучший подарок», 2014—@DateTime.Now.Year. Все права защищены.</span>
                 </div>
                 <div class="makers">
                     Разработка сайта D.Andriichuk
@@ -337,9 +402,111 @@
     </footer>
 
     @RenderSection("scripts", required: false)
-    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-    <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
+    <div id="myModal" class="modal fade" role="dialog">
+        @using (Html.BeginForm("Order", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="modal-dialog modal-lg">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="formGroupInputLarge1" class="col-sm-2 control-label">Примерные даты вылета</label>
+                                <div class="col-sm-3">
+                                    <input type="text" id="datepicker" name="departure" placeholder="Дата вылета">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupInputLarge1" class="col-sm-2 control-label">Питание</label>
+                                <div class="col-sm-3">
+                                    <select name="nutrition">
+
+                                        <option> BO - без питания</option>
+                                        <option> BB - завтраки></option>
+                                        <option> HB - полупансион (2-х разовое)</option>
+                                        <option> FB - полупансион (3-х разовое)</option>
+                                        <option> AL - все включено (местные напитки)</option>
+                                        <option> UAL - ультра все вкл. (иностранные напитки)</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupInputLarge1" class="col-sm-2 control-label">Категория отеля</label>
+                                <div class="col-sm-3">
+                                    <select name="check_cat">
+                                        <option>2*</option>
+                                        <option>3*</option>
+                                        <option>4*</option>
+                                        <option>5*</option>
+                                        <option>De Luxe</option>
+                                        <option>HV-1</option>
+                                        <option>HV-2</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupInputLarge1" class="col-sm-2 control-label">Комментарий</label>
+                                <div class="col-sm-3">
+                                    <textarea rows="10" cols="45" placeholder="Ваши пожелания" name="Comment"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3" style="margin-left:170px">
+                                    <a href="@Url.Action("Order","Home")">
+                                        <img alt="Captcha" src="@Url.Action("CaptchaImage","Home")" style="" />
+                                    </a>
+                                </div>
+                            </div>
+                            @*<div class="form-group" style="margin-left:150px">
+                                    <div class="col-sm-3">
+                                        @Html.EditorFor(model => model.Captcha)
+                                        @Html.ValidationMessageFor(model => model.Captcha)
+                                    </div>
+                                </div>*@
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success btn-lg">Заказать</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+        @*<div class="modal-dialog">
+
+                 Modal content
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>*@
+    </div>
 </body>
 </html>
 <script>
@@ -358,4 +525,35 @@
             }, delay);
         });
     });
-    </script>
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+        // browser window scroll (in pixels) after which the "back to top" link is shown
+        var offset = 200,
+    //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+        offset_opacity = 200,
+    //duration of the top scrolling animation (in ms)
+        scroll_top_duration = 900;
+        var $callback = $('#callback');
+        //hide or show the "back to top" link
+        $(window).scroll(function () {
+            ($(this).scrollTop() > offset) ? $callback.addClass('visible') : $callback.removeClass('visible fade-out');
+            if ($(this).scrollTop() > offset_opacity) {
+                $callback.addClass('fade-out');
+            }
+        });
+        $callback.on('click', function () {
+            if ($(this).hasClass('open')) {
+                $("#callback_panel").animate({ right: '-500px' }, 500);
+                $("#callback").css("opacity", "1")
+                $("#callback").animate({ right: '0px' }, 500);
+                $("#callback").removeClass('open');
+            } else {
+                $("#callback_panel").animate({ right: '0px' }, 500);
+                $("#callback").css("opacity", "0.2");
+                $("#callback").animate({ right: '500px' }, 500);
+                $("#callback").addClass('open');
+            }
+        });
+    });
+</script>

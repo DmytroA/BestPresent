@@ -1,320 +1,195 @@
 ﻿@model List<DataLayer.Country>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-<script>
-    (function IIFE() {
-
-        "use strict";
-
-        function factory($) {
-            var pluginName = "searcher",
-                dataKey = "plugin_" + pluginName,
-                defaults = {
-                    // selector for the item element
-                    itemSelector: "tbody > tr",
-                    // selector for the text elements
-                    textSelector: "td",
-                    // selector for the input
-                    inputSelector: "",
-                    // determines whether the search is case sensitive or not
-                    caseSensitive: false,
-                    // function to toggle the visibility of the item
-                    toggle: function (item, containsText) {
-                        $(item).toggle(containsText);
-                    }
-                };
-
-            function Searcher(element, options) {
-                this.element = element;
-
-                this.options = $.extend({}, defaults, options);
-
-                this._create();
+    @{
+        Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+    }
+    @{
+        ViewBag.Title = "Страны и курорты";
+    }
+    <style>
+            .view {
+                width: 300px;
+                height: 200px;
+                margin: 10px;
+                float: left;
+                border: 10px solid #fff;
+                overflow: hidden;
+                position: relative;
+                text-align: center;
+                box-shadow: 1px 1px 2px #e6e6e6;
+                cursor: default;
+                background: #fff url(../images/bgimg.jpg) no-repeat center center;
             }
 
-            Searcher.prototype = {
-                dispose: function () {
-                    // unbind all events
-                    this._$input.unbind("." + pluginName);
-                    // toggle all elements with true
-                    var options = this.options,
-                        toggle = options.toggle || defaults.toggle;
-                    this._$element.find(options.itemSelector).each(function () { toggle(this, true); });
-                },
-                _create: function () {
-                    var options = this.options;
-
-                    this._$element = $(this.element);
-
-                    // find the input and bind to various events
-                    this._fn = $.proxy(this._onValueChange, this);
-                    var eventNames = "input." + pluginName + " change." + pluginName + " keyup." + pluginName;
-                    this._$input = $(options.inputSelector).bind(eventNames, this._fn);
-
-                    // remember the last entered value
-                    this._lastValue = "";
-
-                    // call the toggle with true for all items on startup
-                    var toggle = options.toggle || defaults.toggle;
-                    this._$element.find(options.itemSelector).each(function () { toggle(this, true); });
-                },
-                _onValueChange: function () {
-                    var options = this.options,
-                        textSelector = options.textSelector,
-                        toggle = options.toggle || defaults.toggle;
-
-                    // build the regular expression for searching
-                    var flags = "gm" + (!options.caseSensitive ? "i" : "");
-                    var value = new RegExp("(" + escapeRegExp(this._$input.val()) + ")", flags);
-
-                    if (value.toString() === this._lastValue)
-                        return; // nothing has changed
-
-                    this._lastValue = value.toString();
-
-                    this._$element
-                        .find(options.itemSelector)
-                        .each(function eachItem() {
-                            var $item = $(this),
-                                $textElements = textSelector ? $item.find(textSelector) : $item,
-                                itemContainsText = false;
-
-                            $textElements = $textElements.each(function eachTextElement() {
-                                itemContainsText = itemContainsText || !!$(this).text().match(value);
-                                return !itemContainsText; // stop if at least one text element contains the text
-                            });
-
-                            toggle(this, itemContainsText);
-                        });
+                .view .mask, .view .content {
+                    width: 300x;
+                    height: 200px;
+                    position: absolute;
+                    overflow: hidden;
+                    top: 0;
+                    left: 0;
                 }
-            };
 
-            function escapeRegExp(text) {
-                // see https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions
-                return text.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-            }
+                .view img {
+                    display: block;
+                    position: relative;
+                }
 
-            $.fn[pluginName] = function pluginHandler(options) {
-                return this.each(function () {
-                    var searcher = $.data(this, dataKey);
-                    if (searcher && options === "dispose") {
-                        searcher.dispose();
-                        $.removeData(this, dataKey);
+                .view h2 {
+                    text-transform: uppercase;
+                    color: #fff;
+                    text-align: center;
+                    position: relative;
+                    font-size: 17px;
+                    padding: 10px;
+                    background: rgba(0, 0, 0, 0.8);
+                    margin: 20px 0 0 0;
+                }
+
+                .view p {
+                    font-family: Georgia, serif;
+                    font-style: italic;
+                    font-size: 12px;
+                    position: relative;
+                    color: #fff;
+                    padding: 10px 20px 20px;
+                    text-align: center;
+                }
+
+                .view a.info {
+                    display: inline-block;
+                    text-decoration: none;
+                    padding: 7px 14px;
+                    background: #000;
+                    color: #fff;
+                    text-transform: uppercase;
+                    box-shadow: 0 0 1px #000;
+                }
+
+                    .view a.info:hover {
+                        box-shadow: 0 0 5px #000;
                     }
-                        // update the options of the existing
-                    else if (searcher)
-                        $.extend(searcher.options, options);
-                        // create a new searcher
-                    else if (typeof (options) === "object")
-                        $.data(this, dataKey, new Searcher(this, options));
-                });
-            };
 
-        }
-
-        // AMD style (register as an anonymous module)
-        if (typeof (define) === "function" && define.amd)
-            define(["jquery"], factory);
-            // node/CommonJS style (for Browserify)
-        else if (typeof (exports) === "object")
-            module.exports = factory;
-            // browser
-        else
-            factory(jQuery);
-
-    }).call(this);
-
-</script>
-@{
-    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
-}
-@{
-    ViewBag.Title = "Страны и курорты";
-}
-<style>
-    .view {
-        width: 300px;
-        height: 200px;
-        margin: 10px;
-        float: left;
-        border: 10px solid #fff;
-        overflow: hidden;
-        position: relative;
-        text-align: center;
-        box-shadow: 1px 1px 2px #e6e6e6;
-        cursor: default;
-        background: #fff url(../images/bgimg.jpg) no-repeat center center;
-    }
-
-        .view .mask, .view .content {
-            width: 300x;
-            height: 200px;
-            position: absolute;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-        }
-
-        .view img {
-            display: block;
-            position: relative;
-        }
-
-        .view h2 {
-            text-transform: uppercase;
-            color: #fff;
-            text-align: center;
-            position: relative;
-            font-size: 17px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            margin: 20px 0 0 0;
-        }
-
-        .view p {
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: 12px;
-            position: relative;
-            color: #fff;
-            padding: 10px 20px 20px;
-            text-align: center;
-        }
-
-        .view a.info {
-            display: inline-block;
-            text-decoration: none;
-            padding: 7px 14px;
-            background: #000;
-            color: #fff;
-            text-transform: uppercase;
-            box-shadow: 0 0 1px #000;
-        }
-
-            .view a.info:hover {
-                box-shadow: 0 0 5px #000;
+            /* ЭФФЕКТ 1*/
+            .view-first img {
+                transition: all 0.2s linear;
             }
 
-    /* ЭФФЕКТ 1*/
-    .view-first img {
-        transition: all 0.2s linear;
-    }
+            .view-first .mask {
+                opacity: 0;
+                background-color: rgba(0,0,0, 0.5);
+                transition: all 0.4s ease-in-out;
+            }
 
-    .view-first .mask {
-        opacity: 0;
-        background-color: rgba(0,0,0, 0.5);
-        transition: all 0.4s ease-in-out;
-    }
+            .view-first h2 {
+                transform: translateY(-100px);
+                opacity: 0;
+                transition: all 0.2s ease-in-out;
+            }
 
-    .view-first h2 {
-        transform: translateY(-100px);
-        opacity: 0;
-        transition: all 0.2s ease-in-out;
-    }
+            .view-first p {
+                transform: translateY(100px);
+                opacity: 0;
+                transition: all 0.2s linear;
+            }
 
-    .view-first p {
-        transform: translateY(100px);
-        opacity: 0;
-        transition: all 0.2s linear;
-    }
+            .view-first a.info {
+                opacity: 0;
+                transition: all 0.2s ease-in-out;
+            }
 
-    .view-first a.info {
-        opacity: 0;
-        transition: all 0.2s ease-in-out;
-    }
+            .view-first:hover img {
+                transform: scale(1.1);
+            }
 
-    .view-first:hover img {
-        transform: scale(1.1);
-    }
+            .view-first:hover .mask {
+                opacity: 1;
+            }
 
-    .view-first:hover .mask {
-        opacity: 1;
-    }
+            .view-first:hover h2,
+            .view-first:hover p,
+            .view-first:hover a.info {
+                opacity: 1;
+                transform: translateY(0px);
+            }
 
-    .view-first:hover h2,
-    .view-first:hover p,
-    .view-first:hover a.info {
-        opacity: 1;
-        transform: translateY(0px);
-    }
+            .view-first:hover p {
+                transition-delay: 0.1s;
+            }
 
-    .view-first:hover p {
-        transition-delay: 0.1s;
-    }
+            .view-first:hover a.info {
+                transition-delay: 0.2s;
+            }
+            /*.hot {
+            font-size: 18px;
+            color: #F86126;
+        }
+        .podr a {
+            color: red !important;
+            font-size: 10px;
+        }
 
-    .view-first:hover a.info {
-        transition-delay: 0.2s;
-    }
-    /*.hot {
-        font-size: 18px;
-        color: #F86126;
-    }
-    .podr a {
-        color: red !important;
-        font-size: 10px;
-    }
+        .size {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 65px;
+            line-height: 19px;
+        }*/
+    </style>
+    @*<input type="text" id="text-to-find" style="position:absolute;" placeholder="Поиска по странам" value="">*@
+    <div>
+        @foreach (var country in Model)
+        {
+            <div class="view view-first" data-id="@country.Id">
+                <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 300px;height: 200px;" />
+                <div class="mask">
+                    <h2 class="country_name">@country.Name</h2>
+                    <p>Краткое описание новости, статьи, поста.</p>
+                    <a href="#" class="info">Подробнее</a>
+                </div>
+            </div>
 
-    .size {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        height: 65px;
-        line-height: 19px;
-    }*/
-</style>
-@*<input type="text" id="text-to-find" style="position:absolute;" placeholder="Поиска по странам" value="">*@
-
-@foreach (var country in Model)
-{
-    <div class="view view-first" data-id="@country.Id">
-        <img src="@Url.Action("GetImageCountry", "Tour", new { country.Id })" alt="@country.Name" style="width: 300px;height: 200px;" />
-        <div class="mask">
-            <h2 class="country_name">@country.Name</h2>
-            <p>Краткое описание новости, статьи, поста.</p>
-            <a href="#" class="info">Подробнее</a>
+        }
+    </div>
+    <div id="hidden_dialog" style="display:none">
+        <div id="loader" style="margin-left:200px; margin-top:200px">
+            <img src="~/Content/Images/load.gif" alt="загрузка" width="300px" height="300px">
         </div>
     </div>
-
-}
-<div id="hidden_dialog" style="display:none">
-    <div id="loader" style="margin-left:200px; margin-top:200px">
-        <img src="~/Content/Images/load.gif" alt="загрузка" width="300px" height="300px">
-    </div>
-</div>
-<script type="text/javascript">
-    $(".block_one").searcher({
-        itemSelector: ".feed",
-        textSelector: "div",
-        inputSelector: "#text-to-find",
-        toggle: function (item, containsText) {
-            if (containsText)
-                $(item).fadeIn();
-            else
-                $(item).fadeOut();
-        }
-    });
-    $(function () {
-        $(".view").click(function () {
-            var id = $(this).attr("data-id");
-            var country = $(this).find('.country_name').text();
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("CountDetails")",
-                data: { Id: id },
-                datatype: "html",
-                success: function (data) {
-                    $('#loader').hide();
-                    $('#hidden_dialog').html(data);                    
-                }
+    <script type="text/javascript">
+        $(".block_one").searcher({
+            itemSelector: ".feed",
+            textSelector: "div",
+            inputSelector: "#text-to-find",
+            toggle: function (item, containsText) {
+                if (containsText)
+                    $(item).fadeIn();
+                else
+                    $(item).fadeOut();
+            }
+        });
+        $(function () {
+            $(".view").click(function () {
+                var id = $(this).attr("data-id");
+                var country = $(this).find('.country_name').text();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("CountDetails")",
+                    data: { Id: id },
+                    datatype: "html",
+                    success: function (data) {
+                        $('#loader').hide();
+                        $('#hidden_dialog').html(data);
+                    }
+                });
+                showDialog(country);
             });
-            showDialog(country);
         });
-    });
-    function showDialog(country) {
-        $("#hidden_dialog").dialog({
-            title:country,
-            width: 800,
-            height: 800,
-        });
-    }
-</script>
+        function showDialog(country) {
+            $("#hidden_dialog").dialog({
+                title: country,
+                width: 800,
+                height: 800,
+            });
+        }
+    </script>

@@ -1,0 +1,66 @@
+﻿@model TourSite2.Models.OrderHotelModel
+    @{
+        ViewBag.Title = "OrderHotel";
+    }
+
+
+@using (Html.BeginForm("OrderHotel", "Tour", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <legend>Оформление тура</legend>
+    <form class="form-horizontal" role="form">
+        <input type="hidden" name="id" value="@Model.Hotels.Id">
+        Вы хотите заказать тур в отеле @Model.Hotels.Name
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Имя</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Ваше имя", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Name)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Email</label>
+
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.MailAdress, new { @class = "form-control", placeholder = "Email", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.MailAdress)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Телефон</label>
+
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Телефон", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Phone)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Комментарий</label>
+            <div class="col-sm-3">
+                @Html.TextAreaFor(m => m.Comment, 10, 45, new { @class = "form-control", placeholder = "Комментарий", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Comment)
+            </div>
+        </div>
+        @*<div class="form-group">
+            <div class="col-sm-3" style="margin-left:170px">
+                <a href="@Url.Action("OrderHotel")">
+                    <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                </a>
+            </div>
+        </div>
+        <div class="form-group" style="margin-left:150px">
+            <div class="col-sm-3">
+                @Html.EditorFor(model => model.Captcha)
+                @Html.ValidationMessageFor(model => model.Captcha)
+            </div>
+        </div>*@
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Save" />
+                @*<button type="submit" class="btn btn-success btn-lg">Отправить</button>*@
+            </div>
+        </div>
+    </form>
+
+}

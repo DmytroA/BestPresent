@@ -1,52 +1,34 @@
 ﻿@model IEnumerable<DataLayer.Hotel>
-    <script>
-        $("#search").keyup(function () {
-            _this = this;
-            // Show only matching TR, hide rest of them
-            $.each($("#table tbody").find("tr"), function () {
-                if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) == -1)
-                    $(this).hide();
-                else
-                    $(this).show();
-            });
-        });
-    </script>
-    <div class="zeroFounds">@ViewBag.Zero</div>
-    <table id="table" class="table table-bordered">
-        @*@Html.Raw(TempData["msg"])*@
-        <thead>
 
+    <table id="hotel-table" class="display" cellspacing="0" width="100%">
+        <thead>
             <tr>
-                <th class="hotel_name">
-                    <div class="nameHotel" style="float:left">@Html.ActionLink("Название Отеля", "Hotels", new { sortOrder = ViewBag.NameSortParm })</div>
-                    <img class="tickRotate" src="/Content/Images/down-tick.png" style="float:right" data-swap='/Content/Images/up-tick.png' />
+
+                <th>
+                    Название отеля
                 </th>
                 <th>
-                    <div style="float:left">@Html.ActionLink("Страна", "Hotels", new { sortOrder = ViewBag.CountrySortParm })</div>
-                    <img class="tickRotate" src="/Content/Images/down-tick.png" style="float:right" data-swap='/Content/Images/up-tick.png' />
+                    Страна
                 </th>
                 <th>
-                    <div style="float:left">@Html.ActionLink("Курорт", "Hotels", new { sortOrder = ViewBag.ResortSortParam })</div>
-                    <img class="tickRotate" src="/Content/Images/down-tick.png" style="float:right" data-swap='/Content/Images/up-tick.png' />
+                    Курорт
                 </th>
                 <th>
-                    <div style="float:left">@Html.ActionLink("Катег", "Hotels", new { sortOrder = ViewBag.CategorySortParam })</div>
-                    <img class="tickRotate" src="/Content/Images/down-tick.png" style="float:right" data-swap='/Content/Images/up-tick.png' />
+                    Категория
                 </th>
                 <th>Расположение отеля</th>
                 <th>Комментарий</th>
+                <th>Действие</th>
             </tr>
         </thead>
-       
-        @foreach (var item in Model)
-        {
-            <tbody>
+
+
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td>
-                        <a href="@Url.Action("HotelDetails", "Home",
-                                     new {id = item.Id})" class="list-group-item list-group-item-info" target="_blank">
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </a>
+                        @item.Name
                     </td>
 
                     <td>@item.Resort.Country.Name</td>
@@ -56,10 +38,12 @@
                     <td>
                         @item.Comment
                     </td>
-                  
+                    <td>
+                         <a href="@Url.Action("HotelDetails", "Home" ,new {id = item.Id})" target="_blank" class="button">Детали</a>
+                    </td>
+
                 </tr>
-            </tbody>
-        }
+            }
+        </tbody>
     </table>
 
-   

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>RecaptchaNet</id>
+    <version>2.1.0</version>
+    <title>reCAPTCHA for .NET</title>
+    <authors>tanveery</authors>
+    <owners>tanveery</owners>
+    <licenseUrl>https://github.com/tanveery/recaptcha-net/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/tanveery/recaptcha-net</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>reCAPTCHA for .NET allows a developer to easily integrate Google's reCAPTCHA service (the most popular captcha control used by millions of sites) in an ASP.NET Web Forms or ASP.NET MVC web application.
+
+The primary features of the library are:
+* Renders recaptcha control with appropriate options.
+* Verifies user's answer to reCAPTCHA's challenge.
+* Supports ASP.NET 4.0, 4.5, and 4.5.1.
+* Supports ASP.NET MVC 4 and 5. 
+* Seamless support for reCAPTCHA version 1 and version 2.
+
+reCAPTCHA for .NET has the best and most up-to-date documentation among all the other competing libraries.</description>
+    <summary>Quickly add reCAPTCHA (the most popular captcha service used by millions of sites) in an ASP.NET Web Forms or ASP.NET MVC web application.</summary>
+    <releaseNotes>v2.1
+1. Supports data type property (API v2 only)
+2. Supports data size property (API v2 only)
+3. Bug fixes 
+
+v2.0
+1. Support for reCAPTCHA v2 APIs.
+2. Bug fixes
+
+v1.8
+1. Fixed the SSL issue by adding an enum called SslBehavior and made it the type of the UseSsl property. UseSsl property is no longer a boolean property.
+
+v1.7
+1. Migrated code from CodePlex to GitHub.
+2. Bug fixes
+3. Optimized code
+4. Changed the license to Apache license v2.0
+
+v1.6.0
+1. Bug fixes
+2. Optimized code
+
+v1.5.1
+1. Added support for HTTPS.
+2. Signed the assemblies
+
+v1.5
+1. Added legacy support for .NET 4.0 &amp; ASP.NET MVC 4.
+2. Added support for .NET 4.5.1.
+
+v1.4
+1. Minor bug fixes
+2. Replaced the direct reference to ASP.NET MVC assembly with a dependency on the ASP.NET MVC Nuget package.
+
+v1.3
+1. You can now verify a user's response to recpatcha challenge asynchronously using the new "await" keyword.
+2. By default, recpacha control uses the current UI culture's language. With this release, you can now set it manually if you want.
+3. The package adds the RecpatchaNet.ReadMe.txt file to your project to help you get started as quickly as possible.</releaseNotes>
+    <language>en-US</language>
+    <tags>recaptcha captcha mvc recpatcha</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="AspNetMvc" version="4.0.20710.0" />
+      </group>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="Microsoft.AspNet.Mvc" version="5.2.0" />
+      </group>
+      <group targetFramework=".NETFramework4.5.1">
+        <dependency id="Microsoft.AspNet.Mvc" version="5.2.0" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework4.5.1" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

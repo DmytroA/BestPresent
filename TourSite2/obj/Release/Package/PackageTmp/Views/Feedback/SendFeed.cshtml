@@ -1,0 +1,50 @@
+﻿@model DataLayer.Feed
+<script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+@{
+    ViewBag.Title = "Оставить отзыв";
+}
+
+@using (Html.BeginForm("SendFeed", "Feedback",
+  FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{ 
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(s => s.Id)
+    <legend>Ваш отзыв</legend>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Ваше имя</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.Author, new { @class = "form-control", placeholder = "Имя", tabindex = 1 })
+                @Html.ValidationMessageFor(m => m.Author)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Где вы отдыхали?</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Где вы отдыхали", tabindex = 2 })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Короткое описание</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.ShortDesc, new { @class = "form-control", placeholder = "Короткое описание", tabindex = 2 })
+                @Html.ValidationMessageFor(m => m.ShortDesc)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Описание</label>
+            <div class="col-sm-3">
+                @Html.TextAreaFor(m => m.Description, 10, 45, new { @class = "form-control", placeholder = "Описание" })
+                @Html.ValidationMessageFor(m => m.Description)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success btn-lg">Отправить</button>
+            </div>
+        </div>
+        
+        </form>
+    
+    }

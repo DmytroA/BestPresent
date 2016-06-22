@@ -73,7 +73,7 @@ body {
 .subscribe_button {
     position: absolute;
     background-image: url("/Content/Images/new_sub.png");
-    margin-left: 1010px;
+    margin-left: 940px;
     margin-top: 25px;
 }
 
@@ -103,6 +103,23 @@ body {
     font-weight: bold;
     font-family: 'PT Sans', sans-serif;
     text-shadow: 1px 1px 1px #000;
+}
+
+.header .order_button_country {
+    width: 206px;
+    padding: 0 0 3px;
+    background: url(http://lazy-tour.by/wp-content/themes/lazy_tour/img/order-link.png);
+    color: #ffffff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'PT Sans', sans-serif;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.header #random-country a {
+    text-decoration: none;
 }
 
 .header .social {
@@ -226,7 +243,7 @@ body {
     border-top-right-radius: 6px;
     border: 1px solid #ffffff;
     border-bottom: 0 none;
-    margin-left: 23px;
+    margin-left: 27px;
     font-size: 12px;
     font-family: Courier;
 }
@@ -487,7 +504,6 @@ check_cat {
 }
 
 .main_content {
-    margin-top: 10px;
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -562,7 +578,7 @@ footer {
     display: inline-block;
     width: 85px;
     height: 362px;
-    bottom: 140px;
+    bottom: 160px;
     right: 0px;
     position: fixed;
     z-index: 4;
@@ -589,7 +605,7 @@ footer {
     display: block;
     width: 260px;
     height: 380px;
-    bottom: 180px;
+    bottom: 240px;
     right: -300px;
     position: fixed;
     z-index: 4;
@@ -613,7 +629,7 @@ footer {
         text-align: center;
         margin: 5px 0 5px;
         text-transform: uppercase;
-        margin-left:65px;
+        margin-left: 65px;
     }
 
     #callback_panel p.text {
@@ -664,15 +680,16 @@ footer {
 .modal-dialog {
     position: absolute;
     left: 50%;
-   
     top: 50%;
     margin-top: -250px;
 }
+
 .order_form {
-        margin-left: 50px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .zeroFounds {
     position: absolute;
     font-size: 20px;
@@ -681,5 +698,106 @@ footer {
     margin: 0 auto;
     width: 50%;
     text-align: center;
-    margin-top:150px;
+    margin-top: 150px;
+}
+
+.check_reservation {
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 800px;
+}
+
+.header .check_button {
+    width: 206px;
+    padding: 0 0 3px;
+    background: url(http://lazy-tour.by/wp-content/themes/lazy_tour/img/order-link.png);
+    color: #ffffff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'PT Sans', sans-serif;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.header .check_reservation a {
+    text-decoration: none;
+}
+
+.reservationNumber {
+    color: red;
+}
+
+.weather {
+    position: absolute;
+    left: 50px;
+    margin-top: 20px;
+}
+
+.ui-widget-content a {
+    color: blue !important;
+}
+
+.email {
+    color: blue;
+}
+
+    .email a {
+        color: blue;
+    }
+
+#hotel-table_wrapper {
+    margin-top: 20px;
+}
+
+.button {
+    color: white;
+    background-color: #F96828;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+#hotel-table th {
+    text-align: center;
+}
+
+#hotel-table td {
+    text-align: center;
+}
+
+#hotel-table a {
+    text-decoration: none;
+}
+
+    #hotel-table a:hover {
+        font-weight: bold;
+        font-size: 15px;
+        color: white;
+    }
+
+.info-block {
+    left: 0px;
+    margin-top: 50%;
+}
+
+#akcia {
+position: fixed;
+right: 10px;
+top: 40px;
+cursor:pointer;
+}
+.author-block{
+    height:200px;
+    width:200px;
+    border:1px solid black;
+    border-radius:10px;
+    float:left;
+}
+.theme-block{
+    float:left;
+    height:200px;
+    width:200px;
+    border:1px solid black;
+    border-radius:10px;
+    margin-top:20px;
 }

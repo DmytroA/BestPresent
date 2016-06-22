@@ -1,0 +1,41 @@
+﻿@model TourSite2.Models.BlogModel
+
+    <div class="author-block pull-left">
+        <ul>
+            @foreach (var author in Model.Authors)
+            {
+                <li>@author.Name</li>
+            }
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+<div class="theme-block pull-left">
+        <ul>
+            @foreach (var theme in Model.Themes)
+            {
+                <li>@theme.Name</li>
+            }
+        </ul>
+    </div>
+<div style="clear:both"></div>
+
+<div class="block-two pull-right">
+    <div class="blog-text pull-right" style="width:1024px;">
+        @foreach (var blog in Model.Blogs)
+        {
+            <div class="blog-post">
+                <div data-id="@blog.Id">
+                    <div>
+                        <img class="hot_pic" src="@Url.Action("GetImageBlog", "Admin", new { blog.Id })" width="200px" height="200px" />
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div>@blog.Name</div>
+                    <div>@blog.Author.Name</div>
+                    <div>@blog.Theme.Name</div>
+                    <div>@blog.Date</div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model List<DataLayer.Theme>
+    @{
+
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+
+    <h1>Все темы</h1>
+    <table class="Grid">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+
+            <th>Actions</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+
+                <td>@Html.ActionLink(item.Name, "EditTheme", new { item.Id })</td>
+
+                <td>
+                    @using (Html.BeginForm("DeleteThemes", "Admin"))
+                    {
+                        @Html.Hidden("Author", item.Id)
+                        <input type="submit" value="Delete" />
+                    }
+                </td>
+
+            </tr>
+        }
+    </table>
+    <p>@Html.ActionLink("Добавить запись", "CreateTheme")</p>
+    <p>@Html.ActionLink("Главная страница", "Index", "Home")</p>
+
+    <p>@Html.ActionLink("Админка", "Index")</p>

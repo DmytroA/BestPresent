@@ -9,30 +9,34 @@
 @using (Html.BeginForm("EditCountry", "Admin",
   FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.EditorForModel()
-    <div class="editor-label">Image</div>
-    <div class="editor-field">
-        @if (Model.ImageData == null)
-        {
+@Html.HiddenFor(s => s.Id)
+<div>Имя страны: @Html.EditorFor(x => x.Name)</div>
+<div>Описание страны: @Html.EditorFor(x => x.Description)</div>
 
-            @:None
+<div>Картинка: @Html.EditorFor(x => x.ImageMimeType)</div>
+<div class="editor-label">Image</div>
+<div class="editor-field">
+    @if (Model.ImageData == null)
+    {
+        @:None
          }
-        else
+  else
         {
             <img width="150" height="150" src="@Url.Action("GetImageCountry", "Tour", new { Model.Id })" />
         }
-        <div>
-            Upload new image:
-            <input type="file" name="Image" />
-        </div>
-        <script>
-            CKEDITOR.replace('Description');
-        </script>
-
+    <div>
+        Upload new image:
+        <input type="file" name="Image" />
     </div>
 
-    <input type="submit" value="Save" />
-    @Html.ActionLink("Cancel and return to List", "Index")
+    <script>
+        CKEDITOR.replace('Description');
+    </script>
+
+</div>
+
+<input type="submit" value="Save" />
+@Html.ActionLink("Cancel and return to List", "Index")
 }
 
 <p>@Html.ActionLink("Главная страница", "Index", "Home")</p>

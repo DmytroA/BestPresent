@@ -1,59 +1,81 @@
-﻿@model PagedList.IPagedList<DataLayer.Hotel>
-    @using PagedList.Mvc;
+﻿@model List<DataLayer.Hotel>
     @{
         Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+        ViewBag.Title = "Отели";
     }
-    <input type="text" id="search" placeholder="Быстрый поиск" />
-
-    <div style="float:left;padding-left:50px;padding-bottom:20px">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <div style="float:left;">
         <h3>Выберите страну</h3>
-        @Html.DropDownList("Country", ViewBag.Countries as SelectList, new { id = "country" })
+        @Html.DropDownList("Country", ViewBag.Countries as SelectList, new { id = "country", style = "width:185px;  padding:5px; margin-bottom:20px;" })
     </div>
-    <div id="drop" style="float:right;padding-right:300px;display:none;">
+    <div id="drop" style="float:right;padding-right:500px;display:none;">
         <h3>Выберите город</h3>
-        @Html.DropDownList("Resort", ViewBag.Resorts as SelectList, new { id = "resort" })
+        @Html.DropDownList("Resort", ViewBag.Resorts as SelectList, new { id = "resort", style = "width:185px;  padding:5px; margin-bottom:20px;" })
     </div>
 
     @section scripts{
         <script type="text/javascript">
+            $(document).ready(function () {
+                $('#hotel-table').DataTable();
+            });
+
+            @*$(function () {
+                       $('#country').change(function () {
+                           var id = $(this).val();
+                           var countrId = $('#country').val();
+                           debugger;
+                           $.ajax({
+                               type: 'GET',
+                               url: '@Url.Action("GetItems")/' + id,
+                               success: function (data) {
+                                   $('#resort').html(data);
+                                   $('#drop').css("display", "block");
+                               }
+                           });
+                       });
+                   })*@
             $(function () {
                 $('#country').change(function () {
                     var id = $(this).val();
-                    var countrId = $('#country').val();
-
-                    $.ajax({
-                        type: 'GET',
-                        url: '@Url.Action("GetItems")/' + id,
-                        success: function (data) {
-                            //$.post('Hotel', { countrId: countrId }, function (result) {
-                            //    $('#tableHotels').html(result);
-                            //});
-                            $('#resort').replaceWith(data);
-                            $('#drop').css("display", "block");
-                        }
+                    var countryId = $('#country').val();
+                    debugger;
+                    $("#hidden_dialog").dialog({
+                        autoOpen: false,
+                        modal: true
+                    });
+                    $('#hidden_dialog').dialog('open');
+                    $.post('GetCountry', { countryId: countryId }, function (result) {
+                        $('#tableHotels').html(result);
+                        $('#hotel-table').DataTable();
+                        $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("GetItems")/' + id,
+                            success: function (data) {
+                                $('#resort').html(data);
+                                $('#drop').css("display", "block");
+                                $('#hidden_dialog').dialog('close');
+                            }
+                        });
                     });
                 });
             })
-            $(".tickRotate").click(function () {
-                debugger;
-                var _this = $(this);
-                var current = _this.attr("src");
-                var swap = _this.attr("data-swap");
-                _this.attr('src', swap).attr("data-swap", current);
+            $('#resort').change(function () {
+                var countrId = $('#country').val();
+                var resortId = $('#resort').val();
+                var hotelId = $('#hotel').val();
+                $.post('Hotel', { hotelId: hotelId, resortId: resortId, countrId: countrId }, function (result) {
+                    $('#tableHotels').html(result);
+                    $('#hotel-table').DataTable();
+                });
             });
-
         </script>
 
     }
-
+    <div id="hidden_dialog" style="display:none">
+        <div id="loader" style="margin-left:70px;margin-top:20px;">
+            <img src="~/Content/Images/ajax-loader.gif" alt="загрузка" width="128px" height="15px">
+        </div>
+    </div>
     <div id="tableHotels">
         @Html.Partial("PartialHotels");
     </div>
-    <div style="margin-top:10px">
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-        @Html.PagedListPager(Model, page => Url.Action("Hotels",
-                    new { page }))
-    </div>
-
- 

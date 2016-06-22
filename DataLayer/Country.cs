@@ -11,6 +11,7 @@ namespace DataLayer
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Country
     {
@@ -21,10 +22,15 @@ namespace DataLayer
     
         public int Id { get; set; }
         public string Name { get; set; }
+        [Required(ErrorMessage = "Description is required")]
+        [DataType(DataType.MultilineText)]
+       
         public string Description { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
     
         public virtual ICollection<Resort> Resort { get; set; }
+        public virtual Country Country1 { get; set; }
+        public virtual Country Country2 { get; set; }
     }
 }

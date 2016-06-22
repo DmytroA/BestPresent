@@ -1,0 +1,160 @@
+﻿@model TourSite2.Models.FormsAuthProvider
+
+@using CaptchaMvc.HtmlHelpers
+
+<script type="text/javascript" src="~/Scripts/jquery-ui.js"></script>
+
+<style type="text/css">
+    .order_form {
+        margin-left: 50px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+
+@using (Html.BeginForm("Order", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+     <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Примерные даты вылета</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="datepicker" name="departure" placeholder="Дата вылета">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Продолжительность тура</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(m => m.Duration, new { @class = "form-control", placeholder = "Продолжительность тура", tabindex = 1 })
+                                @Html.ValidationMessageFor(m => m.Duration)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Количество детей</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(m => m.Children, new { @class = "form-control", placeholder = "Дети", tabindex = 1 })
+                                @Html.ValidationMessageFor(m => m.Children)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Питание</label>
+                            <div class="col-sm-3">
+                                <select name="nutrition">
+
+                                    <option> BO - без питания</option>
+                                    <option> BB - завтраки></option>
+                                    <option> HB - полупансион (2-х разовое)</option>
+                                    <option> FB - полупансион (3-х разовое)</option>
+                                    <option> AL - все включено (местные напитки)</option>
+                                    <option> UAL - ультра все вкл. (иностранные напитки)</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Категория отеля</label>
+                            <div class="col-sm-3">
+                                <select name="check_cat">
+                                    <option>2*</option>
+                                    <option>3*</option>
+                                    <option>4*</option>
+                                    <option>5*</option>
+                                    <option>De Luxe</option>
+                                    <option>HV-1</option>
+                                    <option>HV-2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Страна</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(m => m.Country, new { @class = "form-control", placeholder = "Страна", tabindex = 1 })
+                                @Html.ValidationMessageFor(m => m.Country)
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Имя</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Полное имя", tabindex = 1 })
+                                @Html.ValidationMessageFor(m => m.Name)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge2" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(m => m.MailAdress, new { @class = "form-control", placeholder = "Email", tabindex = 2 })
+                                @Html.ValidationMessageFor(m => m.MailAdress)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge3" class="col-sm-2 control-label">Телефон</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Телефон", tabindex = 3 })
+                                @Html.ValidationMessageFor(m => m.Phone)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge3" class="col-sm-2 control-label">Где вы раньше отдыхали</label>
+                            <div class="col-sm-3">
+                                @Html.TextAreaFor(m => m.RestPlace, 10, 45, new { @class = "form-control", placeholder = "Где вы раньше отдыхали", tabindex = 3 })
+                                @Html.ValidationMessageFor(m => m.RestPlace)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge3" class="col-sm-2 control-label">Бюджет</label>
+                            <div class="col-sm-3">
+                                @Html.TextAreaFor(m => m.EstimatedBudget, 10, 45, new { @class = "form-control", placeholder = "Бюджет", tabindex = 3 })
+                                @Html.ValidationMessageFor(m => m.EstimatedBudget)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupInputLarge1" class="col-sm-2 control-label">Комментарий</label>
+                            <div class="col-sm-3">
+                                <textarea rows="10" cols="45" placeholder="Ваши пожелания" name="Comment"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3" style="margin-left:170px">
+                                <a href="@Url.Action("Order")">
+                                    <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left:150px">
+                            <div class="col-sm-3">
+                                @Html.EditorFor(model => model.Captcha)
+                                @Html.ValidationMessageFor(model => model.Captcha)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success btn-lg">Заказать</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    
+   
+}
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>

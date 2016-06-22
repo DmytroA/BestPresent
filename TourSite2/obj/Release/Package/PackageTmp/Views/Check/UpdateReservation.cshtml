@@ -1,0 +1,35 @@
+﻿@model DataLayer.Reservation
+@{
+    ViewBag.Title = "UpdateReservation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>UpdateReservation @Model.ReservationNumber</h2>
+
+@using (Html.BeginForm("EditReservation", "Check",
+  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(s => s.Id)
+    @Html.HiddenFor(s => s.HotTourId)
+    @Html.HiddenFor(s => s.ReservationNumber)
+    @Html.HiddenFor(s => s.Price)
+    @Html.HiddenFor(s => s.Food)
+    @Html.HiddenFor(s => s.TourType)
+    @Html.HiddenFor(s => s.Location)
+    
+    <div> Продолжительность: @Html.EditorFor(x => x.Period)</div>
+    <div> День прибытия: @Html.EditorFor(x => x.DepartureDay)</div>
+    <div> Имя: @Html.EditorFor(x => x.FirstName)</div>
+    <div>Email:@Html.EditorFor( x => x.Email)</div>
+    <div>Телефон:@Html.EditorFor( x => x.Phone)</div>
+    <div>Дети:@Html.EditorFor( x => x.Children )</div>
+    <div>Категория отеля:@Html.EditorFor( x => x.HotelCategory)</div>
+    <div>Места отдыха: @Html.EditorFor( x => x.PastPlace)</div>
+    <div>Финансы:@Html.EditorFor( x => x.Finance)</div>
+    <div>Комментарий:@Html.EditorFor(x => x.Comment)</div>
+
+    <input type="submit" value="Update" />
+
+    @Html.ActionLink("Главная страница", "Index","Home")
+}

@@ -1,0 +1,130 @@
+﻿@model List<DataLayer.Feed>
+<style>
+    .block_one {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid;
+        border-radius: 15px;
+        box-shadow: 5px 5px 2px #888888;
+    }
+
+    .feed {
+        font-family: "Arial Black", Gadget, sans-serif;
+    }
+
+    #name {
+        font-family: inherit;
+        font-size: 20px;
+        padding-left: 25px;
+    }
+
+    #author {
+        float: left;
+        text-decoration: underline;
+        font-family: inherit;
+        font-size: 12px;
+        color: gray;
+        padding-left: 25px;
+    }
+
+    #date {
+        float: right;
+        padding-right: 25px;
+        display: inline-block;
+        text-decoration: underline;
+        font-family: inherit;
+        font-size: 12px;
+        color: gray;
+    }
+
+
+    .desc {
+        margin-top: 30px;
+        border: 0;
+        border-top: 1px solid gray;
+        padding: 10px;
+        font-family: "Arial";
+    }
+
+    #description {
+        color: black;
+        font-size: 15px;
+        text-align: justify;
+        font-family: inherit;
+    }
+
+    .readmore {
+        font-size: 12px;
+        margin-top: 15px;
+        color: gray;
+        text-align: left;
+        font-family: inherit;
+        text-decoration: underline;
+    }
+
+        .readmore a {
+            color: gray;
+        }
+
+    .order_button {
+        width: 206px;
+        padding: 0 0 3px;
+        background: url(http://lazy-tour.by/wp-content/themes/lazy_tour/img/order-link.png);
+        color: #ffffff;
+        text-align: center;
+        line-height: 50px;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: 'PT Sans', sans-serif;
+        text-shadow: 1px 1px 1px #000;
+    }
+
+    .s a {
+        text-decoration: none;
+    }
+</style>
+<div class="s pull-right">
+    <a href="/Feedback/Create">
+        <div class="order_button">
+            Добавить отзыв
+        </div>
+    </a>
+</div>
+    @TempData["mess"]
+
+<div style="clear:both"></div>
+
+    @foreach (var feed in Model)
+    {
+        <div class="block_one">
+            <div class="feed">
+
+                <div id="name">
+                    @feed.Name
+                </div>
+
+
+                <div id="author">
+                    @feed.Author
+                </div>
+
+                <div id="date">
+                    @feed.Date
+                </div>
+                <div class="desc">
+                    <div id="description">
+                        @feed.Description
+                    </div>
+
+                    <div class="readmore">
+                        <a href="@Url.Action("FeedbackDetails", "Feedback",
+                                 new { id = feed.Id })" target="_blank">
+                            Подробнее..
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    }

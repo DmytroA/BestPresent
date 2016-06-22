@@ -1,0 +1,74 @@
+﻿@model List<DataLayer.Resort>
+@{
+    ViewBag.Title = "Resorts";
+}
+
+<h2>Resorts</h2>
+
+<style>
+    .hot {
+        font-size: 18px;
+    }
+
+        .hot a {
+            color: #F86126 !important;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+    .podr a {
+        color: red !important;
+        font-size: 10px;
+    }
+
+    .size {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 65px;
+        line-height: 19px;
+    }
+</style>
+
+<input type="text" id="text-to-find" placeholder="Поиска по странам" value="">
+
+@foreach (var resort in Model)
+{
+    <div class="block_one" style="margin-top:20px;">
+        <div class="feed">
+            <div class="hot pull-left">
+                <strong><a href="@Url.Action("ResortDetails", "Tour", new { id = resort.Id})" target="_blank">@resort.Name</a></strong>
+            </div>
+            <div class="author pull-right">
+               <a href="@Url.Action("ResortDetails", "Tour",
+                                 new { id = resort.Id })" target="_blank">
+                    <img src="@Url.Action("GetImageCountry", "Tour", new { resort.Country.Id })" alt="@resort.Name" style="width: 45px;height: 25px;" />
+                </a>
+            </div>
+            <div style="clear:both"></div>
+            <div class="size" id="desc" style="margin-top:10px;">
+                @Html.Raw(resort.Description)
+            </div>
+            <div class="podr">
+                <a href="@Url.Action("ResortDetails", "Tour",
+                                 new { id = resort.Id })" target="_blank">
+                    подробнее
+                </a>
+            </div>
+        </div>
+
+    </div>
+}
+<script>
+    $(".block_one").searcher({
+        itemSelector: ".feed",
+        textSelector: "div",
+        inputSelector: "#text-to-find",
+        toggle: function (item, containsText) {
+            if (containsText)
+                $(item).fadeIn();
+            else
+                $(item).fadeOut();
+        }
+    });
+</script>

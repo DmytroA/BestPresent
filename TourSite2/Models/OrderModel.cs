@@ -16,13 +16,13 @@ namespace TourSite2.Models
         [Required(ErrorMessage = "Введите телефон")]
         public string Phone { get; set; }
         [Display(Name = "Email address")]
-        [Required(ErrorMessage = "The email address is required")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [Required(ErrorMessage = "Требуется e-mail")]
+        [EmailAddress(ErrorMessage = "Неправильный e-mail")]
         public string MailAdress { get; set; }
         public string Comment { get; set; }
         [Required]
         [Display(Name = "Введите сумму на картинке")]
-        public string Captcha { get; set; }
+        //public string Captcha { get; set; }
         public int ReservationNumber { get; set; }
     }
 }

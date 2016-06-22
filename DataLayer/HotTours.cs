@@ -11,6 +11,7 @@ namespace DataLayer
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class HotTours
     {
@@ -20,6 +21,9 @@ namespace DataLayer
         }
     
         public int Id { get; set; }
+        [Required(ErrorMessage = "Description is required")]
+        [DataType(DataType.MultilineText)]
+       
         public string Description { get; set; }
         public string Price { get; set; }
         public byte[] ImageData { get; set; }

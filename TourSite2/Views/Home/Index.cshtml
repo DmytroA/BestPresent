@@ -1,163 +1,174 @@
 ﻿@model List<DataLayer.HotTours>
 
-@{
-    ViewBag.Title = "Лучший Подарок";
-}
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-<style type="text/css">
-    .content_bg {
-        /*border: 1px solid #000;
+    @{
+        ViewBag.Title = "Лучший Подарок";
+    }
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <style type="text/css">
+        .content_bg {
+            /*border: 1px solid #000;
         background: #fff;
         background-color: rgba(255, 255, 255, 0.5);*/
-        height: 1400px;
-        /*margin-top: 20px;*/
-    }
-
-    .hot_pic {
-        width: 96px;
-        border-radius: 10px;
-        height: 68px;
-        border: 1px solid #d6d8e4;
-        padding: 2px;
-    }
-
-    #hotel {
-        font-size: 17px;
-        font-weight: bold;
-        color: #284b7e !important;
-        text-decoration: underline;
-    }
-
-    #city {
-        font-size: 13px !important;
-        font-weight: bold !important;
-        color: #0f4da8 !important;
-        text-align: left;
-    }
-
-    .block_one {
-        float: left;
-        margin-left: 20px;
-        margin-top: 20px;
-    }
-
-    .block_two {
-        position: absolute;
-        margin-left: 150px;
-        margin-top: 60px;
-    }
-
-    .lab {
-        color: #6F727B;
-        font-size: 12px;
-        text-align: left;
-    }
-
-    .item {
-        color: #000;
-        font-size: 12px;
-        text-align: left;
-        margin-left: 5px;
-    }
-
-    .center {
-        margin-top: 20px;
-    }
-
-    .hot_tour:hover {
-        background-color: #ff6a00;
-        opacity:0.7;
-    }
-</style>
-<script type="text/javascript" src="//vk.com/js/api/openapi.js?117"></script>
-
-<div class="tours">
-    <div class="content_bg">
-
-        @foreach (var tour in Model)
-        {
-
-            <div class="hot_tour" data-id="@tour.Id">
-
-                <div class="block_one">
-                    <div id="hotel">
-                        @*<a href="@Url.Action("Details", "Tour",
-                            new { id = tour.Id })" target="_blank">
-                                @tour.Hotel.Resort.Country.Name, @tour.Hotel.Resort.Name
-                            </a>*@
-                        @tour.Hotel.Resort.Country.Name, @tour.Hotel.Resort.Name
-                    </div>
-                    <div id="city">
-                        @*<a href="@Url.Action("Details", "Tour",
-                            new { id = tour.Id })" target="_blank">@((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)</a>*@
-                        @((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)
-                    </div>
-
-                    @*<a href="@Url.Action("Details", "Tour",
-                                 new { id = tour.Id })" target="_blank">*@
-                        <img class="hot_pic" src="@Url.Action("GetImageHotel", "Tour", new { tour.Hotel.Id })" />
-                    @*</a>*@
-                </div>
-                <div class="block_two">
-
-                    <div><label class="lab">Выезд:</label> <span class="item"><strong>@tour.DepartureDay</strong></span></div>
-
-                    <div><label class="lab">Питание:</label><span class="item"><strong>@tour.Food</strong></span></div>
-
-                    <div><label class="lab">Продолжительность:</label><span class="item"><strong> @tour.Period ночей</strong></span></div>
-
-                    <div><label class="lab">Кол-во людей:</label><span class="item"><strong>@tour.AmountPeople</strong></span></div>
-
-                    <div><label class="lab">Тип тура:</label><span class="item"><strong>@tour.TourType</strong></span></div>
-
-                </div>
-                <div class="price">@tour.Price</div>
-
-            </div>
-
-
+            height: 1400px;
+            /*margin-top: 20px;*/
         }
-    </div>
-</div>
 
-<div id="hidden_dialog" style="display:none">
-    <div id="loader" style="margin-left:200px; margin-top:200px">
-        <img src="~/Content/Images/load.gif" alt="загрузка" width="400px" height="400px">
+        .hot_pic {
+            width: 96px;
+            border-radius: 10px;
+            height: 68px;
+            border: 1px solid #d6d8e4;
+            padding: 2px;
+        }
+
+        #hotel {
+            font-size: 17px;
+            font-weight: bold;
+            color: #284b7e !important;
+            text-decoration: underline;
+        }
+
+        #city {
+            font-size: 13px !important;
+            font-weight: bold !important;
+            color: #0f4da8 !important;
+            text-align: left;
+        }
+
+        .block_one {
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+
+        .block_two {
+            position: absolute;
+            margin-left: 150px;
+            margin-top: 60px;
+        }
+
+        .lab {
+            color: #6F727B;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .item {
+            color: #000;
+            font-size: 12px;
+            text-align: left;
+            margin-left: 5px;
+        }
+
+        .center {
+            margin-top: 20px;
+        }
+
+        .hot_tour:hover {
+            background-color: #ff6a00;
+            opacity: 0.7;
+        }
+    </style>
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?117"></script>
+
+    <div class="tours">
+        <div class="content_bg">
+
+            @foreach (var tour in Model)
+            {
+
+                <div class="hot_tour" data-id="@tour.Id">
+
+                    <div class="block_one">
+                        <div id="hotel">
+                            @*<a href="@Url.Action("Details", "Tour",
+                                new { id = tour.Id })" target="_blank">
+                                    @tour.Hotel.Resort.Country.Name, @tour.Hotel.Resort.Name
+                                </a>*@
+                            @tour.Hotel.Resort.Country.Name, @tour.Hotel.Resort.Name
+                        </div>
+                        <div id="city">
+                            @*<a href="@Url.Action("Details", "Tour",
+                                new { id = tour.Id })" target="_blank">@((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)</a>*@
+                            @((tour.Hotel != null) ? tour.Hotel.Name : string.Empty)@((tour.Hotel != null) ? tour.Hotel.Category : string.Empty)
+                        </div>
+
+                        @*<a href="@Url.Action("Details", "Tour",
+                            new { id = tour.Id })" target="_blank">*@
+                        <img class="hot_pic" src="@Url.Action("GetImageHotel", "Tour", new { tour.Hotel.Id })" />
+                        @*</a>*@
+                    </div>
+                    <div class="block_two">
+
+                        <div><label class="lab">Выезд:</label> <span class="item"><strong>@tour.DepartureDay</strong></span></div>
+
+                        <div><label class="lab">Питание:</label><span class="item"><strong>@tour.Food</strong></span></div>
+
+                        <div><label class="lab">Продолжительность:</label><span class="item"><strong> @tour.Period ночей</strong></span></div>
+
+                        <div><label class="lab">Кол-во людей:</label><span class="item"><strong>@tour.AmountPeople</strong></span></div>
+
+                        <div><label class="lab">Тип тура:</label><span class="item"><strong>@tour.TourType</strong></span></div>
+
+                    </div>
+                    <div class="price">@tour.Price</div>
+
+                </div>
+
+
+            }
         </div>
+    </div>
 
-</div>
-<script type="text/javascript">
-    $(function () {
-        $(".hot_tour").click(function () {
-            var id = $(this).attr("data-id");
-            var country = $(this).find('#hotel').text();
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("Details")",
-                data: { Id: id },
-                datatype: "html",
-                success: function (data) {
-                    $('#loader').hide();
-                    $('#hidden_dialog').html(data);
-                    //$("body").css({ 'overflow': 'hidden' });
-                }
+    <div id="hidden_dialog" style="display:none">
+        <div id="loader" style="margin-left:200px; margin-top:200px">
+            <img src="~/Content/Images/load.gif" alt="загрузка" width="400px" height="400px">
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(".hot_tour").click(function () {
+                var id = $(this).attr("data-id");
+                var country = $(this).find('#hotel').text();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Details")",
+                    data: { Id: id },
+                    datatype: "html",
+                    success: function (data) {
+                        $('#loader').hide();
+                        $('#hidden_dialog').html(data);
+                        //$("body").css({ 'overflow': 'hidden' });
+                    }
+                });
+                showDialog(country);
             });
-            showDialog(country);
         });
-    });
-    function showDialog(country) {
-    
-        $("#hidden_dialog").dialog({
-            open:function(event, ui) {
-                $("body").css({ overflow: 'hidden' })
-            },
-            beforeClose: function(event, ui) {
-                $("body").css({ overflow: 'inherit' })
-            },
-            title: country,
-            width: 800,
-            height: 500,
-        });
-    }
-</script>
+        function showDialog(country) {
+
+            $("#hidden_dialog").dialog({
+                open: function (event, ui) {
+                    $("body").css({ overflow: 'hidden' })
+                },
+                beforeClose: function (event, ui) {
+                    $("body").css({ overflow: 'inherit' })
+                },
+                title: country,
+                width: 800,
+                height: 500,
+            });
+        }
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-73969237-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
